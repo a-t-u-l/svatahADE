@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Behaviour driven automation platform" />
+    <meta name="author" content="svatah" />
+
+    <title>Svatah ADE</title>
+    <!-- Bootstrap core CSS     -->
+    <link href="./../css/bootstrap.min.css?v=1.0.5" rel="stylesheet" />
+    <!--  Material Dashboard CSS    -->
+    <link href="./../css/black-dashboard.css?v=1.1.45455" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="./../css/font-awesome.min.css" rel="stylesheet" type='text/css' />
+    <link href='./../css/material-icons-fonts.css' rel='stylesheet' type='text/css' />
+    <link href="./../css/poppins-fonts.css" rel="stylesheet" />
+    <link href="./../css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="./../css/svatah.css" rel="stylesheet" />
+</head>
+
+<body id="bod" class="white-content">
+    <div class="wrapper" style="border-top: 2px solid #e6b31c;">
+        <div id="sidebar" class="sidebar" data-color="orange" data-image="#">
+            <div class="logo">
+                <a href="./home.html" target="_blank" class="simple-text logo-mini">
+                    S
+                </a>
+                <a href="./home.html" target="_blank" class="simple-text logo-normal">
+                    Svatah
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+
+                    <li class="project active">
+                        <a href="./project.html" data-toggle="tooltip" data-placement="right" title="project">
+                            <i class="material-icons">assessment</i>
+                            <p>View Projects</p>
+                        </a>
+                    </li>
+
+                    <li class="newuiproject">
+                        <a href="./newproject.html" data-toggle="tooltip" data-placement="right" title="newproject">
+                            <i class="material-icons">note_add</i>
+                            <p>New Project</p>
+                        </a>
+                    </li>
+
+                    <!-- <li class="newapiproject">
+                        <a href="./apiproject.html" data-toggle="tooltip" data-placement="right" title="newproject">
+                            <i class="material-icons">description</i>
+                            <p>New API Project</p>
+                        </a>
+                    </li> -->
+
+                    <li class="api-client">
+                        <a href="./apiclient.html" data-toggle="tooltip" data-placement="right" title="API client">
+                            <i class="material-icons">extension</i>
+                            <p>API Client</p>
+                        </a>
+                    </li>
+
+                    <li class="results">
+                        <a href="./results.html" data-toggle="tooltip" data-placement="right" title="results">
+                            <i class="material-icons">receipt</i>
+                            <p>Results</p>
+                        </a>
+                    </li>
+
+                    <li class="docs">
+                        <a href="https://www.svatah.in/docs" target="_blank" data-toggle="tooltip" data-placement="right"
+                            title="View docs" id="docsLink">
+                            <i class="material-icons">description</i>
+                            <p>Docs</p>
+                        </a>
+                    </li>
+
+                    <li id="darkmode" class="theme">
+                        <a class="toggle-label toggle-label-off" data-toggle="tooltip" data-placement="right"
+                            title=" toggle dark mode">
+                            <i id="darkmodeicon" class="material-icons">toggle_on</i>
+                            <p>darkmode</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div id="alertbar" class="col">
+
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="tableView">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Projects</h4>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table id="projectList" class="table">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th>Project Name</th>
+                                                <th>Url</th>
+                                                <th>Choose Config</th>
+                                                <th>Browser</th>
+                                                <th>Execute</th>
+                                                <th>View</th>
+                                                <th>Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="projectsView">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <footer class="footer">
+                        <p class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a href="./home.html" target="_blank">Svatah</a>, Behaviour Driven Automation Platform
+                        </p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+<!--   Core JS Files   -->
+<script src="./../js/jquery.min.js?v=3.4.0.1" type="text/javascript"></script>
+<script src="./../js/popper.min.js?v=1.0.2" type="text/javascript"></script>
+<script src="./../js/bootstrap.min.js?v=1.0.2" type="text/javascript"></script>
+<!--  PerfectScrollbar Library -->
+<script src="./../js/perfect-scrollbar.jquery.min.js?v=1.0.1"></script>
+<!-- Material Dashboard javascript methods -->
+<script src="./../js/black-dashboard.js?v=1.0.14"></script>
+<script src="./../js/jquery.dataTables.min.js"></script>
+<script src="./../js/dataTables.bootstrap4.min.js"></script>
+<script src="./../js/svatah.js"></script>
+<script src="./../js/project.js"></script>
+
+<script>if (window.module) module = window.module;</script>
+
+<script>
+    $(document).ready(function () {
+        $('#projectList').DataTable();
+    });
+</script>
+
+</html>
