@@ -1,0 +1,87 @@
+{
+  "name": "svatah",
+  "productName": "SvatahADE",
+  "version": "1.0.0",
+  "description": "Automation Development Environment",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [
+    "svatah",
+    "test",
+    "automation",
+    "ui",
+    "api",
+    "selenium",
+    "api client"
+  ],
+  "author": "atul sharma",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "dmg"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "yarn",
+        "icon": "src/icon.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "svatah_ade"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "platforms": [
+            "darwin"
+          ],
+          "config": {
+            "name": "svatah_ade",
+            "format": "ULFO"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "electron-compile": "^6.4.4",
+    "electron-db": "^0.15.1",
+    "electron-squirrel-startup": "^1.0.0",
+    "fs-extra": "^8.1.0",
+    "minimal-request-promise": "^1.5.0",
+    "shepherd.js": "^4.3.3"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.39",
+    "@electron-forge/maker-deb": "6.0.0-beta.39",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.43",
+    "@electron-forge/maker-rpm": "6.0.0-beta.39",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.39",
+    "electron": "^6.0.0",
+    "electron-prebuilt-compile": "4.0.0"
+  }
+}
