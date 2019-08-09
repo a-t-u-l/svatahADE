@@ -4,11 +4,11 @@ Svatah is a scalable, robust, cloud based platform which is imbibed in the behav
 
 Svatah ADE is a desktop client built using Electron and Svatah's core to help you build and run your Svatah Flows locally. It provides you with one click setup for running your integration test for web apps and API. It is super easy to create a new project, just follow the getting started guides to create your project. To download the client go to [releases](https://github.com/a-t-u-l/svatahADE/releases) section and download the appropriate installer for your OS.
 
-![ADE First Look!](./../assets/images/add-config.png "Add Config")
+![ADE First Look!](./assets/images/add-config.png "Add Config")
 
 Svatah ADE also includes an API client to validate your requests which you want to include in your project.
 
-![API Client!](./../assets/images/api-client.png "API Client")
+![API Client!](./assets/images/api-client.png "API Client")
 
 > Please note : as the build does not have signed certificate from app/windows store it might give security warning during installation. You can ignore it.
 
