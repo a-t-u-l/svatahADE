@@ -1,6 +1,6 @@
 ### Svatah Automation Development Environment
 
-[Watch, How to create your project's automation under 5 minutes.] (https://www.youtube.com/watch?v=U2kegQUdGpQ&feature=youtu.be)
+[Watch, How to create your project's automation under 5 minutes.](https://www.youtube.com/watch?v=U2kegQUdGpQ&feature=youtu.be)
 
 #### Overview
 
