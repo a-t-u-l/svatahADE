@@ -344,14 +344,14 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*":
-  version "12.6.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.9.tgz#ffeee23afdc19ab16e979338e7b536fdebbbaeaf"
-  integrity sha512-+YB9FtyxXGyD54p8rXwWaN1EWEyar5L58GlGWgtH2I9rGmLGBQcw63+0jw+ujqVavNuO47S1ByAjm9zdHMnskw==
+  version "12.7.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.1.tgz#3b5c3a26393c19b400844ac422bd0f631a94d69d"
+  integrity sha512-aK9jxMypeSrhiYofWWBf/T7O+KwaiAHzM4sveCdWPn71lzUSMimRnKzhXDKfKwV1kWoBo2P1aGgaIYGLf9/ljw==
 
 "@types/node@^10.12.18":
-  version "10.14.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.14.tgz#a47955df2acf76ba7f0ac3b205d325da193dc9ad"
-  integrity sha512-xXD08vZsvpv4xptQXj1+ky22f7ZoKu5ZNI/4l+/BXG3X+XaeZsmaFbbTKuhSE3NjjvRuZFxFf9sQBMXIcZNFMQ==
+  version "10.14.15"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.15.tgz#e8f7729b631be1b02ae130ff0b61f3e018000640"
+  integrity sha512-CBR5avlLcu0YCILJiDIXeU2pTw7UK/NIxfC63m7d7CVamho1qDEzXKkOtEauQRPMy6MI8mLozth+JJkas7HY6g==
 
 "@types/node@^7.0.12":
   version "7.10.7"
@@ -1224,9 +1224,9 @@ base32-encode@^0.1.0:
   integrity sha512-jjc+6TC8PXrsxJ4CQr9ibioNhhAM1p/RvS9hy3Q+cxPphvXmLnFSkXoen2XXzNBrYjdmzajRtbFDl1x28F5F4A==
 
 base64-js@^1.2.3:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.0.tgz#cab1e6118f051095e58b5281aea8c1cd22bfc0e3"
-  integrity sha512-ccav/yGvoa80BQDljCxsmmQ3Xvx60/UpBIij5QN21W3wBi/hhIC9OoO+KLpu9IJTS9j4DRVJ3aDDF9cMSoa2lw==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.1.tgz#58ece8cb75dd07e71ed08c736abc5fac4dbf8df1"
+  integrity sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
@@ -1378,14 +1378,14 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000988"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000988.tgz#6a761a0204c4c41977b0379fb14f51d367c5e4ee"
-  integrity sha512-P0JCbGJhL1tTTeF+ehckvXwtckRursLDbA/ETdAd8Yg1ROAGJ5OgYgMONW1zWW1+ZTB79d7ZeJiOHGreEGG1ew==
+  version "1.0.30000989"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000989.tgz#bd8dd2789725685054a2c5ef95804f9e6e50fb32"
+  integrity sha512-5pkU/t9nueoBgELZOCpK+wN4wK6MkIz1Q9lGZSgLwg4xR8EhLY9r0qj6T2bUI8Cq9pGbioEar+Zqgosk5fpbjg==
 
 caniuse-lite@^1.0.30000844:
-  version "1.0.30000988"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000988.tgz#742f35ec1b8b75b9628d705d7652eea1fef983db"
-  integrity sha512-lPj3T8poYrRc/bniW5SQPND3GRtSrQdUM/R4mCYTbZxyi3jQiggLvZH4+BYUuX0t4TXjU+vMM7KFDQg+rSzZUQ==
+  version "1.0.30000989"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000989.tgz#b9193e293ccf7e4426c5245134b8f2a56c0ac4b9"
+  integrity sha512-vrMcvSuMz16YY6GSVZ0dWDTJP8jqk3iFQ/Aq5iqblPwxSVVZI+zxDyTX0VPqtQsDnfdrBDcsmhgTEOh5R8Lbpw==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -2295,9 +2295,9 @@ electron-squirrel-startup@^1.0.0:
     debug "^2.2.0"
 
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.47:
-  version "1.3.214"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.214.tgz#8b5b9a0415fd41b69c61f694007597cb8c8eb7e8"
-  integrity sha512-SU9yyql6uA0Fc8bWR7sCYNGBtxkC+tQb6UaC7ReaadN42Kx7Ka+dzx3lAIm9Ock+ULEawJuTFcVB2x34uOCg0Q==
+  version "1.3.220"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.220.tgz#632fbf125fca4d69d7a140a66fe98572f67c0778"
+  integrity sha512-ZsaFWi+9J9Nsm4OmGM/BvZF3HEeZL4bte1+CcN9vHUcqdkOOVAXP4SeacPZ/W5uCQZEKPYBXg6yUjZx8/jpD0Q==
 
 electron-winstaller@^3.0.4:
   version "3.0.4"
@@ -2322,9 +2322,9 @@ electron@4.0.0:
     extract-zip "^1.0.3"
 
 electron@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-6.0.0.tgz#03712d461ac73cdf920b2336d6560d6c6b7f19cc"
-  integrity sha512-JVHj0dYtvVFrzVk1TgvrdXJSyLpdvlWNLhtG8ItYZsyg9XbCOQ9OoPfgLm04FjMzKMzEl4YIN0PfGC02MTx3PQ==
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-6.0.1.tgz#9dcdb3773e933890f432403f2ff5851cffbea126"
+  integrity sha512-XY69rI5IThIxsOS2BD+1ZkHE9hqkm4xN5a3WQFSmFRr2by4q5CnIe9vXmptlouGPTLs3tb7ySX/+K9CvH3szvg==
   dependencies:
     "@types/node" "^10.12.18"
     electron-download "^4.1.0"
@@ -4052,6 +4052,11 @@ oauth-sign@~0.9.0:
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
 
+object-assign-deep@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/object-assign-deep/-/object-assign-deep-0.4.0.tgz#43505d3679abb9686ab359b97ac14cc837a9d143"
+  integrity sha512-54Uvn3s+4A/cMWx9tlRez1qtc7pN7pbQ+Yi7mjLjcBpWLlP+XbSHiHbQW6CElDiV4OvuzqnMrBdkgxI1mT8V/Q==
+
 object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -4587,9 +4592,9 @@ postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0
     supports-color "^3.2.3"
 
 preact@^8.4.2:
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-8.5.0.tgz#05690de3af035cd8ad393e8b4057b8ab29aedee1"
-  integrity sha512-S2OOz+lRjfbqDbV5LOIcJ6yfYvshDtKvvsMwaFW84wuw4HtFUYH67T+hnWhdCDYtW8BfmyIg9utz16s6U80HbA==
+  version "8.5.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-8.5.1.tgz#3a86cf5f3d4f6eb3349fa1f106ad59756c2af0e3"
+  integrity sha512-YVnCgcboxGrorFVIPjViqkEPOtfYVDxn5GOJuXHQZiOty+JOw7A+1xJytv/mb1O2QIIRC0SyT+kapA7Wj3jdZA==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
@@ -5150,15 +5155,16 @@ shebang-regex@^1.0.0:
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
 
 shepherd.js@^4.3.3:
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-4.3.4.tgz#ea93f24d6ce9a25d39833762416db1b109d9053d"
-  integrity sha512-nOQ4bnNMNnAFG7mdwTi3n/oRMsyLz0h5AtV/ukaQrsYqjDknkPogwVZWFvYGlc56ijJRFXRDjtiDAmI5xuwXjw==
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/shepherd.js/-/shepherd.js-4.4.1.tgz#8c8ed826eafbab73edd0b780295030f6c713ad52"
+  integrity sha512-d8WlzSmGBvxAD95wg1GYndIs9BZVi3IGPKDcYGTwAtc34yAtQP7JnpTncHgKet97/DGRh5DYc6RsRu7Wl0mFHg==
   dependencies:
     body-scroll-lock "^2.6.4"
     element-matches "^0.1.2"
     es6-object-assign "^1.1.0"
     es6-symbol "^3.1.1"
     nano-css "^5.2.0"
+    object-assign-deep "^0.4.0"
     polished "^3.4.1"
     preact "^8.4.2"
     smoothscroll-polyfill "^0.4.4"
@@ -5735,9 +5741,9 @@ type-check@~0.3.2:
     prelude-ls "~1.1.2"
 
 type@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/type/-/type-1.0.1.tgz#084c9a17fcc9151a2cdb1459905c2e45e4bb7d61"
-  integrity sha512-MAM5dBMJCJNKs9E7JXo4CXRAansRfG0nlJxW7Wf6GZzSOvH31zClSaHdIMWLehe/EGMBkqeC55rrkaOr5Oo7Nw==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/type/-/type-1.0.3.tgz#16f5d39f27a2d28d86e48f8981859e9d3296c179"
+  integrity sha512-51IMtNfVcee8+9GJvj0spSuFcZHe9vSib6Xtgsny1Km9ugyz2mbS08I3rsUIRYgJohFRFU1160sgRodYz378Hg==
 
 typechecker@^4.3.0:
   version "4.7.0"
