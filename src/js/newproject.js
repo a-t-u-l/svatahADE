@@ -255,7 +255,7 @@ function surroundWithMarkUp(flow, matchex, repex, prepend, append) {
 function runTest() {
     let validation = validateInputNotEmpty('name', 'alertbar', 'Project name can not be empty.');
     if (validation) {
-        showAlert('alertbar', 'info', 'Starting project validation and execution ...')
+        showAlert('alertbar', 'info', 'Starting project validation ...')
         let data = JSON.parse($('#dataEditor').val());
         //console.log('got data : '+ data);
         let dataMap = {};
@@ -297,19 +297,23 @@ function runTest() {
             "variableDataMap": dataMap,
             "locatorTagAndLocatorMap": locatorMap,
             "systemPropertyMap": { "screenWidth": "1920", "screenHeight": "1080" },
-            "scenarioFiles": floObj
+            "scenarioFiles": floObj,
+            "dependenceFiles": {}
         }
 
         console.log('request : ' + JSON.stringify(request));
 
         $.ajax({
             type: "POST",
-            url: 'http://localhost:8095/test',
+            url: 'http://localhost:8095/validate',
             data: JSON.stringify(request),
             contentType: "application/json;charset=utf-8",
             success: function (gotResponse) {
                 console.log(gotResponse);
-                showAlert('alertbar', 'success', 'your project is good to go.')
+                if(gotResponse.length == 0)
+                    showAlert('alertbar', 'success', 'The flow is valid.')
+                else
+                    showAlert('alertbar', 'danger', JSON.stringify(gotResponse))
             },
             error: function (gotResponse) {
                 showAlert('alertbar', 'danger', gotResponse.responseJSON.body)
