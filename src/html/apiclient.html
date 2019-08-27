@@ -48,6 +48,12 @@
             z-index: 0;
             height: 400px;
         }
+
+        .nav-tabs .nav-link.active {
+            color: #050505;
+            background-color: #cec5bb;
+            border-color: #dee2e6 #dee2e6 #fff;
+        }
     </style>
 </head>
 
@@ -101,8 +107,8 @@
                     </li>
 
                     <li class="docs">
-                        <a href="https://www.svatah.in/docs" target="_blank" data-toggle="tooltip" data-placement="right"
-                            title="View docs" id="docsLink">
+                        <a href="https://www.svatah.in/docs" target="_blank" data-toggle="tooltip"
+                            data-placement="right" title="View docs" id="docsLink">
                             <i class="material-icons">description</i>
                             <p>Docs</p>
                         </a>
@@ -179,7 +185,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-md-2">
+                                                <div class="col-sm-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Http Method</label>
                                                         <select id="httpMethod" name="httpMethod" type="text"
@@ -194,7 +200,8 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-10">
+
+                                                <div class="col-sm-10">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Url</label>
                                                         <input type="text" class="form-control" required="required"
@@ -204,7 +211,7 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Content Type</label>
                                                         <select id="contentType" name="contentType" type="text"
@@ -214,7 +221,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Accept All SSL
                                                             Certificates</label>
@@ -226,7 +233,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Follow Redirects</label>
                                                         <select id="followRedirect" name="followRedirect" type="text"
@@ -234,6 +241,14 @@
                                                             <option value="true" selected="selected">True</option>
                                                             <option value="false">False</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-sm-3">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Timeout in seconds</label>
+                                                        <input type="number" class="form-control" required="required"
+                                                            value="30" id="timeout" name="timeout" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -317,11 +332,30 @@
                             <button id="testApi" name="testApi" type="submit" onclick="callApi()"
                                 class="btn btn-success ge add-new-flow-btn"><i id="buttonLoader"></i>Send
                             </button>
-
                             <hr />
-                            <div class="card">
-                                <h4 id="responseCode" class="card-title">Response will come here</h4>
-                                <div id="responseBody">
+
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist" style="border-bottom: none;">
+                                    <a class="nav-item nav-link active" id="napi-response-tab" data-toggle="tab"
+                                        href="#napi-response" role="tab" aria-controls="napi-response"
+                                        aria-selected="true">Response</a>
+                                    <a class="nav-item nav-link" id="response-header-tab" data-toggle="tab"
+                                        href="#response-header" role="tab" aria-controls="response-header"
+                                        aria-selected="false">Headers</a>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="card tab-pane fade show active" id="napi-response" role="tabpanel"
+                                    aria-labelledby="napi-response-tab">
+                                    
+                                        <h4 id="responseCode" class="card-title">Response will come here</h4>
+                                        <div id="responseBody">
+                                        </div>
+                                    
+                                </div>
+                                <div class="card tab-pane fade" id="response-header" role="tabpanel"
+                                    aria-labelledby="response-header-tab">
+
                                 </div>
                             </div>
                         </div>
