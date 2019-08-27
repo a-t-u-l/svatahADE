@@ -24,19 +24,21 @@ function callApi() {
         };
 
         console.log('request : ' + JSON.stringify(request))
+        console.log('setting timeout : ' + Number($('#timeout').val())*1000)
 
         $.ajax({
             type: "POST",
             url: 'http://localhost:8095/apiclient',
             data: JSON.stringify(request),
             contentType: "application/json;charset=utf-8",
-            success: function (gotResponse) {
-                setResponse(gotResponse.status, gotResponse.body);
+            success: function (gotResponse, status, jqXHR) {
+                setResponse(gotResponse.status, gotResponse.body, jqXHR.getAllResponseHeaders());
             },
             error: function (gotResponse) {
-                setResponse(gotResponse.status, gotResponse.responseText);
+                setResponse(gotResponse.status, gotResponse.responseText, gotResponse.getAllResponseHeaders());
             },
-            dataType: 'json'
+            dataType: 'json',
+            timeout: Number($('#timeout').val())*1000
         });
         getAllApiHistoryRows()
     }
@@ -106,6 +108,10 @@ function setApiRequest(date) {
 }
 
 function setResponse(status, data) {
+    setResponse(status, data, "")
+}
+
+function setResponse(status, data, headers) {
     $('#responseCode').html('Status : ' + status);
     var container = document.getElementById("responseBody");
     container.style.display = "none";
@@ -119,15 +125,18 @@ function setResponse(status, data) {
         }
     };
     // get json
+    headers = headers.replace(/(?:\r\n|\r|\n)/g, '<br>')
     if (typeof data == 'string') {
         if (!data.startsWith('<')) {
             var editor = new JSONEditor(container, options);
             editor.setText(data);
+            $("#response-header").html("<code>" + headers + "</code>")
             container.style.display = "block";
         }
         else {
-            var editor = new JSONEditor(container, options);
-            editor.setText('{"message":"got html block in response. Response must be a JSON string."}');
+            container.innerHTML = '<iframe id="responseFrame" style="width: 100%; height:100%; border:none;"></iframe>'
+            document.getElementById("responseFrame").srcdoc = data
+            $("#response-header").html("<code>" + headers + "</code>")
             container.style.display = "block";
         }
     }
