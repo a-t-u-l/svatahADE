@@ -126,6 +126,16 @@ function executeProj(project) {
     }
 
     try {
+        let apiRequest = {
+            "httpMethod": project.api.httpMethod,
+            "uri": project.api.uri,
+            "requestBody": project.api.requestBody,
+            "acceptAllSslCert": project.api.acceptAllSslCert,
+            "headers": project.api.headers,
+            "contentType": project.api.contentType,
+            "followRedirect": project.api.followRedirect
+        };
+
         let request = {
             "projectName": project.name,
             "configName": project.configName,
@@ -135,11 +145,13 @@ function executeProj(project) {
             "executionId": getRandomNumber(),
             "takeStepScreenshot": project.config.takeStepScreenshot,
             "variableDataMap": dataMap,
+            "apiRequestMap": apiRequest,
             "locatorTagAndLocatorMap": locatorMap,
             "systemPropertyMap": { "screenWidth": "1920", "screenHeight": "1080" },
             "scenarioFiles": floObj,
             "dependenceFiles": {}
-        }
+        };
+
         console.log('request : ' + JSON.stringify(request));
         runProject(request)
     }
