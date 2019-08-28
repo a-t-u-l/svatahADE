@@ -1,4 +1,5 @@
 const { app, remote, BrowserWindow, globalShortcut } = require('electron');
+const Menu = require('electron').Menu
 const path = require('path');
 
 const title = 'Svatah ADE';
@@ -148,6 +149,7 @@ const createWindow = () => {
     });
   };
   startUp();
+  createMenu();
   // Register a shortcut listener.
   const ret = globalShortcut.register('CommandOrControl+Shift+`', () => {
     console.log('Bring to front shortcut triggered');
@@ -190,3 +192,75 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+function createMenu() {
+  const application = {
+    label: app.getName(),
+    submenu: [
+      {
+        label: "Home",
+        accelerator: "Command+H",
+        click: () => {
+            mainWindow.loadFile(app.getAppPath() + '/src/html/project.html')
+        }
+      },
+      {
+        type: "separator"
+      },
+      {
+        label: "Quit",
+        accelerator: "Command+Q",
+        click: () => {
+          console.log("killing server with pid : " + serverProcess.pid)
+          serverProcess.kill()
+          app.quit()
+        }
+      }
+    ]
+  }
+
+  const edit = {
+    label: "Edit",
+    submenu: [
+      {
+        label: "Undo",
+        accelerator: "CmdOrCtrl+Z",
+        selector: "undo:"
+      },
+      {
+        label: "Redo",
+        accelerator: "Shift+CmdOrCtrl+Z",
+        selector: "redo:"
+      },
+      {
+        type: "separator"
+      },
+      {
+        label: "Cut",
+        accelerator: "CmdOrCtrl+X",
+        selector: "cut:"
+      },
+      {
+        label: "Copy",
+        accelerator: "CmdOrCtrl+C",
+        selector: "copy:"
+      },
+      {
+        label: "Paste",
+        accelerator: "CmdOrCtrl+V",
+        selector: "paste:"
+      },
+      {
+        label: "Select All",
+        accelerator: "CmdOrCtrl+A",
+        selector: "selectAll:"
+      }
+    ]
+  }
+
+  const template = [
+    application,
+    edit
+  ]
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+}
