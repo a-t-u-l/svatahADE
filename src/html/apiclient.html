@@ -144,12 +144,6 @@
         <div class="main-panel">
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div id="alertbar" class="col-md-12">
-
-                        </div>
-                    </div>
-
                     <!-- Modal -->
                     <div class="modal fade" id="clearHistoryAlert" tabindex="-1" role="dialog"
                         aria-labelledby="clearHistoryAlertTitle" aria-hidden="true">
@@ -174,9 +168,58 @@
                         </div>
                     </div>
 
+                    <div class="modal fade" id="importModal" tabindex="-1" role="dialog"
+                        aria-labelledby="importModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="importModalLongTitle">Import API request as JSON</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color:#7d7f84;">
+                                    <p>Paste your API request in Svatah JSON format</p>
+                                    <textarea style="min-width: 100%" rows="11" value="" id="apiRequestImportJson"
+                                        name="apiRequestImportJson"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="importAPI()" class="btn btn-warning btn-simple"
+                                        data-dismiss="modal">Import</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="exportModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exportModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exportModalLongTitle">Export API request as JSON</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea style="min-width: 100%" rows="11" value="" id="apiRequestExportJson"
+                                        name="apiRequestExportJson" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Ends-->
+
                     <div class="row">
 
                         <div class="col-sm-10" style="margin-left: 210px;">
+
+                            <div class="row">
+                                <div id="alertbar" class="col">
+
+                                </div>
+                            </div>
+
                             <form class="form-horizontal">
                                 <fieldset>
                                     <div class="card">
@@ -243,7 +286,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-sm-3">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Timeout in seconds</label>
@@ -325,6 +368,16 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card-footer">
+                                            <button type="button" class="btn btn-sm btn-warning btn-link pull-right"
+                                                data-toggle="modal" onClick="exportAPI()" data-target="#exportModal">
+                                                export
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-warning btn-link pull-right"
+                                                data-toggle="modal" data-target="#importModal">
+                                                import
+                                            </button>
+                                        </div>
                                     </div>
                                 </fieldset>
                             </form>
@@ -347,11 +400,11 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="card tab-pane fade show active" id="napi-response" role="tabpanel"
                                     aria-labelledby="napi-response-tab">
-                                    
-                                        <h4 id="responseCode" class="card-title">Response will come here</h4>
-                                        <div id="responseBody">
-                                        </div>
-                                    
+
+                                    <h4 id="responseCode" class="card-title">Response will come here</h4>
+                                    <div id="responseBody">
+                                    </div>
+
                                 </div>
                                 <div class="card tab-pane fade" id="response-header" role="tabpanel"
                                     aria-labelledby="response-header-tab">

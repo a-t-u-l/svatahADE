@@ -100,7 +100,7 @@ const createWindow = () => {
       }
     });
     mainWindow.loadURL(appUrl);
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     mainWindow.webContents.once('dom-ready', () => {
       const dbClient = require('./js/dbclient');
       // const location = (app || remote).getPath('userData')

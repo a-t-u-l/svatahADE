@@ -120,6 +120,113 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
+                        <!--- Modal -->
+                        <div class="modal fade" id="importModal" tabindex="-1" role="dialog"
+                            aria-labelledby="importModalTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="card modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="importModalLongTitle">Import API request as JSON</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="color:#7d7f84;">
+                                        <p>Paste your API request in Svatah JSON format</p>
+                                        <textarea style="min-width: 100%" rows="11" value="" id="apiRequestImportJson"
+                                            name="apiRequestImportJson"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" onclick="importAPI()" class="btn btn-warning btn-simple"
+                                            data-dismiss="modal">Import</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="importLocatorModal" tabindex="-1" role="dialog"
+                        aria-labelledby="importLocatorModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="importLocatorModalLongTitle">Import locators</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color:#7d7f84;">
+                                    <p>Paste your locators in Svatah JSON format</p>
+                                    <textarea style="min-width: 100%" rows="11" value="" id="locatorImportJson"
+                                        name="locatorImportJson"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="importLocatorsRepository()" class="btn btn-warning btn-simple"
+                                        data-dismiss="modal">Import</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="modal fade" id="exportLocatorModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exportLocatorModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exportLocatorModalLongTitle">Export locators as JSON</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea style="min-width: 100%" rows="11" value="" id="locatorExportJson"
+                                        name="locatorExportJson" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="modal fade" id="importDataModal" tabindex="-1" role="dialog"
+                        aria-labelledby="importDataModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="iimportDataModalLongTitle">Import Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color:#7d7f84;">
+                                    <p>Paste your data mapping in Svatah JSON format</p>
+                                    <textarea style="min-width: 100%" rows="11" value="" id="dataImportJson"
+                                        name="dataImportJson"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="importDataRepository()" class="btn btn-warning btn-simple"
+                                        data-dismiss="modal">Import</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="modal fade" id="exportDataModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exportDataModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exportDataModalLongTitle">Export data as JSON</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea style="min-width: 100%" rows="11" value="" id="dataExportJson"
+                                        name="dataExportJson" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!---Modal Ends-->
                         <div class="col-sm-2 nav flex-column nav-pills wraptext" id="v-pills-tab" role="tablist">
                             <div class="nav-link" style="padding-top: 20px; background : #000; color : white;">Explorer
                             </div>
@@ -313,6 +420,16 @@
                                                                         class="material-icons">save</i>
                                                                 </button>
                                                             </span>
+                                                            <span>
+                                                                    <button type="button" class="btn btn-sm btn-warning btn-link pull-right"
+                                                                        data-toggle="modal" onClick="exportDataRepository()" data-target="#exportDataModal">
+                                                                        export
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-sm btn-warning btn-link pull-right"
+                                                                        data-toggle="modal" data-target="#importDataModal">
+                                                                        import
+                                                                    </button>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -379,6 +496,16 @@
                                                                     disabled="true" rel="tooltip" title="Export"
                                                                     class="btn btn-yellow btn-link btn-sm locator-save-btn"><i
                                                                         class="material-icons">save</i>
+                                                                </button>
+                                                            </span>
+                                                            <span>
+                                                                <button type="button" class="btn btn-sm btn-warning btn-link pull-right"
+                                                                    data-toggle="modal" onClick="exportLocatorsRepository()" data-target="#exportLocatorModal">
+                                                                    export
+                                                                </button>
+                                                                <button type="button" class="btn btn-sm btn-warning btn-link pull-right"
+                                                                    data-toggle="modal" data-target="#importLocatorModal">
+                                                                    import
                                                                 </button>
                                                             </span>
                                                         </div>
@@ -492,14 +619,12 @@
                                                                         value!</span>
                                                                 </div>
 
-                                                                <div id="api-table" class="table-editable">
+                                                                <div id="api-header-table" class="table-editable">
                                                                     <table
                                                                         class="table table-bordered table-responsive-md">
                                                                         <tr>
-                                                                            <th style="font-weight: normal;">Header Key
-                                                                            </th>
-                                                                            <th style="font-weight: normal;">Header
-                                                                                Value</th>
+                                                                            <th style="font-weight: normal;">Header Key</th>
+                                                                            <th style="font-weight: normal;">Header Value</th>
                                                                             <th></th>
                                                                         </tr>
                                                                         <!-- This is our clonable table line -->
@@ -507,7 +632,7 @@
                                                                             <td contenteditable="true"></td>
                                                                             <td contenteditable="true"></td>
                                                                             <td>
-                                                                                <span class="api-table-remove">
+                                                                                <span class="api-header-table-remove">
                                                                                     <button type="button" rel="tooltip"
                                                                                         title="Delete"
                                                                                         class="btn btn-danger btn-link btn-sm">
@@ -528,7 +653,7 @@
                                                                         the
                                                                         header table.
                                                                     </small>
-                                                                    <span class="api-table-add mb-3 mr-2">
+                                                                    <span class="api-header-table-add mb-3 mr-2">
                                                                         <button type="button" rel="tooltip" title="Add"
                                                                             class="btn btn-yellow btn-link btn-sm"><i
                                                                                 class="material-icons">add</i>
@@ -560,6 +685,10 @@
                                                     </div>
                                                     <hr />
                                                     <div class="card-footer text-muted">
+                                                        <button type="button" class="btn btn-sm btn-warning btn-link"
+                                                            data-toggle="modal" data-target="#importModal">
+                                                            import
+                                                        </button>
                                                         <button id="save-api-button" type="button" rel="tooltip"
                                                             disabled="true" title="Save API Request"
                                                             onclick="addApiToProject()"
@@ -803,10 +932,10 @@
 
 <script>
     let tableCounter = 3;
-    var tableArr = ['#locator-table', '#data-table', '#api-table'];
+    var tableArr = ['#locator-table', '#data-table', '#api-header-table'];
     var exportButtonArr = ['#locator-export-btn', '#data-export-btn', '#api-export-btn'];
-    let tableAddRowButtonArr = ['.locator-table-add', '.data-table-add', '.api-table-add'];
-    let tableRemoveRowButtonArr = ['.locator-table-remove', '.data-table-remove', '.api-table-remove'];
+    let tableAddRowButtonArr = ['.locator-table-add', '.data-table-add', '.api-header-table-add'];
+    let tableRemoveRowButtonArr = ['.locator-table-remove', '.data-table-remove', '.api-header-table-remove'];
     let createProjectButton = '#create-project-button';
     let editorArr = ['#locatorEditor', '#dataEditor', '#apiEditor'];
 

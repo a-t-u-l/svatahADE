@@ -288,6 +288,8 @@ function runTest() {
         console.log('flow : ' + flowFile);
         let floObj = {}
         floObj[flowFlieName] = flowFile;
+
+        //TODO: Add stored API validation logic for usage in flow file
         let request = {
             "url": $('#url').val(),
             "browser": $('#browser').val(),
