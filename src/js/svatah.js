@@ -2,6 +2,12 @@ let dbClient = require('./../js/dbclient.js');
 
 let choosenTheme;
 
+const os = navigator.platform;
+console.log('running on platform : ' + os)
+if(os.toUpperCase().indexOf('WIN')!==-1){
+  $('#bod').addClass('ps')
+}
+
 function validateInputNotEmpty(inputId, divContainerId, alertMsg) {
   let validation = true;
   if ($('#' + inputId).val().length == 0) {
