@@ -78,7 +78,12 @@ const createWindow = () => {
   serverProcess = require('child_process').spawn(javaPath, ['-jar'].concat(javaVMParameters).concat(filename), {
     cwd: app.getAppPath() + '/jar'
   });
-  serverProcess.stdout.pipe(fs.createWriteStream(app.getAppPath() + '/bin/jvm.log', {
+  const dir = app.getAppPath() + '/bin/'
+  if (!fs.existsSync(dir)){
+    console.log('creating bin ...')
+    fs.mkdirSync(dir);
+  }
+  serverProcess.stdout.pipe(fs.createWriteStream( dir + 'jvm.log', {
     flags: 'a'
   })); // logging
   serverProcess.on('error', (code, signal) => {
@@ -100,7 +105,7 @@ const createWindow = () => {
       }
     });
     mainWindow.loadURL(appUrl);
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
     mainWindow.webContents.once('dom-ready', () => {
       const dbClient = require('./js/dbclient');
       // const location = (app || remote).getPath('userData')
