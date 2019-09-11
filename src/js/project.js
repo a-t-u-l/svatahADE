@@ -232,7 +232,7 @@ function runProject(request) {
             showAlert('alertbar', 'success', 'check results section.')
         },
         error: function (gotResponse) {
-            showAlert('alertbar', 'danger', gotResponse.responseJSON.body)
+            showAlert('alertbar', 'danger', mapFlowValidationResponseToTable(gotResponse.responseJSON.body))
             console.log(gotResponse);
         },
         dataType: 'json'

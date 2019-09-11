@@ -82,6 +82,38 @@ We can interchangeably use following action definitions:
 
 > `+scrollToTop+`, `+scroll to top+`, `+scroll to page top+`, `+scroll to top of the page+`
 
-> `+explicitWaitForElementPresence+`, `+wait for the presence+`
+> `+explicitWaitForElementPresence+`, `+wait for the presence+`, `+waits for the presence+`
 
-> `+explicitWaitForElementVisibility+`, `+wait for the visibility+`
+> `+explicitWaitForElementVisibility+`, `+wait for the visibility+`, `+waits for the visibility+`
+
+> `+open+`, `+opens+`, `+navigate+`, `+navigates+`
+
+> `+forward+`, `+go forward+`, `+clicks on forward button+`
+
+> `+back+`, `+go back+`, `+clicks on back button+`
+
+> `+refresh+`, `+refreshes+`, `+reload+`, `+reloads+`
+
+> `+switch to new window+`, `+switches to new window+`, `+switch to new tab+`, `+switches to new tab+`
+
+> `+switch to main window+`, `+switches to main window+`, `+switch to main tab+`, `+switches to main tab+`
+
+> `+switch to frame+`, `+switches to frame+`
+
+> `+close other windows+`, `+closes other windows+`
+
+> `+clicks and holds+`, `+click and hold+`
+
+> `+release+`, `+releases+`
+
+> `+context click+`, `+context clicks+`
+
+> `+double click+`, `+double clicks+`
+
+> `+key up+`, `+keys up+`
+
+> `+move to element+`, `+moves to element+`, `+move over element+`, `+moves over element+`, `+move to element center+`, `+moves to element center+`
+
+> `+move to element and click+`, `+moves to element and click+`, `+move over element and click+`, `+moves over element and click+`
+
+> `+validate title+`, `+validates title`, `+verifyTitle`, `+verify title+`

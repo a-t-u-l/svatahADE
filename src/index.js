@@ -79,11 +79,11 @@ const createWindow = () => {
     cwd: app.getAppPath() + '/jar'
   });
   const dir = app.getAppPath() + '/bin/'
-  if (!fs.existsSync(dir)){
+  if (!fs.existsSync(dir)) {
     console.log('creating bin ...')
     fs.mkdirSync(dir);
   }
-  serverProcess.stdout.pipe(fs.createWriteStream( dir + 'jvm.log', {
+  serverProcess.stdout.pipe(fs.createWriteStream(dir + 'jvm.log', {
     flags: 'a'
   })); // logging
   serverProcess.on('error', (code, signal) => {
@@ -133,7 +133,7 @@ const createWindow = () => {
           type: 'question'
           , buttons: ['Yes', 'No']
           , title: 'Confirm'
-          , message: 'Dou you really want to exit?'
+          , message: 'Do you really want to exit?'
         });
         if (choice == 1) {
           e.preventDefault();
@@ -205,7 +205,30 @@ function createMenu() {
         label: "Home",
         accelerator: "Command+H",
         click: () => {
-            mainWindow.loadFile(app.getAppPath() + '/src/html/project.html')
+          mainWindow.loadFile(app.getAppPath() + '/src/html/project.html')
+        }
+      },
+      {
+        type: "separator"
+      },
+      {
+        label: "ToS",
+        accelerator: "Command+T",
+        click: () => {
+          mainWindow.loadURL('https://www.svatah.in/tos')
+        }
+      },
+      {
+        type: "separator"
+      },
+      {
+        label: "About",
+        click: () => {
+          require('electron').dialog.showMessageBox(null, {
+            type: 'info'
+            , title: 'Svatah ADE'
+            , message: 'v 1.0.2'
+          });
         }
       },
       {

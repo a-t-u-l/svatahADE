@@ -4,7 +4,7 @@ let choosenTheme;
 
 const os = navigator.platform;
 console.log('running on platform : ' + os)
-if(os.toUpperCase().indexOf('WIN')!==-1){
+if (os.toUpperCase().indexOf('WIN') !== -1) {
   $('#bod').addClass('ps')
 }
 
@@ -24,8 +24,8 @@ function validateInputNotEmpty(inputId, divContainerId, alertMsg) {
 }
 
 function showAlert(divContainerId, alertType, alertMsg) {
-  $('#' + divContainerId).html(`<div id="alertrow" class="alert alert-` + alertType + ` alert-dismissible fade show" role="alert">
-                                        <strong>`+ alertType + `! </strong> ` + alertMsg + `
+  $('#' + divContainerId).html(`<div id="alertrow" class="alert alert-` + alertType + ` alert-dismissible fade show" role="alert">`
+    + alertMsg + `
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
@@ -185,7 +185,7 @@ function importLocatorsRepository() {
 
 function exportLocatorsRepository() {
   let locatorData = JSON.parse($('#locatorEditor').val());
-  $("#locatorExportJson").val(JSON.stringify(locatorData, null ,2));
+  $("#locatorExportJson").val(JSON.stringify(locatorData, null, 2));
 }
 
 function importDataRepository() {
@@ -204,7 +204,7 @@ function importDataRepository() {
 
 function exportDataRepository() {
   let dataMap = JSON.parse($('#dataEditor').val());
-  $("#dataExportJson").val(JSON.stringify(dataMap, null ,2));
+  $("#dataExportJson").val(JSON.stringify(dataMap, null, 2));
 }
 
 function exportAPI() {
@@ -250,4 +250,29 @@ function syntaxHighlight(json) {
     }
     return '<span class="' + cls + '">' + match + '</span>';
   });
+}
+
+function mapFlowValidationResponseToTable(flowErrorDetails) {
+  console.log("error : " + flowErrorDetails.replace(/(\r\n|\n|\r)/g,""))
+  console.log(typeof flowErrorDetails)
+  let htmlData = `<table class="table-sm"></tr>`
+  if (typeof flowErrorDetails == 'string')
+    flowErrorDetails = JSON.parse(flowErrorDetails.replace(/(\r\n|\n|\r)/g,""))
+  flowErrorDetails.forEach(errorRow => {
+    htmlData = htmlData.concat(getErrorRows(errorRow))
+  });
+  htmlData = htmlData.concat("</table>")
+  console.log("htmlData : " + htmlData)
+  return htmlData
+}
+
+function getErrorRows(dataSet) {
+  let rows = "";
+  Object.entries(dataSet).forEach(([k, v]) => {
+    rows = rows.concat("<tr>")
+      .concat("<td>").concat(k).concat("</td>")
+      .concat("<td>").concat(v).concat("</td>")
+      .concat("</tr>")
+  })
+  return rows;
 }
