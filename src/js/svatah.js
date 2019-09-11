@@ -2,6 +2,12 @@ let dbClient = require('./../js/dbclient.js');
 
 let choosenTheme;
 
+const os = navigator.platform;
+console.log('running on platform : ' + os)
+if (os.toUpperCase().indexOf('WIN') !== -1) {
+  $('#bod').addClass('ps')
+}
+
 function validateInputNotEmpty(inputId, divContainerId, alertMsg) {
   let validation = true;
   if ($('#' + inputId).val().length == 0) {
@@ -18,8 +24,8 @@ function validateInputNotEmpty(inputId, divContainerId, alertMsg) {
 }
 
 function showAlert(divContainerId, alertType, alertMsg) {
-  $('#' + divContainerId).html(`<div id="alertrow" class="alert alert-` + alertType + ` alert-dismissible fade show" role="alert">
-                                        <strong>`+ alertType + `! </strong> ` + alertMsg + `
+  $('#' + divContainerId).html(`<div id="alertrow" class="alert alert-` + alertType + ` alert-dismissible fade show" role="alert">`
+    + alertMsg + `
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
@@ -136,4 +142,137 @@ $(function () {
 
 function addResultToTable(resultObj) {
 
+}
+
+
+function setApiRequestFromJsonObject(data) {
+  //console.log('setting data : '+ JSON.stringify(data))
+  $('#httpMethod').val(data.httpMethod)
+  if (data.httpMethod == 'GET') {
+    document.getElementById("notGetDivCheck").style.display = "none";
+    posteditor.setText('')
+  }
+  else {
+    document.getElementById("notGetDivCheck").style.display = "block";
+    posteditor.setText(data.requestBody)
+  }
+  $('#uri').val(data.uri)
+  $('#acceptAllSslCert').val(data.acceptAllSslCert)
+  $("#apiEditor").val(data.headers);
+  if (data.headers != undefined && data.headers != "") {
+    setTableData('#api-header-table', ['header key', 'header value'], JSON.parse(data.headers));
+  } else {
+    setTableData('#api-header-table', ['header key', 'header value'], []);
+  }
+  $('#contentType').val(data.contentType)
+  $('#followRedirect').val(data.followRedirect)
+}
+
+function importLocatorsRepository() {
+  try {
+    let data = $('#locatorImportJson').val()
+    console.log(data)
+    if (data != undefined && data != "") {
+      setTableData('#locator-table', ['locator identifier', 'locator details'], JSON.parse(data));
+    } else {
+      setTableData('#locator-table', ['locator identifier', 'locator details'], []);
+    }
+    $("#locatorEditor").val(data)
+  } catch (error) {
+    showAlert('alertbar', 'danger', error)
+  }
+}
+
+function exportLocatorsRepository() {
+  let locatorData = JSON.parse($('#locatorEditor').val());
+  $("#locatorExportJson").val(JSON.stringify(locatorData, null, 2));
+}
+
+function importDataRepository() {
+  try {
+    let data = $('#dataImportJson').val()
+    if (data != undefined && data != "") {
+      setTableData('#data-table', ['variable name', 'variable value'], JSON.parse(data));
+    } else {
+      setTableData('#data-table', ['variable name', 'variable value'], []);
+    }
+    $("#dataEditor").val(data);
+  } catch (error) {
+    showAlert('alertbar', 'danger', error)
+  }
+}
+
+function exportDataRepository() {
+  let dataMap = JSON.parse($('#dataEditor').val());
+  $("#dataExportJson").val(JSON.stringify(dataMap, null, 2));
+}
+
+function exportAPI() {
+  let request = {
+    httpMethod: $('#httpMethod').val(),
+    uri: $('#uri').val(),
+    requestBody: posteditor.getText(),
+    acceptAllSslCert: $('#acceptAllSslCert').val(),
+    headers: $('#apiEditor').val(),
+    contentType: $('#contentType').val(),
+    followRedirect: $('#followRedirect').val()
+  }
+
+  $('#apiRequestExportJson').val(JSON.stringify(request, null, 2))
+}
+
+function importAPI() {
+  try {
+    let request = JSON.parse($('#apiRequestImportJson').val())
+    setApiRequestFromJsonObject(request)
+  } catch (error) {
+    showAlert('alertbar', 'danger', error)
+  }
+}
+
+function syntaxHighlight(json) {
+  if (typeof json != 'string') {
+    json = JSON.stringify(json, undefined, 2);
+  }
+  json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+    var cls = 'number';
+    if (/^"/.test(match)) {
+      if (/:$/.test(match)) {
+        cls = 'key';
+      } else {
+        cls = 'string';
+      }
+    } else if (/true|false/.test(match)) {
+      cls = 'boolean';
+    } else if (/null/.test(match)) {
+      cls = 'null';
+    }
+    return '<span class="' + cls + '">' + match + '</span>';
+  });
+}
+
+function mapFlowValidationResponseToTable(flowErrorDetails) {
+  console.log("error : " + flowErrorDetails.replace(/(\r\n|\n|\r)/g,""))
+  console.log(typeof flowErrorDetails)
+  let htmlData = `<table class="table-sm"></tr>`
+  if (typeof flowErrorDetails == 'string')
+    flowErrorDetails = JSON.parse(flowErrorDetails.replace(/(\r\n|\n|\r)/g,""))
+  flowErrorDetails.forEach(errorRow => {
+    htmlData = htmlData.concat(getErrorRows(errorRow))
+  });
+  htmlData = htmlData.concat("</table>")
+  console.log("htmlData : " + htmlData)
+  return htmlData
+}
+
+function getErrorRows(dataSet) {
+  let rows = "";
+  Object.entries(dataSet).forEach(([k, v]) => {
+    rows = rows.concat("<tr>")
+      .concat("<td>").concat(k).concat("</td>")
+      .concat("<td>").concat(v).concat("</td>")
+      .concat("</tr>")
+  })
+  return rows;
 }

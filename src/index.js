@@ -1,4 +1,5 @@
 const { app, remote, BrowserWindow, globalShortcut } = require('electron');
+const Menu = require('electron').Menu
 const path = require('path');
 
 const title = 'Svatah ADE';
@@ -77,7 +78,12 @@ const createWindow = () => {
   serverProcess = require('child_process').spawn(javaPath, ['-jar'].concat(javaVMParameters).concat(filename), {
     cwd: app.getAppPath() + '/jar'
   });
-  serverProcess.stdout.pipe(fs.createWriteStream(app.getAppPath() + '/bin/jvm.log', {
+  const dir = app.getAppPath() + '/bin/'
+  if (!fs.existsSync(dir)) {
+    console.log('creating bin ...')
+    fs.mkdirSync(dir);
+  }
+  serverProcess.stdout.pipe(fs.createWriteStream(dir + 'jvm.log', {
     flags: 'a'
   })); // logging
   serverProcess.on('error', (code, signal) => {
@@ -127,7 +133,7 @@ const createWindow = () => {
           type: 'question'
           , buttons: ['Yes', 'No']
           , title: 'Confirm'
-          , message: 'Dou you really want to exit?'
+          , message: 'Do you really want to exit?'
         });
         if (choice == 1) {
           e.preventDefault();
@@ -148,6 +154,7 @@ const createWindow = () => {
     });
   };
   startUp();
+  createMenu();
   // Register a shortcut listener.
   const ret = globalShortcut.register('CommandOrControl+Shift+`', () => {
     console.log('Bring to front shortcut triggered');
@@ -190,3 +197,98 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+function createMenu() {
+  const application = {
+    label: app.getName(),
+    submenu: [
+      {
+        label: "Home",
+        accelerator: "Command+H",
+        click: () => {
+          mainWindow.loadFile(app.getAppPath() + '/src/html/project.html')
+        }
+      },
+      {
+        type: "separator"
+      },
+      {
+        label: "ToS",
+        accelerator: "Command+T",
+        click: () => {
+          mainWindow.loadURL('https://www.svatah.in/tos')
+        }
+      },
+      {
+        type: "separator"
+      },
+      {
+        label: "About",
+        click: () => {
+          require('electron').dialog.showMessageBox(null, {
+            type: 'info'
+            , title: 'Svatah ADE'
+            , message: 'v 1.0.2'
+          });
+        }
+      },
+      {
+        type: "separator"
+      },
+      {
+        label: "Quit",
+        accelerator: "Command+Q",
+        click: () => {
+          console.log("killing server with pid : " + serverProcess.pid)
+          serverProcess.kill()
+          app.quit()
+        }
+      }
+    ]
+  }
+
+  const edit = {
+    label: "Edit",
+    submenu: [
+      {
+        label: "Undo",
+        accelerator: "CmdOrCtrl+Z",
+        selector: "undo:"
+      },
+      {
+        label: "Redo",
+        accelerator: "Shift+CmdOrCtrl+Z",
+        selector: "redo:"
+      },
+      {
+        type: "separator"
+      },
+      {
+        label: "Cut",
+        accelerator: "CmdOrCtrl+X",
+        selector: "cut:"
+      },
+      {
+        label: "Copy",
+        accelerator: "CmdOrCtrl+C",
+        selector: "copy:"
+      },
+      {
+        label: "Paste",
+        accelerator: "CmdOrCtrl+V",
+        selector: "paste:"
+      },
+      {
+        label: "Select All",
+        accelerator: "CmdOrCtrl+A",
+        selector: "selectAll:"
+      }
+    ]
+  }
+
+  const template = [
+    application,
+    edit
+  ]
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+}

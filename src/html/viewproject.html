@@ -48,14 +48,14 @@
     </style>
 </head>
 
-<body id="bod" class="white-content ps">
+<body id="bod" class="white-content">
     <div class="wrapper" style="border-top: 2px solid #e6b31c;">
         <div id="sidebar" class="sidebar" data-color="orange" data-image="#">
             <div class="logo">
-                <a href="./home.html" target="_blank" class="simple-text logo-mini">
+                <a href="https://www.svatah.in" target="_blank" class="simple-text logo-mini">
                     S
                 </a>
-                <a href="./home.html" target="_blank" class="simple-text logo-normal">
+                <a href="https://www.svatah.in" target="_blank" class="simple-text logo-normal">
                     Svatah
                 </a>
             </div>
@@ -98,7 +98,7 @@
                     </li>
 
                     <li class="docs">
-                        <a href="https://www.svatah.in/docs" target="_blank" data-toggle="tooltip" data-placement="right"
+                        <a href="./../../docs/index.html" target="_blank" data-toggle="tooltip" data-placement="right"
                             title="View docs" id="docsLink">
                             <i class="material-icons">description</i>
                             <p>Docs</p>
@@ -119,6 +119,115 @@
         <div class="main-panel">
             <div class="content">
                 <div class="container-fluid">
+                    <!---Modal -->
+                    <div class="modal fade" id="importModal" tabindex="-1" role="dialog"
+                        aria-labelledby="importModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="importModalLongTitle">Import API request as JSON</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color:#7d7f84;">
+                                    <p>Paste your API request in Svatah JSON format</p>
+                                    <textarea style="min-width: 100%" rows="11" value="" id="apiRequestImportJson"
+                                        name="apiRequestImportJson"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="importAPI()" class="btn btn-warning btn-simple"
+                                        data-dismiss="modal">Import</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="importLocatorModal" tabindex="-1" role="dialog"
+                        aria-labelledby="importLocatorModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="importLocatorModalLongTitle">Import locators</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color:#7d7f84;">
+                                    <p>Paste your locators in Svatah JSON format</p>
+                                    <textarea style="min-width: 100%" rows="11" value="" id="locatorImportJson"
+                                        name="locatorImportJson"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="importLocatorsRepository()"
+                                        class="btn btn-warning btn-simple" data-dismiss="modal">Import</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="exportLocatorModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exportLocatorModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exportLocatorModalLongTitle">Export locators as JSON
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea style="min-width: 100%" rows="11" value="" id="locatorExportJson"
+                                        name="locatorExportJson" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="importDataModal" tabindex="-1" role="dialog"
+                        aria-labelledby="importDataModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="iimportDataModalLongTitle">Import Data</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color:#7d7f84;">
+                                    <p>Paste your data mapping in Svatah JSON format</p>
+                                    <textarea style="min-width: 100%" rows="11" value="" id="dataImportJson"
+                                        name="dataImportJson"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="importDataRepository()"
+                                        class="btn btn-warning btn-simple" data-dismiss="modal">Import</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="exportDataModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exportDataModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="card modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exportDataModalLongTitle">Export data as JSON</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea style="min-width: 100%" rows="11" value="" id="dataExportJson"
+                                        name="dataExportJson" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!---Modal Ends-->
+
                     <div class="row">
                         <div class="col-sm-2 nav flex-column nav-pills wraptext" id="v-pills-tab" role="tablist">
                             <div class="nav-link" style="padding-top: 20px; background : #000; color : white;">Explorer
@@ -317,6 +426,19 @@
                                                                         class="material-icons">save</i>
                                                                 </button>
                                                             </span>
+                                                            <span>
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-warning btn-link pull-right"
+                                                                    data-toggle="modal" onClick="exportDataRepository()"
+                                                                    data-target="#exportDataModal">
+                                                                    export
+                                                                </button>
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-warning btn-link pull-right"
+                                                                    data-toggle="modal" data-target="#importDataModal">
+                                                                    import
+                                                                </button>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -385,6 +507,21 @@
                                                                         class="material-icons">save</i>
                                                                 </button>
                                                             </span>
+                                                            <span>
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-warning btn-link pull-right"
+                                                                    data-toggle="modal"
+                                                                    onClick="exportLocatorsRepository()"
+                                                                    data-target="#exportLocatorModal">
+                                                                    export
+                                                                </button>
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-warning btn-link pull-right"
+                                                                    data-toggle="modal"
+                                                                    data-target="#importLocatorModal">
+                                                                    import
+                                                                </button>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -399,40 +536,40 @@
                                     <div class="col-md-12 tab-pane fade" id="v-pills-add-api" role="tabpanel"
                                         aria-labelledby="v-pills-add-api">
                                         <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <button class="btn btn-link pull-right" type="button"
-                                                                data-toggle="collapse" data-target="#collapse-api"
-                                                                aria-expanded="false" aria-controls="collapseApiOne"><i
-                                                                    class="material-icons">unfold_more</i>
-                                                            </button>
-                                                            <h4 class="card-title">API Repository</h4>
-                                                        </div>
-                                                        <div class="accordion" id="accordionApi">
-                                                            <div class="card-body table-responsive">
-                                                                <div id="collapse-api" class="collapse show"
-                                                                    aria-labelledby="headingApiOne"
-                                                                    data-parent="#accordionApi">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Name</th>
-                                                                                <th>Method</th>
-                                                                                <th>URL</th>
-                                                                                <th>Actions</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="ApiView">
-    
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <button class="btn btn-link pull-right" type="button"
+                                                            data-toggle="collapse" data-target="#collapse-api"
+                                                            aria-expanded="false" aria-controls="collapseApiOne"><i
+                                                                class="material-icons">unfold_more</i>
+                                                        </button>
+                                                        <h4 class="card-title">API Repository</h4>
+                                                    </div>
+                                                    <div class="accordion" id="accordionApi">
+                                                        <div class="card-body table-responsive">
+                                                            <div id="collapse-api" class="collapse show"
+                                                                aria-labelledby="headingApiOne"
+                                                                data-parent="#accordionApi">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Method</th>
+                                                                            <th>URL</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="ApiView">
+
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="card">
@@ -530,12 +667,14 @@
                                                                         value!</span>
                                                                 </div>
 
-                                                                <div id="api-table" class="table-editable">
+                                                                <div id="api-header-table" class="table-editable">
                                                                     <table
                                                                         class="table table-bordered table-responsive-md">
                                                                         <tr>
-                                                                            <th style="font-weight: normal;">Header Key</th>
-                                                                            <th style="font-weight: normal;">Header Value</th>
+                                                                            <th style="font-weight: normal;">Header Key
+                                                                            </th>
+                                                                            <th style="font-weight: normal;">Header
+                                                                                Value</th>
                                                                             <th></th>
                                                                         </tr>
                                                                         <!-- This is our clonable table line -->
@@ -543,7 +682,7 @@
                                                                             <td contenteditable="true"></td>
                                                                             <td contenteditable="true"></td>
                                                                             <td>
-                                                                                <span class="api-table-remove">
+                                                                                <span class="api-header-table-remove">
                                                                                     <button type="button" rel="tooltip"
                                                                                         title="Delete"
                                                                                         class="btn btn-danger btn-link btn-sm">
@@ -564,7 +703,7 @@
                                                                         the
                                                                         header table.
                                                                     </small>
-                                                                    <span class="api-table-add mb-3 mr-2">
+                                                                    <span class="api-header-table-add mb-3 mr-2">
                                                                         <button type="button" rel="tooltip" title="Add"
                                                                             class="btn btn-yellow btn-link btn-sm"><i
                                                                                 class="material-icons">add</i>
@@ -596,6 +735,10 @@
                                                     </div>
                                                     <hr />
                                                     <div class="card-footer text-muted">
+                                                        <button type="button" class="btn btn-sm btn-warning btn-link"
+                                                            data-toggle="modal" data-target="#importModal">
+                                                            import
+                                                        </button>
                                                         <button id="save-api-button" type="button" rel="tooltip"
                                                             disabled="true" title="Save API Request"
                                                             onclick="addApiToProject()"
@@ -728,7 +871,8 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="./home.html" target="_blank">Svatah</a>, Behaviour Driven Automation Platform
+                            <a href="https://www.svatah.in" target="_blank">Svatah</a>, Behaviour Driven Automation
+                            Platform
                         </p>
                     </footer>
                 </div>
@@ -762,7 +906,7 @@
 
     $('#flowEditor').trumbowyg({
         resetCss: false,
-        autogrowOnEnter: true,
+        autogrowOnEnter: false,
         svgPath: './../css/img/trumbowyg-icons.svg',
         hideButtonTexts: true,
         btns: [
@@ -806,10 +950,10 @@
 
 <script>
     let tableCounter = 3;
-    var tableArr = ['#locator-table', '#data-table', '#api-table'];
+    var tableArr = ['#locator-table', '#data-table', '#api-header-table'];
     var exportButtonArr = ['#locator-export-btn', '#data-export-btn', '#api-export-btn'];
-    let tableAddRowButtonArr = ['.locator-table-add', '.data-table-add', '.api-table-add'];
-    let tableRemoveRowButtonArr = ['.locator-table-remove', '.data-table-remove', '.api-table-remove'];
+    let tableAddRowButtonArr = ['.locator-table-add', '.data-table-add', '.api-header-table-add'];
+    let tableRemoveRowButtonArr = ['.locator-table-remove', '.data-table-remove', '.api-header-table-remove'];
     let createProjectButton = '#create-project-button';
     let editorArr = ['#locatorEditor', '#dataEditor', '#apiEditor'];
 
@@ -926,13 +1070,13 @@
         $rows.each(function () {
             var $td = $(this).find('td');
             var h = {};
-            
+
             // Use the headers from earlier to name our hash keys
             headers.forEach(function (header, i) {
-                if($td.eq(i).text() != "")
+                if ($td.eq(i).text() != "")
                     h[header] = $td.eq(i).text();
             });
-            if(!$.isEmptyObject(h))
+            if (!$.isEmptyObject(h))
                 data.push(h);
         });
         return data;
@@ -941,7 +1085,40 @@
     $('#flowEditor').textcomplete([
         { // actions
             id: 'intent',
-            words: ['clicks', 'click', 'clears', 'clear', 'get text', 'copy text', 'save text', 'getText', 'types', 'type', 'submits', 'click enter', 'submit', 'dismiss alert', 'dismisses alert', 'dismissAlert', 'accept alert', 'accepts alert', 'acceptAlert', 'waits', 'sleep', 'sleeps', 'waiting', 'wait', 'assert selected', 'check selected', 'is selected', 'assertSelected', 'assert not selected', 'is not selected', 'assertNotSelected', 'assert displayed', 'isDisplayed', 'is displayed', 'assertDisplayed', 'assert not displayed', 'is not displayed', 'assertNotDisplayed', 'assert enabled', 'is enabled', 'is not disabled', 'assertEnabled', 'assert disabled', 'is disabled', 'is not enabled', 'assertDisabled', 'assert element present', 'is element present', 'assertElementPresent', 'assert alert present', 'is alert present', 'assertAlertPresent', 'assert alert not present', 'is alert not present', 'assertAlertNotPresent', 'validate text', 'validates text', 'verifyText', 'verify text', 'validateText', 'contains text', 'validate contains text', 'verify contains text', 'verifyContainsText', 'validateContainsText', 'validate tag name', 'verifyTagName', 'verify tag name', 'validateTagName', 'validate attribute value', 'verifyAttributeValue', 'verify attribute value', 'validateAttributeValue', 'validate location', 'verifyLocation', 'verify location', 'validateLocation', 'validate dimension', 'verifyDimension', 'verify dimension', 'validateDimension', 'validate rectangle', 'verifyRectangle', 'verify rectangle', 'validateRectangle', 'accept the alert and validate alert text', 'accept the alert and validate displayed text', 'acceptAndValidateAlertText', 'reject the alert and validate alert text', 'reject the alert and validate displayed text', 'rejectAndValidateAlertText', 'invoke', 'call', 'hit', 'invoke without cookies', 'call without cookies', 'hit without cookies', 'selectByVisibleText', 'select by visible text', 'select by shown text', 'select', 'selectByIndex', 'select by index', 'selectByValue', 'select by value', 'select by sent value', 'deselectAll', 'deselect all', 'remove all selections', 'deselectByVisibleText', 'deselect by visible text', 'deselect by shown text', 'deselect', 'deselectByIndex', 'deselect by index', 'deselectByValue', 'deselect by value', 'deselect by sent value', 'assertMultipleSelectionSupported', 'assert multiple selection is supported', 'validate multiple selection is supported', 'assertMultipleSelectionNotSupported', 'assert multiple selection is not supported', 'validate multiple selection is not supported', 'scrollIntoView', 'scroll into view', 'scroll to view', 'scrollToBottom', 'scroll to bottom', 'scroll to page bottom', 'scroll to bottom of the page', 'scrollToTop', 'scroll to top', 'scroll to page top', 'scroll to top of the page', 'explicitWaitForElementPresence', 'wait for the presence', 'explicitWaitForElementVisibility', 'wait for the visibility'],
+            words: ["open", "opens", "navigate", "navigates", "forward", "go forward", "clicks on forward button",
+                "back", "go back", "clicks on back button", "refresh", "refreshes", "reload", "reloads",
+                "switch to new window", "switches to new window", "switch to new tab", "switches to new tab",
+                "switch to frame", "switches to frame", "close other windows", "closes other windows",
+                "clicks and holds", "click and hold", "context click", "context clicks", "double click", "double clicks",
+                "key up", "keys up", "key down", "keys down", "release", "releases",
+                "validate title", "validates title", "verifyTitle", "verify title",
+                "move to element", "moves to element", "move over element", "moves over element", "move to element center", "moves to element center",
+                "move to element and click", "moves to element and click", "move over element and click", "moves over element and click",
+                "switch to main window", "switches to main window", "switch to main tab", "switches to main tab",
+                'clicks', 'click', 'clears', 'clear', 'get text', 'copy text', 'save text', 'getText', 'types', 'type',
+                'submits', 'click enter', 'submit', 'dismiss alert', 'dismisses alert', 'dismissAlert', 'accept alert',
+                'accepts alert', 'acceptAlert', 'waits', 'sleep', 'sleeps', 'waiting', 'wait', 'assert selected', 'check selected', 'is selected',
+                'assertSelected', 'assert not selected', 'is not selected', 'assertNotSelected', 'assert displayed', 'isDisplayed',
+                'is displayed', 'assertDisplayed', 'assert not displayed', 'is not displayed', 'assertNotDisplayed', 'assert enabled',
+                'is enabled', 'is not disabled', 'assertEnabled', 'assert disabled', 'is disabled', 'is not enabled', 'assertDisabled',
+                'assert element present', 'is element present', 'assertElementPresent', 'assert alert present', 'is alert present', 'assertAlertPresent',
+                'assert alert not present', 'is alert not present', 'assertAlertNotPresent', 'validate text', 'validates text', 'verifyText',
+                'verify text', 'validateText', 'contains text', 'validate contains text', 'verify contains text', 'verifyContainsText',
+                'validateContainsText', 'validate tag name', 'verifyTagName', 'verify tag name', 'validateTagName', 'validate attribute value',
+                'verifyAttributeValue', 'verify attribute value', 'validateAttributeValue', 'validate location', 'verifyLocation', 'verify location',
+                'validateLocation', 'validate dimension', 'verifyDimension', 'verify dimension', 'validateDimension', 'validate rectangle', 'verifyRectangle',
+                'verify rectangle', 'validateRectangle', 'accept the alert and validate alert text', 'accept the alert and validate displayed text',
+                'acceptAndValidateAlertText', 'reject the alert and validate alert text', 'reject the alert and validate displayed text',
+                'rejectAndValidateAlertText', 'invoke', 'call', 'hit', 'invoke without cookies', 'call without cookies', 'hit without cookies',
+                'selectByVisibleText', 'select by visible text', 'select by shown text', 'select', 'selectByIndex', 'select by index',
+                'selectByValue', 'select by value', 'select by sent value', 'deselectAll', 'deselect all', 'remove all selections',
+                'deselectByVisibleText', 'deselect by visible text', 'deselect by shown text', 'deselect', 'deselectByIndex', 'deselect by index',
+                'deselectByValue', 'deselect by value', 'deselect by sent value', 'assertMultipleSelectionSupported',
+                'assert multiple selection is supported', 'validate multiple selection is supported', 'assertMultipleSelectionNotSupported',
+                'assert multiple selection is not supported', 'validate multiple selection is not supported', 'scrollIntoView', 'scroll into view',
+                'scroll to view', 'scrollToBottom', 'scroll to bottom', 'scroll to page bottom', 'scroll to bottom of the page', 'scrollToTop',
+                'scroll to top', 'scroll to page top', 'scroll to top of the page', 'explicitWaitForElementPresence', 'wait for the presence', "waits for the presence",
+                'explicitWaitForElementVisibility', 'wait for the visibility', "waits for the visibility"],
             match: /\+\b(\w{1,})$/,
             search: function (term, callback) {
                 callback($.map(this.words, function (word) {

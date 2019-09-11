@@ -125,17 +125,23 @@ function executeProj(project) {
         )
     }
 
-    try {
-        let apiRequest = {
-            "httpMethod": project.api.httpMethod,
-            "uri": project.api.uri,
-            "requestBody": project.api.requestBody,
-            "acceptAllSslCert": project.api.acceptAllSslCert,
-            "headers": project.api.headers,
-            "contentType": project.api.contentType,
-            "followRedirect": project.api.followRedirect
-        };
+    let apiObj = {}
+    if (Array.isArray(project.api)) {
+        project.api.forEach(api => {
+            let apiRequest = {
+                "httpMethod": api.httpMethod,
+                "uri": api.uri,
+                "requestBody": api.requestBody,
+                "acceptAllSslCert": api.acceptAllSslCert,
+                "headers": api.headers,
+                "contentType": api.contentType,
+                "followRedirect": api.followRedirect
+            };
+            apiObj[api.name] = apiRequest;
+        })
+    }
 
+    try {
         let request = {
             "projectName": project.name,
             "configName": project.configName,
@@ -145,7 +151,7 @@ function executeProj(project) {
             "executionId": getRandomNumber(),
             "takeStepScreenshot": project.config.takeStepScreenshot,
             "variableDataMap": dataMap,
-            "apiRequestMap": apiRequest,
+            "apiRequestMap": apiObj,
             "locatorTagAndLocatorMap": locatorMap,
             "systemPropertyMap": { "screenWidth": "1920", "screenHeight": "1080" },
             "scenarioFiles": floObj,
@@ -226,7 +232,7 @@ function runProject(request) {
             showAlert('alertbar', 'success', 'check results section.')
         },
         error: function (gotResponse) {
-            showAlert('alertbar', 'danger', gotResponse.responseJSON.body)
+            showAlert('alertbar', 'danger', mapFlowValidationResponseToTable(gotResponse.responseJSON.body))
             console.log(gotResponse);
         },
         dataType: 'json'

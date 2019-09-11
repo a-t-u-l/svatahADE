@@ -288,6 +288,8 @@ function runTest() {
         console.log('flow : ' + flowFile);
         let floObj = {}
         floObj[flowFlieName] = flowFile;
+
+        //TODO: Add stored API validation logic for usage in flow file
         let request = {
             "url": $('#url').val(),
             "browser": $('#browser').val(),
@@ -298,7 +300,8 @@ function runTest() {
             "locatorTagAndLocatorMap": locatorMap,
             "systemPropertyMap": { "screenWidth": "1920", "screenHeight": "1080" },
             "scenarioFiles": floObj,
-            "dependenceFiles": {}
+            "dependenceFiles": {},
+            "apiRequestMap": {}
         }
 
         console.log('request : ' + JSON.stringify(request));
@@ -310,10 +313,10 @@ function runTest() {
             contentType: "application/json;charset=utf-8",
             success: function (gotResponse) {
                 console.log(gotResponse);
-                if(gotResponse.length == 0)
+                if (gotResponse.length == 0)
                     showAlert('alertbar', 'success', 'The flow is valid.')
                 else
-                    showAlert('alertbar', 'danger', JSON.stringify(gotResponse))
+                    showAlert('alertbar', 'danger', mapFlowValidationResponseToTable(JSON.stringify(gotResponse)))
             },
             error: function (gotResponse) {
                 showAlert('alertbar', 'danger', gotResponse.responseJSON.body)
@@ -487,7 +490,7 @@ function createProject() {
                 )
                 dbClient.updateRow('project', { 'id': result[0].id },
                     {
-                        'locatorFile' : $('#locatorEditor').val()
+                        'locatorFile': $('#locatorEditor').val()
                     }
                 )
             } else {

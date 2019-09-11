@@ -1,4 +1,4 @@
-if(dbClient == undefined){
+if (dbClient == undefined) {
     dbClient = require('./../js/dbclient.js');
 }
 
@@ -24,7 +24,7 @@ function callApi() {
         };
 
         console.log('request : ' + JSON.stringify(request))
-        console.log('setting timeout : ' + Number($('#timeout').val())*1000)
+        console.log('setting timeout : ' + Number($('#timeout').val()) * 1000)
 
         $.ajax({
             type: "POST",
@@ -38,7 +38,7 @@ function callApi() {
                 setResponse(gotResponse.status, gotResponse.responseText, gotResponse.getAllResponseHeaders());
             },
             dataType: 'json',
-            timeout: Number($('#timeout').val())*1000
+            timeout: Number($('#timeout').val()) * 1000
         });
         getAllApiHistoryRows()
     }
@@ -55,7 +55,7 @@ function saveRequest() {
         followRedirect: $('#followRedirect').val()
     }
 
-    if(request.httpMethod == 'GET'){
+    if (request.httpMethod == 'GET') {
         request.requestBody = '';
     }
 
@@ -68,13 +68,14 @@ function getAllApiHistoryRows() {
     dbClient.getAllData('apihistory', function (historyRows) {
         //console.log('got rows : '+ JSON.stringify(historyRows))
         historyRows.forEach(function (data) {
-            let insertData = '' + (new Date(data.date)).toLocaleString() + '<br/>' + data.httpMethod + '<br/>' + data.uri
+            let insertData = '<code>' + (new Date(data.date)).toLocaleString() + '<br/><span style="color:#92ca59;">' + data.httpMethod
+                + '</span><br/><span style="color:#17a2b8;">' + data.uri + '</span></code>'
             addHistoryRow(data.date, insertData);
         })
     });
 }
 
-function clearHistory(){
+function clearHistory() {
     dbClient.deleteAll('apihistory');
     getAllApiHistoryRows();
 }
@@ -84,26 +85,7 @@ function setApiRequest(date) {
     $("#responseBody").html('');
     dbClient.getRows('apihistory', { 'date': date }, function (result) {
         let data = result[0];
-        //console.log('setting data : '+ JSON.stringify(data))
-        $('#httpMethod').val(data.httpMethod)
-        if(data.httpMethod=='GET'){
-            document.getElementById("notGetDivCheck").style.display = "none";
-            posteditor.setText('')
-        }
-        else{
-            document.getElementById("notGetDivCheck").style.display = "block";
-            posteditor.setText(data.requestBody)
-        }
-        $('#uri').val(data.uri)
-        $('#acceptAllSslCert').val(data.acceptAllSslCert)
-        $("#apiEditor").val(data.headers);
-        if(data.headers != undefined && data.headers != ""){
-            setTableData('#api-header-table', ['header key', 'header value'], JSON.parse(data.headers));
-        } else{
-            setTableData('#api-header-table', ['header key', 'header value'], []);
-        }
-        $('#contentType').val(data.contentType)
-        $('#followRedirect').val(data.followRedirect)
+        setApiRequestFromJsonObject(data)
     });
 }
 

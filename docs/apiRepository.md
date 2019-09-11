@@ -22,7 +22,7 @@ To extract information from API response and use it across project you can defin
 }
 ```
 
-you can use json expression `$.email` to get email value. Now you can use this variable `email` as input to another step using input expression : `*#email#*` expression for saving value in a variable.
+you can use json expression `$.email` to get email value. Now you can use this variable `email` as input to another step using input expression : `*#email*` expression for saving value in a variable.
 
 ```
 var ( $.email ) : email 
