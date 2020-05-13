@@ -32,6 +32,11 @@ module.exports = {
             console.log("Message: " + msg);
         })
 
+        db.createTable('images', location, (succ, msg) => {
+            console.log("Success: " + succ);
+            console.log("Message: " + msg);
+        })
+
         db.createTable('api', location, (succ, msg) => {
             console.log("Success: " + succ);
             console.log("Message: " + msg);
@@ -107,6 +112,20 @@ module.exports = {
         obj.skipped = skipped;
 
         db.insertTableContent('results', location, obj, (succ, msg) => {
+            console.log("Success: " + succ);
+            console.log("Message: " + msg);
+        })
+    },
+
+    insertImagesRow: (resultId, flowName, scenarioName, stepNumber, imgString) => {
+        let obj = new Object();
+        obj.resultId = resultId;
+        obj.flowName = flowName;
+        obj.scenarioName = scenarioName;
+        obj.stepNumber = stepNumber;
+        obj.imgString = imgString;
+
+        db.insertTableContent('images', location, obj, (succ, msg) => {
             console.log("Success: " + succ);
             console.log("Message: " + msg);
         })

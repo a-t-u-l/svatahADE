@@ -1,10 +1,10 @@
+let dbClient = require('./../js/dbclient.js');
 
 $(document).ready(function () {
     setProjectView()
 });
 
 function setProjectView() {
-    let dbClient = require('./../js/dbclient.js');
     dbClient.getAllData('project', function (projects) {
         let projectData = [];
         //console.log('type of projs : '+ typeof projects);
@@ -55,15 +55,15 @@ function getProjectRow(project, config) {
     nodes.push(`<td>` + config.name + `</td>`)
     nodes.push(`<td>` + config.browser + `</td>`)
     nodes.push(`<td>`)
-    nodes.push(`<button type="button" rel="tooltip" title="execute" onclick="executeProject(` + project.id + `)" class="btn btn-success btn-link">`)
-    nodes.push(`<i class="material-icons">play_arrow</i>`)
+    nodes.push(`<button rel="tooltip" title="execute" onclick="executeProject(` + project.id + `)" class="button is-primary is-light">`)
+    nodes.push(`<i class="fa fa-play"></i>`)
     nodes.push(`</button>`)
     nodes.push(`</td>`)
     nodes.push(`<td>`)
-    nodes.push(`<button class="btn btn-link btn-yellow" onclick="viewProject(` + project.id + `)"><i class="material-icons">visibility</i></button>`)
+    nodes.push(`<button class="button is-info is-light" onclick="viewProject(` + project.id + `)"><i class="fa fa-eye"></i></button>`)
     nodes.push(`</td>`)
     nodes.push(`<td>`)
-    nodes.push(`<button class="btn btn-link btn-danger"  onclick="deleteProject(` + project.id + `)"><i class="material-icons">delete</i></button>`)
+    nodes.push(`<button class="button is-danger is-light"  onclick="deleteProject(` + project.id + `)"><i class="fa fa-remove"></i></button>`)
     nodes.push(`</td>`)
     nodes.push(`</tr>`)
     //console.count(JSON.stringify(nodes))
@@ -213,10 +213,14 @@ function runProject(request) {
                                 step: row.step,
                                 stepNumber: row.stepNumber,
                                 failureMessage: row.failureMessage,
-                                screenShot: row.screenShot,
+                                screenShot: request.takeStepScreenshot,
                                 failureStackTrace: row.failureStackTrace,
                             }
-                            dbClient.insertRow('result', result)
+                            let imgHandler = require('./../js/core/imgHandler.js');
+                            console.log("got screenshot path : " + row.screenShot);
+                            if (typeof row.screenShot=== 'string')
+                                imgHandler.store(uid, row.flowFileName, row.scenarioName, row.stepNumber, row.screenShot);
+                            dbClient.insertRow('result', result);
                         })
                         let endTime = new Date()
                         const diffTime = Math.abs(startTime.getTime() - endTime.getTime());

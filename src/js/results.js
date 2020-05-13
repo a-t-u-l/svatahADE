@@ -9,9 +9,9 @@ function setResultsView() {
         let htmlData = getResultsView(results);
         console.log('html data setup : ' + htmlData.join(''));
         if (htmlData != undefined && htmlData != []) {
-            console.log('page set up for element : '+$('#resultsView').html())
+            console.log('page set up for element : ' + $('#resultsView').html())
             $('#resultsView').append(htmlData.join(''));
-            console.log('page set up for element : '+$('#resultsView').html())
+            console.log('page set up for element : ' + $('#resultsView').html())
         }
     });
 }
@@ -19,7 +19,7 @@ function setResultsView() {
 function getResultsView(results) {
     let resultsViewNode = [];
     if (results != undefined) {
-        console.log('results view : '+JSON.stringify(results))
+        console.log('results view : ' + JSON.stringify(results))
         results.forEach(row => {
             console.log('setting up view with row data : ' + JSON.stringify(row))
             resultsViewNode = resultsViewNode.concat(getResultRow(row));
@@ -34,7 +34,7 @@ function getResultRow(result) {
     let nodes = [];
 
     nodes.push(`<tr>`)
-    nodes.push(`<td><a href="" onclick='viewResult(`+result.id+`)'>` + result.projectName + `</a></td>`)
+    nodes.push(`<td><a href="" onclick='viewResult(` + result.id + `)'>` + result.projectName + `</a></td>`)
     nodes.push(`<td>` + result.url + `</td>`)
     nodes.push(`<td>` + result.startTime + `</td>`)
     nodes.push(`<td>` + result.endTime + `</td>`)

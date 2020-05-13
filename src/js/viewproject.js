@@ -1,4 +1,5 @@
 let projectId = null;
+let dbClient = require('./../js/dbclient.js');
 
 $(function () {
     let id = getUrlParameter('id');
@@ -46,3 +47,12 @@ function setDataTableData(varData) {
         setTableData('#data-table', ['variable name', 'variable value'], []);
     }
 }
+
+$('body').delegate('a','click', function () {
+    let tab = $(this).attr('id');
+    if (typeof tab == "string" && tab.endsWith("tab")) {
+        tab = tab.replace('-tab', '');
+        $('.tab-pane').removeClass('is-active');
+        $('#' + tab).addClass('is-active');
+    }
+});

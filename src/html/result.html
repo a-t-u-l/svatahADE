@@ -9,185 +9,150 @@
     <meta name="author" content="svatah" />
 
     <title>Svatah ADE</title>
-    <!-- Bootstrap core CSS     -->
-    <link href="./../css/bootstrap.min.css?v=1.0.5" rel="stylesheet" />
-    <!--  Material Dashboard CSS    -->
-    <link href="./../css/black-dashboard.css?v=1.1.45455" rel="stylesheet" />
+    <link href="./../../node_modules/bulma/css/bulma.min.css" rel="stylesheet" />
+    <link href="./../../node_modules/datatables-bulma/css/dataTables.bulma.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
-    <link href="./../css/font-awesome.min.css" rel="stylesheet" type='text/css' />
-    <link href='./../css/material-icons-fonts.css' rel='stylesheet' type='text/css' />
-    <link href="./../css/poppins-fonts.css" rel="stylesheet" />
-    <link href="./../css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="./../css/svatah.css" rel="stylesheet" />
+    <link href='./../css/font-awesome.min.css' rel='stylesheet' type='text/css' />
+    <link href="./../css/svatah.css?v=1.0.1" rel="stylesheet" />
 </head>
 
 <body id="bod" class="white-content">
-    <div class="wrapper" style="border-top: 2px solid #e6b31c;">
-        <div id="sidebar" class="sidebar" data-color="orange" data-image="#">
-            <div class="logo">
-                <a href="https://www.svatah.in" target="_blank" class="simple-text logo-mini">
-                    S
-                </a>
-                <a href="https://www.svatah.in" target="_blank" class="simple-text logo-normal">
-                    Svatah
-                </a>
+
+    <div class="columns is-gapless is-mobile" style="margin-bottom:0px;">
+        <div class="column is-1" style="width: 5%; min-height: 100vh; background-color: rgb(31, 35, 221);">
+            <div class="section">
+                <div class="menu sticky">
+                    <ul id="menu" class="menu-list no-hover">
+                        <li class="logo">
+                            <a href="https://www.svatah.in" target="_blank" class="simple-text logo-mini"
+                                style="padding: 0px 0px 30px 0px; color: white; font-size:26px">
+                                S
+                            </a>
+                        </li>
+                        <li class="project">
+                            <a href="./project.html" title="project"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i class="fa fa-folder-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="newuiproject">
+                            <a href="./newproject.html" title="newproject"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i class="fa fa-plus-square-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="results">
+                            <a href="./results.html" title="results"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i class="fa fa-check-square-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="api-client">
+                            <a href="./apiclient.html" title="API client"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i class="fa fa-lemon-o"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-
-                    <li class="project">
-                        <a href="./project.html" data-toggle="tooltip" data-placement="right" title="project">
-                            <i class="material-icons">assessment</i>
-                            <p>View Projects</p>
-                        </a>
+        </div>
+        <div class="column is-2" style="min-height: 100vh; background-color: rgb(238, 238, 245);">
+            <div class="menu">
+                <ul id="menu" class="menu-list no-hover">
+                    <li style="padding: 5px; border-bottom : 1px dotted grey; color: black; font-size:16px;">
+                        <a id="summaryLink" >url</a>
                     </li>
-
-                    <li class="newuiproject">
-                        <a href="./newproject.html" data-toggle="tooltip" data-placement="right" title="newproject">
-                            <i class="material-icons">note_add</i>
-                            <p>New Project</p>
-                        </a>
+                    <li style="padding: 5px; color: black; font-size: 16px;">
+                        <a id="configName">config name</a>
                     </li>
-
-                    <!-- <li class="newapiproject">
-                        <a href="./apiproject.html" data-toggle="tooltip" data-placement="right" title="newproject">
-                            <i class="material-icons">description</i>
-                            <p>New API Project</p>
-                        </a>
-                    </li> -->
-
-                    <li class="api-client">
-                        <a href="./apiclient.html" data-toggle="tooltip" data-placement="right" title="API client">
-                            <i class="material-icons">extension</i>
-                            <p>API Client</p>
-                        </a>
-                    </li>
-
-                    <li class="results active">
-                        <a href="./results.html" data-toggle="tooltip" data-placement="right" title="results">
-                            <i class="material-icons">receipt</i>
-                            <p>Results</p>
-                        </a>
-                    </li>
-
-                    <li class="docs">
-                        <a href="./../../docs/index.html"  target="_blank" data-toggle="tooltip" data-placement="right"
-                            title="View docs" id="docsLink">
-                            <i class="material-icons">description</i>
-                            <p>Docs</p>
-                        </a>
-                    </li>
-
-                    <li id="darkmode" class="theme">
-                        <a class="toggle-label toggle-label-off" data-toggle="tooltip" data-placement="right"
-                            title=" toggle dark mode">
-                            <i id="darkmodeicon" class="material-icons">toggle_on</i>
-                            <p>darkmode</p>
-                        </a>
-                    </li>
-
                 </ul>
             </div>
         </div>
-        <div class="main-panel">
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div id="alertbar" class="col">
+        <div class="column is-9 scrollable">
+            <div class="section">
 
-                        </div>
-                    </div>
+                <div id="alertbar" class="col">
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    <h3 class="card-title" id="projectName">project name</h3>
-                                </div>
-                                <hr />
-                                <div class="card-body">
-                                    <h3 id="url">url</h3>
-                                    <p> Executed using <code style="color: #006400; font-size: 110%;"
-                                            id="configName">config name</code>
-                                        configuration
-                                        on <code style="color: #006400; font-size: 110%;" id="browser">chrome</code>
-                                        browser/s.
-                                    </p>
-                                    <br />
-                                    <h4><code style="color: #006400; font-size: 110%;" id="passed">passed</code>
-                                        scenario/s passed,
-                                        <code style="color: #925b12; font-size: 110%;" id="skipped">skipped</code> were
-                                        skipped
-                                        and <code style="color: #640f00; font-size: 110%;" id="failed">failed</code>
-                                        scenario/s failed during
-                                        execution.
-                                    </h4>
-                                </div>
-                                <hr />
-                                <div class="card-footer text-muted">
-                                    Project execution took <code style="color: #006400; font-size: 110%;"
-                                        id="timeTaken">time taken</code> seconds.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12" id="summaryView">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Result</h4>
-                                    </div>
-                                    <div class="card-body table-responsive">
-                                        <table id="resultsList" class="table">
-                                            <thead class="text-success">
-                                                <tr>
-                                                    <th>Flow File</th>
-                                                    <th>Scenario</th>
-                                                    <th>Number</th>
-                                                    <th>Step</th>
-                                                    <th>Status</th>
-                                                    <th>Failure</th>
-                                                    <th>Screenshot</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="resultsView">
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="footer">
-                        <p class="copyright pull-right">
-                            &copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="https://www.svatah.in" target="_blank">Svatah</a>, Behaviour Driven Automation Platform
-                        </p>
-                    </footer>
                 </div>
-                <!-- /.col-lg-12 -->
+
+                <div id="summary" class="container">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h3 class="card-title" id="projectName">project name</h3>
+                        </div>
+                        <hr />
+                        <div class="card-body">
+                            <h3 id="url">url</h3>
+                            <p> Executed using <code style="color: #006400; font-size: 110%;"
+                                    id="configName">config name</code>
+                                configuration
+                                on <code style="color: #006400; font-size: 110%;" id="browser">chrome</code>
+                                browser/s.
+                            </p>
+                            <br />
+                            <h4><code style="color: #006400; font-size: 110%;" id="passed">passed</code>
+                                scenario/s passed,
+                                <code style="color: #925b12; font-size: 110%;" id="skipped">skipped</code> were
+                                skipped
+                                and <code style="color: #640f00; font-size: 110%;" id="failed">failed</code>
+                                scenario/s failed during
+                                execution.
+                            </h4>
+                        </div>
+                        <hr />
+                        <div class="card-footer text-muted">
+                            Project execution took <code style="color: #006400; font-size: 110%;"
+                                id="timeTaken">time taken</code> seconds.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="result" class="container">
+                    <h4 class="title" id="projectName">project name</h4>
+                    <div class="table-container">
+                        <table id="resultsList" class="table">
+                            <thead class="text-success">
+                                <tr>
+                                    <th>Flow File</th>
+                                    <th>Scenario</th>
+                                    <th>Number</th>
+                                    <th>Step</th>
+                                    <th>Status</th>
+                                    <th>Failure</th>
+                                    <th>Screenshot</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsView">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <footer class="footer">
+                    <p class="copyright pull-right">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="https://www.svatah.in" target="_blank">Svatah</a>, Behaviour Driven Automation
+                        Platform
+                    </p>
+                </footer>
             </div>
         </div>
     </div>
 </body>
 <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
-<!--   Core JS Files   -->
 <script src="./../js/jquery.min.js?v=3.4.0.1" type="text/javascript"></script>
-<script src="./../js/popper.min.js?v=1.0.2" type="text/javascript"></script>
-<script src="./../js/bootstrap.min.js?v=1.0.2" type="text/javascript"></script>
-<!--  PerfectScrollbar Library -->
-<script src="./../js/perfect-scrollbar.jquery.min.js?v=1.0.1"></script>
-<!-- Material Dashboard javascript methods -->
-<script src="./../js/black-dashboard.js?v=1.0.14"></script>
 <script src="./../js/jquery.dataTables.min.js"></script>
-<script src="./../js/dataTables.bootstrap4.min.js"></script>
+<script src="./../../node_modules/datatables-bulma/js/dataTables.bulma.min.js"></script>
 <script src="./../js/svatah.js"></script>
 <script src="./../js/result.js"></script>
 <script>if (window.module) module = window.module;</script>
+
 </html>

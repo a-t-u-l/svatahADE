@@ -9,17 +9,10 @@
     <meta name="author" content="svatah" />
 
     <title>Svatah ADE</title>
-
-    <!-- Bootstrap core CSS     -->
-    <link href="./../css/bootstrap.min.css?v=1.0.5" rel="stylesheet" />
-    <!--  Material Dashboard CSS    -->
-    <link href="./../css/black-dashboard.css?v=1.1.45455" rel="stylesheet" />
-    <!--     Fonts and icons     -->
-    <link href="./../css/font-awesome.min.css" rel="stylesheet" type='text/css' />
-    <link href='./../css/material-icons-fonts.css' rel='stylesheet' type='text/css' />
-    <link href="./../css/poppins-fonts.css" rel="stylesheet" />
+    <link href="./../../node_modules/bulma/css/bulma.min.css" rel="stylesheet" />
+    <link href='./../css/font-awesome.min.css' rel='stylesheet' type='text/css' />
+    <link href="./../css/svatah.css?v=1.0.1" rel="stylesheet" />
     <link href="./../css/jsoneditor.min.css" rel="stylesheet" type="text/css">
-    <link href="./../css/svatah.css" rel="stylesheet" />
     <link href="./../css/trumbowyg.css" rel="stylesheet" />
 
     <style type="text/css">
@@ -37,834 +30,685 @@
         }
 
         /* Add a right margin to each icon */
-        .fa {
+        /* .fa {
             margin-left: -12px;
             margin-right: 8px;
-        }
+        } */
 
         #jsoneditor {
             height: 600px;
+        }
+
+        .tab-content .tab-pane {
+            display: none;
+        }
+
+        .tab-content .tab-pane.is-active {
+            display: block;
         }
     </style>
 </head>
 
 <body id="bod" class="white-content">
-    <div class="wrapper" style="border-top: 2px solid #e6b31c;">
-        <div id="sidebar" class="sidebar" data-color="orange" data-image="#">
-            <div class="logo">
-                <a href="https://www.svatah.in" target="_blank" class="simple-text logo-mini">
-                    S
-                </a>
-                <a href="https://www.svatah.in" target="_blank" class="simple-text logo-normal">
-                    Svatah
-                </a>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
 
-                    <li class="project active">
-                        <a href="./project.html" data-toggle="tooltip" data-placement="right" title="project">
-                            <i class="material-icons">assessment</i>
-                            <p>View Projects</p>
-                        </a>
-                    </li>
+    <div class="columns is-gapless is-mobile" style="margin-bottom:0px;">
+        <div class="column is-1" style="width: 5%; min-height: 100vh; background-color: rgb(31, 35, 221);">
+            <div class="section">
+                <div class="menu sticky">
+                    <ul id="menu" class="menu-list no-hover">
+                        <li class="logo">
+                            <a href="https://www.svatah.in" target="_blank" class="simple-text logo-mini"
+                                style="padding: 0px 0px 30px 0px; color: white; font-size:26px">
+                                S
+                            </a>
+                        </li>
+                        <li class="project">
+                            <a href="./project.html" title="project"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i class="fa fa-folder-o"></i>
+                            </a>
+                        </li>
 
-                    <li class="newuiproject">
-                        <a href="./newproject.html" data-toggle="tooltip" data-placement="right" title="newproject">
-                            <i class="material-icons">note_add</i>
-                            <p>New Project</p>
-                        </a>
-                    </li>
+                        <li class="newuiproject">
+                            <a href="./newproject.html" title="newproject"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i class="fa fa-plus-square-o"></i>
+                            </a>
+                        </li>
 
-                    <!-- <li class="newapiproject">
-                        <a href="./apiproject.html" data-toggle="tooltip" data-placement="right" title="newproject">
-                            <i class="material-icons">description</i>
-                            <p>New API Project</p>
-                        </a>
-                    </li> -->
+                        <li class="results">
+                            <a href="./results.html" title="results"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i class="fa fa-check-square-o"></i>
+                            </a>
+                        </li>
 
-                    <li class="api-client">
-                        <a href="./apiclient.html" data-toggle="tooltip" data-placement="right" title="API client">
-                            <i class="material-icons">extension</i>
-                            <p>API Client</p>
-                        </a>
-                    </li>
-
-                    <li class="results">
-                        <a href="./results.html" data-toggle="tooltip" data-placement="right" title="results">
-                            <i class="material-icons">receipt</i>
-                            <p>Results</p>
-                        </a>
-                    </li>
-
-                    <li class="docs">
-                        <a href="./../../docs/index.html" target="_blank" data-toggle="tooltip" data-placement="right"
-                            title="View docs" id="docsLink">
-                            <i class="material-icons">description</i>
-                            <p>Docs</p>
-                        </a>
-                    </li>
-
-                    <li id="darkmode" class="theme">
-                        <a class="toggle-label toggle-label-off" data-toggle="tooltip" data-placement="right"
-                            title=" toggle dark mode">
-                            <i id="darkmodeicon" class="material-icons">toggle_on</i>
-                            <p>darkmode</p>
-                        </a>
-                    </li>
-
-                </ul>
+                        <li class="api-client">
+                            <a href="./apiclient.html" title="API client"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i class="fa fa-lemon-o"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="main-panel">
-            <div class="content">
-                <div class="container-fluid">
-                    <!---Modal -->
-                    <div class="modal fade" id="importModal" tabindex="-1" role="dialog"
-                        aria-labelledby="importModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="card modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="importModalLongTitle">Import API request as JSON</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+        <div class="column is-2 scrollable" style="min-height: 100vh; background-color: rgb(238, 238, 245);">
+            <div class="section">
+                <div class="panel" style="box-shadow:none">
+                    <ul id="menu">
+                        <div class="panel-heading" style="padding-left:0px">Explorer</div>
+                        <block id="explorer">
+                            <li class="panel-block" style="border-top: 1px dotted grey">
+                                <a class="nav-link" id="config-tab" href="#config">Config</a>
+                            </li>
+                            <li class="panel-block" style="border-top: 1px dotted grey">
+                                <a class="nav-link" id="data-repo-tab" href="#data-repo">Data Repository</a>
+                            </li>
+                            <li class="panel-block" style="border-top: 1px dotted grey">
+                                <a class="nav-link" id="locator-repo-tab" href="#locator-repo">Locator
+                                    Repository</a>
+                            </li>
+                            <li class="panel-block" style="border-top: 1px dotted grey">
+                                <a class="nav-link" id="api-repo-tab" href="#api-repo">API
+                                    Repository</a>
+                            </li>
+                        </block>
+                        <div class="panel-heading level" style="padding-left:0px;padding-top:20px">
+                            <span class="level-left">Flows</span>
+                            <span class="level-right" style="text-align: right;">
+                                <a class="nav-link" id="new-flow-tab" href="#flowEditorContainer"><i
+                                        class="fa fa-plus"></i></a>
+                            </span>
+                        </div>
+                        <block id="flowList">
+
+                        </block>
+                        <div class="panel-heading" style="margin-bottom: auto;">
+                            <span class="table-add mb-3 mr-2">
+                                <button id="create-project-button" onclick="createProject()"
+                                    class="button is-text create-new-project-btn"><i id="buttonLoader"></i>
+                                    Save Project
+                                </button>
+                            </span>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="column is-9 scrollable">
+            <div class="section">
+
+                <div id="alertbar" class="col">
+
+                </div>
+
+                <div id="project">
+                    <div class="tab-content" id="tabContent">
+                        <div class="tab-pane is-active" id="config">
+                            <div class="section">
+                                <p class="help" style="padding-bottom: 20px; font-size: 14px;">Define your project
+                                    configuration.
+                                    You can define
+                                    more configurations later for different builds.</p>
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Project name</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded ">
+                                                <input id="name" name="name" class="input" type="text"
+                                                    placeholder="project name" disabled />
+                                            </p>
+                                            <p class="help">Your project name. You won't be able to change it later.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Config name</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded ">
+                                                <input id="configName" name="configName" class="input" type="text"
+                                                    placeholder="config name" disabled />
+                                            </p>
+                                            <p class="help">Enter a
+                                                unique config name. This will be used later for your
+                                                builds.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">URL</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded ">
+                                                <input id="url" name="url" class="input" type="text"
+                                                    placeholder="Provide a valid url" required />
+                                            </p>
+                                            <p class="help">Provide a valid url as project's starting point.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Browser</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="browser" name="browser">
+                                                        <option value="chrome">chrome</option>
+                                                        <option value="firefox">firefox</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Take screenshot</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="takeStepScreenshot" name="takeStepScreenshot">
+                                                        <option value="true">yes</option>
+                                                        <option value="false">no</option>
+                                                    </select>
+                                                </div>
+                                                <p class="help">Choose whether to take screenshot at each step.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Executors</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="threadCount" name="threadCount">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                    </select>
+                                                </div>
+                                                <p class="help">Numbers of executors. Note, flows will run in parallel.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="data-repo">
+                            <div class="section">
+                                <div id="dataAlert" class="notification is-danger is-light" hidden="hidden">
+                                    <span>Data field/s can not have empty key or value!</span>
+                                </div>
+                                <p class="help" style="padding-bottom: 20px; font-size: 14px;">The data table fields are
+                                    editable.
+                                    You would need to save the changes before submitting the flow</p>
+
+                                <div id="data-table" class="table-editable">
+                                    <table class="table is-bordered is-fullwidth">
+                                        <thead>
+                                            <tr class="table-active">
+                                                <th>Variable Name</th>
+                                                <th>Variable Value</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <!-- This is our clonable table line -->
+                                        <tr class="hide" hidden="hidden">
+                                            <td contenteditable="true"></td>
+                                            <td contenteditable="true"></td>
+                                            <td>
+                                                <span class="data-table-remove">
+                                                    <button type="button" rel="tooltip" title="Delete"
+                                                        class="button is-danger is-light">
+                                                        <i class="fa fa-remove"></i>
+                                                    </button>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <!-- ------------------------------- -->
+
+
+                                    </table>
+                                    <span id="addDataRow" class="data-table-add">
+                                        <button type="button" rel="tooltip" title="Add"
+                                            class="button is-warning is-light"><i class="fa fa-plus-square-o"></i>
+                                        </button>
+                                    </span>
+                                    <span class="data-export-btn">
+                                        <button id="data-export-btn" type="button" disabled="true" rel="tooltip"
+                                            title="Export" class="button is-warning is-light save-btn"><i
+                                                class="fa fa-save"></i>
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button type="button" class="button is-warning is-light pull-right"
+                                            data-toggle="modal" onClick="exportDataRepository()"
+                                            data-target="#exportDataModal">
+                                            export
+                                        </button>
+                                        <button type="button" class="button is-warning is-light pull-right"
+                                            data-toggle="modal" data-target="#importDataModal">
+                                            import
+                                        </button>
+                                    </span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="dataEditor" name="dataFile" type="text" class="form-control" value=""
+                                        hidden="hidden" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="locator-repo">
+                            <div class="section">
+                                <div id="locatorAlert" class="notification is-danger is-light" hidden="hidden">
+                                    <span>Locator field/s can not have empty key or
+                                        value!</span>
+                                </div>
+                                <p class="help" style="padding-bottom: 20px; font-size: 14px;">The locator table fields
+                                    are editable.
+                                    You would need to save the changes before submitting the flow.</p>
+
+                                <div id="locator-table" class="table-editable">
+                                    <table class="table is-bordered is-fullwidth">
+                                        <thead>
+                                            <tr class="table-active">
+                                                <th>Locator Identifier</th>
+                                                <th>Locator Details</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <!-- This is our clonable table line -->
+                                        <tr class="hide" hidden="hidden">
+                                            <td contenteditable="true"></td>
+                                            <td contenteditable="true"></td>
+                                            <td>
+                                                <span class="locator-table-remove">
+                                                    <button type="button" rel="tooltip" title="Delete"
+                                                        class="button is-danger is-light">
+                                                        <i class="fa fa-remove"></i>
+                                                    </button>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <!-- ------------------------------- -->
+
+
+                                    </table>
+                                    <span id="addLocatorButton" class="locator-table-add">
+                                        <button type="button" rel="tooltip" title="Add"
+                                            class="button is-warning is-light"><i class="fa fa-plus-square-o"></i>
+                                        </button>
+                                    </span>
+                                    <span class="locator-export-btn">
+                                        <button id="locator-export-btn" type="button" disabled="true" rel="tooltip"
+                                            title="Export" class="button is-warning is-light save-btn"><i
+                                                class="fa fa-save"></i>
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button type="button" class="button is-warning is-light pull-right"
+                                            data-toggle="modal" onClick="exportLocatorsRepository()"
+                                            data-target="#exportLocatorModal">
+                                            export
+                                        </button>
+                                        <button type="button" class="button is-info is-light pull-right"
+                                            onclick="openModal('importLocatorModal')">
+                                            import
+                                        </button>
+                                    </span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="locatorEditor" name="locatorFile" type="text" class="form-control"
+                                        value="" hidden="hidden" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="api-repo">
+
+                            <div class="section">
+                                <p class="help" style="padding-bottom: 20px; font-size: 14px;">List of project API's.
+                                    You can invoke an API in a flow using proper intent.</p>
+                                <div id="api-view-table" class="table-editable">
+                                    <table class="table is-bordered is-fullwidth">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Method</th>
+                                                <th>URL</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ApiView">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="padding-top: 15px;">
+                                    <button id="addApiModal" onclick="showAddApiView()"
+                                        class="button is-primary is-light">
+                                        Add New API
                                     </button>
                                 </div>
-                                <div class="modal-body" style="color:#7d7f84;">
-                                    <p>Paste your API request in Svatah JSON format</p>
-                                    <textarea style="min-width: 100%" rows="11" value="" id="apiRequestImportJson"
-                                        name="apiRequestImportJson"></textarea>
+                            </div>
+
+                            <div id="apiViewSection" class="section" hidden>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Name</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input id="apiname" name="name" class="input" type="text"
+                                                    placeholder="Provide API Name">
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa fa-tag"></i>
+                                                </span>
+                                            </p>
+                                            <p class="help">Please provide a unique API tag name. Note, in edit view,
+                                                altering name will save it as a new API request.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" onclick="importAPI()" class="btn btn-warning btn-simple"
-                                        data-dismiss="modal">Import</button>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Http Method</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="httpMethod" name="httpMethod"
+                                                        onchange="getSelected(this);" value="GET">
+                                                        <option value="GET" id="getOption" selected="selected">GET
+                                                        </option>
+                                                        <option value="POST">POST</option>
+                                                        <option value="PUT">PUT</option>
+                                                        <option value="PATCH">PATCH</option>
+                                                        <option value="DELETE">DELETE</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">URL</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input id="uri" name="uri" class="input" type="text"
+                                                    placeholder="Provide URL">
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa fa-link"></i>
+                                                </span>
+                                            </p>
+                                            <p class="help">Please provide API request path.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Content Type</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="contentType" name="contentType" value="">
+                                                        <option value="json">Application&#47;Json</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Accept All SSL Certificates</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="acceptAllSslCert" name="acceptAllSslCert" value="false">
+                                                        <option value="false" selected="selected">False</option>
+                                                        <option value="true">True</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Follow Redirects</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select id="followRedirect" name="followRedirect" value="false">
+                                                        <option value="false" selected="selected">False</option>
+                                                        <option value="true">True</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Editable table -->
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">API Headers</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+
+                                            <div class="form-group">
+                                                <input id="apiEditor" name="headers" type="text" class="form-control"
+                                                    value="" hidden="hidden" />
+                                            </div>
+
+                                            <div id="apiAlert" class="notification is-danger" hidden="hidden">
+                                                <span>Header field/s can not have empty key or
+                                                    value!</span>
+                                            </div>
+
+                                            <div id="api-header-table" class="table-editable">
+                                                <table class="table is-bordered is-fullwidth">
+                                                    <tr>
+                                                        <th style="font-weight: normal;">Header Key
+                                                        </th>
+                                                        <th style="font-weight: normal;">Header
+                                                            Value</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    <!-- This is our clonable table line -->
+                                                    <tr class="hide" hidden="hidden">
+                                                        <td contenteditable="true"></td>
+                                                        <td contenteditable="true"></td>
+                                                        <td>
+                                                            <span class="api-header-table-remove">
+                                                                <button type="button" rel="tooltip" title="Delete"
+                                                                    class="button is-danger is-light">
+                                                                    <i class="fa fa-remove"></i>
+                                                                </button>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- ------------------------------- -->
+
+
+                                                </table>
+                                                <p id="variableHelp" class="help">Please
+                                                    define/change all the headers key and value
+                                                    accordingly in
+                                                    the
+                                                    header table.
+                                                </p>
+                                                <span class="api-header-table-add">
+                                                    <button type="button" rel="tooltip" title="Add"
+                                                        class="button is-info is-light">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </span>
+                                                <span class="api-export-btn">
+                                                    <button id="api-export-btn" type="button" disabled="true"
+                                                        rel="tooltip" title="Export"
+                                                        class="button is-info is-light api-header-save-btn">
+                                                        <i class="fa fa-save"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="notGetDivCheck" style="display:none;">
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            <label class="label">Body</label>
+                                        </div>
+                                        <div class="field-body">
+                                            <div style="min-width :100%" rows="17" value="" id="requestBody"
+                                                name="requestBody">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal" style="padding-top: 10px;">
+
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <button id="save-api-button" type="button" rel="tooltip" disabled="true"
+                                                    title="Save API Request" onclick="addApiToProject()"
+                                                    class="button is-info is-light">save
+                                                    request
+                                                </button>
+                                                <button type="button" class="button is-text pull-right"
+                                                    onclick="openModal('importModal')">
+                                                    import
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="modal fade" id="importLocatorModal" tabindex="-1" role="dialog"
-                        aria-labelledby="importLocatorModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="card modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="importLocatorModalLongTitle">Import locators</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body" style="color:#7d7f84;">
-                                    <p>Paste your locators in Svatah JSON format</p>
-                                    <textarea style="min-width: 100%" rows="11" value="" id="locatorImportJson"
-                                        name="locatorImportJson"></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" onclick="importLocatorsRepository()"
-                                        class="btn btn-warning btn-simple" data-dismiss="modal">Import</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="exportLocatorModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exportLocatorModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="card modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exportLocatorModalLongTitle">Export locators as JSON
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <textarea style="min-width: 100%" rows="11" value="" id="locatorExportJson"
-                                        name="locatorExportJson" disabled></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="importDataModal" tabindex="-1" role="dialog"
-                        aria-labelledby="importDataModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="card modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="iimportDataModalLongTitle">Import Data</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body" style="color:#7d7f84;">
-                                    <p>Paste your data mapping in Svatah JSON format</p>
-                                    <textarea style="min-width: 100%" rows="11" value="" id="dataImportJson"
-                                        name="dataImportJson"></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" onclick="importDataRepository()"
-                                        class="btn btn-warning btn-simple" data-dismiss="modal">Import</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="exportDataModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exportDataModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="card modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exportDataModalLongTitle">Export data as JSON</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <textarea style="min-width: 100%" rows="11" value="" id="dataExportJson"
-                                        name="dataExportJson" disabled></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!---Modal Ends-->
-
-                    <div class="row">
-                        <div class="col-sm-2 nav flex-column nav-pills wraptext" id="v-pills-tab" role="tablist">
-                            <div class="nav-link" style="padding-top: 20px; background : #000; color : white;">Explorer
-                            </div>
-                            <div class="cross-page-line"></div>
-                            <a class="nav-link active" id="v-pills-config-tab" data-toggle="pill" href="#v-pills-config"
-                                role="tab" aria-controls="v-pills-config" aria-selected="true">Config</a>
-                            <div class="cross-page-line"></div>
-                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                                role="tab" aria-controls="v-pills-profile" aria-selected="false">Data Repository</a>
-                            <div class="cross-page-line"></div>
-                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
-                                role="tab" aria-controls="v-pills-messages" aria-selected="false">Locator Repository</a>
-                            <div class="cross-page-line"></div>
-                            <a class="nav-link" id="v-pills--add-flow-tab" data-toggle="pill" href="#v-pills-add-api"
-                                role="tab" aria-controls="v-pills-add-api" aria-selected="false">API Repository</a>
-                            <div class="cross-page-line"></div>
-                            <a class="nav-link" id="v-pills--add-flow-tab" data-toggle="pill" href="#v-pills-add-flow"
-                                role="tab" aria-controls="v-pills-add-flow" aria-selected="false">Flow Repository</a>
-                            <div class="cross-page-line"></div>
-                        </div>
-
-                        <div class="hidden-for-mobile">
-                            <div class="cross-page-line d-lg-none d-md-none d-xl-none"></div>
-                        </div>
-
-                        <div class="col-sm-10">
+                        <div class="tab-pane" id="new-flow">
                             <div class="row">
-                                <div id="alertbar" class="col">
-
-                                </div>
-                            </div>
-                            <div class="form-horizontal" id="project">
-                                <div class="tab-content" id="v-pills-tabContent">
-                                    <div class="col-md-12 tab-pane fade show active" id="v-pills-config" role="tabpanel"
-                                        aria-labelledby="v-pills-config-tab">
-
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h4 class="card-title">Project Configuration</h4>
-                                                <h6 class="card-title">define your project configuration. You can
-                                                    define
-                                                    more
-                                                    configurations later for different builds.</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input id="name" name="name" type="text"
-                                                                placeholder="Project Name" class="form-control" value=""
-                                                                disabled />
-                                                            <small id="nameHelp" class="form-text text-muted">Enter
-                                                                your
-                                                                project's
-                                                                name
-                                                            </small>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input id="configName" name="configName" type="text"
-                                                                placeholder="Config Name" class="form-control" value=""
-                                                                disabled />
-                                                            <small id="configNameHelp" class="form-text text-muted">
-                                                                Enter a
-                                                                unique config name. This will be used later for your
-                                                                builds.
-                                                            </small>
-                                                        </div>
-                                                    </div>
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">User Journey Flows</h4>
+                                            <h6 class="card-title">Define your tests here using svatah
+                                                flow
+                                                specification.
+                                                A Single flow defines the one continuous path of journey
+                                                user
+                                                takes through the website.</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <input id="flowFileName" name="flowFileName" type="text"
+                                                        placeholder="Flow File Name" class="form-control" value=""
+                                                        required />
+                                                    <small id="flowFileNameHelp" class="form-text text-muted">Enter
+                                                        flow
+                                                        file name
+                                                    </small>
                                                 </div>
+                                            </div>
 
-                                                <div class="row">
+                                            <div id="TextBoxesGroup">
+                                                <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input id="url" name="url" type="text"
-                                                                placeholder="http://www.svatah.com" class="form-control"
-                                                                value="" required />
-                                                            <small id="urlHelp" class="form-text text-muted">Enter a
-                                                                valid
-                                                                url
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                        <div id="flowEditorContainer" class="trumbowyg">
+                                                            <div id="flowEditor">
 
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <select class="form-control" id="browser" name="browser"
-                                                                type="text">
-                                                                <option value="chrome">chrome</option>
-                                                                <option value="firefox">firefox</option>
-                                                            </select>
-                                                            <small id="browserHelp" class="form-text text-muted">Choose
-                                                                a
-                                                                browser
-                                                            </small>
+                                                            </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <select class="form-control" id="takeStepScreenshot"
-                                                                name="takeStepScreenshot" type="text">
-                                                                <option value="false">false</option>
-                                                                <!-- <option value="true">true</option> -->
-                                                            </select>
-                                                            <small id="takeStepScreenshotHelp"
-                                                                class="form-text text-muted">
-                                                                Choose
-                                                                whether to take screenshot at each step
-                                                            </small>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <select class="form-control" id="threadCount"
-                                                                name="threadCount" type="text">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5">5</option>
-                                                                <option value="6">6</option>
-                                                                <option value="7">7</option>
-                                                                <option value="8">8</option>
-
-                                                            </select>
-                                                            <small id="threadHelp" class="form-text text-muted">Enter
-                                                                numbers of
-                                                                executors which needs to get picked.
-                                                            </small>
-                                                        </div>
+                                                        <!-- <textarea id="flowEditor" name="flowFile"
+                                                        style="min-width: 100%"
+                                                        placeholder="Define you test flow here."
+                                                        rows="10" required></textarea>
+                                                    <textarea id="flowEditorContent"
+                                                        name="flowEditorContent" hidden="">
+                                                    </textarea> -->
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12 tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                        aria-labelledby="v-pills-profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card text-left">
-                                                    <div id="dataAlert" class="alert-danger" hidden="hidden">
-                                                        <span>Data field/s can not have empty key or value!</span>
-                                                    </div>
-                                                    <div class="card-header">
-                                                        <h4 class="card-title">Data repository</h4>
-                                                        <h6 class="card-title">The data table fields are editable.
-                                                            You
-                                                            would
-                                                            need to save the changes before submitting the flow.
-                                                        </h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div id="data-table" class="table-editable">
-                                                            <table class="table table-bordered table-responsive-md">
-                                                                <tr class="table-active">
-                                                                    <th style="font-weight: normal;">Variable Name</th>
-                                                                    <th style="font-weight: normal;">Variable Value</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                                <!-- This is our clonable table line -->
-                                                                <tr class="hide" hidden="hidden">
-                                                                    <td contenteditable="true"></td>
-                                                                    <td contenteditable="true"></td>
-                                                                    <td>
-                                                                        <span class="data-table-remove">
-                                                                            <button type="button" rel="tooltip"
-                                                                                title="Delete"
-                                                                                class="btn btn-danger btn-link btn-sm">
-                                                                                <i class="material-icons">delete</i>
-                                                                            </button>
-                                                                        </span>
-                                                                    </td>
-                                                                </tr>
-                                                                <!-- ------------------------------- -->
-
-
-                                                            </table>
-                                                            <span id="addDataRow" class="data-table-add mb-3 mr-2">
-                                                                <button type="button" rel="tooltip" title="Add"
-                                                                    class="btn btn-yellow btn-link btn-sm"><i
-                                                                        class="material-icons">add</i>
-                                                                </button>
-                                                            </span>
-                                                            <span class="data-export-btn mb-3 mr-2">
-                                                                <button id="data-export-btn" type="button"
-                                                                    disabled="true" rel="tooltip" title="Export"
-                                                                    class="btn btn-yellow btn-link btn-sm save-btn"><i
-                                                                        class="material-icons">save</i>
-                                                                </button>
-                                                            </span>
-                                                            <span>
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-warning btn-link pull-right"
-                                                                    data-toggle="modal" onClick="exportDataRepository()"
-                                                                    data-target="#exportDataModal">
-                                                                    export
-                                                                </button>
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-warning btn-link pull-right"
-                                                                    data-toggle="modal" data-target="#importDataModal">
-                                                                    import
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input id="dataEditor" name="dataFile" type="text"
-                                                        class="form-control" value="" hidden="hidden" />
-                                                </div>
+                                            <div class="form-group">
+                                                <span class="table-add mb-3 mr-2">
+                                                    <button type="button" rel="tooltip" title="run" onclick="runTest()"
+                                                        class="button button-warning is-light">
+                                                        <i class="fa fa-play-circle-o"></i>
+                                                    </button>
+                                                </span>
+                                                <span class="table-add mb-3 mr-2">
+                                                    <button id="save-flow-button" title="save"
+                                                        onclick="addFlowToProject()"
+                                                        class="buttontn is-warning is-light add-new-flow-btn">
+                                                        <i class="fa fa-save"></i>
+                                                    </button>
+                                                </span>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-12 tab-pane fade" id="v-pills-messages" role="tabpanel"
-                                        aria-labelledby="v-pills-messages-tab">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card text-left">
-                                                    <div id="locatorAlert" class="alert-danger" hidden="hidden">
-                                                        <span>Locator field/s can not have empty key or
-                                                            value!</span>
-                                                    </div>
-                                                    <div class="card-header">
-                                                        <h4 class="card-title">Locator repository</h4>
-                                                        <h6 class="card-title">The locator table fields are
-                                                            editable.
-                                                            You
-                                                            would
-                                                            need to save the changes before submitting the flow.
-                                                        </h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div id="locator-table" class="table-editable">
-                                                            <table class="table table-bordered table-responsive-md">
-                                                                <tr class="table-active">
-                                                                    <th style="font-weight: normal;">Locator Identifier</th>
-                                                                    <th style="font-weight: normal;">Locator Details</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                                <!-- This is our clonable table line -->
-                                                                <tr class="hide" hidden="hidden">
-                                                                    <td contenteditable="true"></td>
-                                                                    <td contenteditable="true"></td>
-                                                                    <td>
-                                                                        <span class="locator-table-remove">
-                                                                            <button type="button" rel="tooltip"
-                                                                                title="Delete"
-                                                                                class="btn btn-danger btn-link btn-sm">
-                                                                                <i class="material-icons">delete</i>
-                                                                            </button>
-                                                                        </span>
-                                                                    </td>
-                                                                </tr>
-                                                                <!-- ------------------------------- -->
-
-
-                                                            </table>
-                                                            <span class="locator-table-add mb-3 mr-2">
-                                                                <button type="button" rel="tooltip" title="Add"
-                                                                    class="btn btn-yellow btn-link btn-sm"><i
-                                                                        class="material-icons">add</i>
-                                                                </button>
-                                                            </span>
-                                                            <span class="locator-export-btn mb-3 mr-2">
-                                                                <button id="locator-export-btn" type="button"
-                                                                    disabled="true" rel="tooltip" title="Export"
-                                                                    class="btn btn-yellow btn-link btn-sm locator-save-btn"><i
-                                                                        class="material-icons">save</i>
-                                                                </button>
-                                                            </span>
-                                                            <span>
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-warning btn-link pull-right"
-                                                                    data-toggle="modal"
-                                                                    onClick="exportLocatorsRepository()"
-                                                                    data-target="#exportLocatorModal">
-                                                                    export
-                                                                </button>
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-warning btn-link pull-right"
-                                                                    data-toggle="modal"
-                                                                    data-target="#importLocatorModal">
-                                                                    import
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input id="locatorEditor" name="locatorFile" type="text"
-                                                        class="form-control" value="" hidden="hidden" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12 tab-pane fade" id="v-pills-add-api" role="tabpanel"
-                                        aria-labelledby="v-pills-add-api">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <button class="btn btn-link pull-right" type="button"
-                                                            data-toggle="collapse" data-target="#collapse-api"
-                                                            aria-expanded="false" aria-controls="collapseApiOne"><i
-                                                                class="material-icons">unfold_more</i>
-                                                        </button>
-                                                        <h4 class="card-title">API Repository</h4>
-                                                    </div>
-                                                    <div class="accordion" id="accordionApi">
-                                                        <div class="card-body table-responsive">
-                                                            <div id="collapse-api" class="collapse show"
-                                                                aria-labelledby="headingApiOne"
-                                                                data-parent="#accordionApi">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Name</th>
-                                                                            <th>Method</th>
-                                                                            <th>URL</th>
-                                                                            <th>Actions</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="ApiView">
-
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h4 class="card-title">Request</h4>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Name</label>
-                                                                    <input type="text" class="form-control"
-                                                                        required="required" value="" id="apiname"
-                                                                        name="name" required />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-2">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Http Method</label>
-                                                                    <select id="httpMethod" name="httpMethod"
-                                                                        type="text" class="form-control"
-                                                                        onchange="getSelected(this);" value="GET">
-                                                                        <option value="GET" id="getOption"
-                                                                            selected="selected">GET
-                                                                        </option>
-                                                                        <option value="POST">POST</option>
-                                                                        <option value="PUT">PUT</option>
-                                                                        <option value="PATCH">PATCH</option>
-                                                                        <option value="DELETE">DELETE</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Url</label>
-                                                                    <input type="text" class="form-control"
-                                                                        required="required" value="" id="uri" name="uri"
-                                                                        required />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Content Type</label>
-                                                                    <select id="contentType" name="contentType"
-                                                                        type="text" class="form-control" value="">
-                                                                        <option value="json">Application&#47;Json
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Accept All SSL
-                                                                        Certificates</label>
-                                                                    <select id="acceptAllSslCert"
-                                                                        name="acceptAllSslCert" type="text"
-                                                                        class="form-control" value="false">
-                                                                        <option value="false" selected="selected">False
-                                                                        </option>
-                                                                        <option value="true">True</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Follow
-                                                                        Redirects</label>
-                                                                    <select id="followRedirect" name="followRedirect"
-                                                                        type="text" class="form-control" value="true">
-                                                                        <option value="true" selected="selected">True
-                                                                        </option>
-                                                                        <option value="false">False</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Editable table -->
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <input id="apiEditor" name="headers" type="text"
-                                                                        class="form-control" value="" hidden="hidden" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div id="apiAlert" class="alert-danger" hidden="hidden">
-                                                                    <span>Header field/s can not have empty key or
-                                                                        value!</span>
-                                                                </div>
-
-                                                                <div id="api-header-table" class="table-editable">
-                                                                    <table
-                                                                        class="table table-bordered table-responsive-md">
-                                                                        <tr>
-                                                                            <th style="font-weight: normal;">Header Key
-                                                                            </th>
-                                                                            <th style="font-weight: normal;">Header
-                                                                                Value</th>
-                                                                            <th></th>
-                                                                        </tr>
-                                                                        <!-- This is our clonable table line -->
-                                                                        <tr class="hide" hidden="hidden">
-                                                                            <td contenteditable="true"></td>
-                                                                            <td contenteditable="true"></td>
-                                                                            <td>
-                                                                                <span class="api-header-table-remove">
-                                                                                    <button type="button" rel="tooltip"
-                                                                                        title="Delete"
-                                                                                        class="btn btn-danger btn-link btn-sm">
-                                                                                        <i
-                                                                                            class="material-icons">delete</i>
-                                                                                    </button>
-                                                                                </span>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <!-- ------------------------------- -->
-
-
-                                                                    </table>
-                                                                    <small id="variableHelp"
-                                                                        class="form-text text-muted">Please
-                                                                        define/change all the headers key and value
-                                                                        accordingly in
-                                                                        the
-                                                                        header table.
-                                                                    </small>
-                                                                    <span class="api-header-table-add mb-3 mr-2">
-                                                                        <button type="button" rel="tooltip" title="Add"
-                                                                            class="btn btn-yellow btn-link btn-sm"><i
-                                                                                class="material-icons">add</i>
-                                                                        </button>
-                                                                    </span>
-                                                                    <span class="api-export-btn mb-3 mr-2">
-                                                                        <button id="api-export-btn" type="button"
-                                                                            disabled="true" rel="tooltip" title="Export"
-                                                                            class="btn btn-yellow btn-link btn-sm api-header-save-btn"><i
-                                                                                class="material-icons">save</i>
-                                                                        </button>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="notGetDivCheck" style="display:none;" class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label>Request Body</label>
-                                                                    <div class="form-group label-floating">
-                                                                        <div style="min-width :100%" rows="11" value=""
-                                                                            id="requestBody" name="requestBody">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <hr />
-                                                    <div class="card-footer text-muted">
-                                                        <button type="button" class="btn btn-sm btn-warning btn-link"
-                                                            data-toggle="modal" data-target="#importModal">
-                                                            import
-                                                        </button>
-                                                        <button id="save-api-button" type="button" rel="tooltip"
-                                                            disabled="true" title="Save API Request"
-                                                            onclick="addApiToProject()"
-                                                            class="btn btn-yellow btn-sm btn-simple pull-right">save
-                                                            request
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12 tab-pane fade" id="v-pills-add-flow" role="tabpanel"
-                                        aria-labelledby="v-pills-add-flow">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <button class="btn btn-link pull-right" type="button"
-                                                            data-toggle="collapse" data-target="#collapse-flow"
-                                                            aria-expanded="false" aria-controls="collapseFlowOne"><i
-                                                                class="material-icons">unfold_more</i>
-                                                        </button>
-                                                        <h4 class="card-title">Flows Repository</h4>
-                                                    </div>
-                                                    <div class="accordion" id="accordionFlow">
-                                                        <div class="card-body table-responsive">
-                                                            <div id="collapse-flow" class="collapse show"
-                                                                aria-labelledby="headingFlowOne"
-                                                                data-parent="#accordionFlow">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Flow Name</th>
-                                                                            <th></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="flowsView">
-
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h4 class="card-title">User Journey Flows</h4>
-                                                        <h6 class="card-title">Define your tests here using svatah
-                                                            flow
-                                                            specification.
-                                                            A Single flow defines the one continuous path of journey
-                                                            user
-                                                            takes through the website.</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <input id="flowFileName" name="flowFileName" type="text"
-                                                                    placeholder="Flow File Name" class="form-control"
-                                                                    value="" required />
-                                                                <small id="flowFileNameHelp"
-                                                                    class="form-text text-muted">Enter flow
-                                                                    file name
-                                                                </small>
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="TextBoxesGroup">
-                                                            <div class="form-group">
-                                                                <div class="col-md-12">
-                                                                    <div id="flowEditorContainer"
-                                                                        class="trumbowyg-dark">
-                                                                        <div id="flowEditor">
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- <textarea id="flowEditor" name="flowFile"
-                                                                        style="min-width: 100%"
-                                                                        placeholder="Define you test flow here."
-                                                                        rows="10" required></textarea>
-                                                                    <textarea id="flowEditorContent"
-                                                                        name="flowEditorContent" hidden="">
-                                                                    </textarea> -->
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <span class="table-add mb-3 mr-2">
-                                                                <button type="button" rel="tooltip" title="run"
-                                                                    onclick="runTest()"
-                                                                    class="btn btn-yellow btn-link btn-sm">
-                                                                    <i class="material-icons">play_arrow</i>
-                                                                </button>
-                                                            </span>
-                                                            <span class="table-add mb-3 mr-2">
-                                                                <button id="save-flow-button" title="save"
-                                                                    onclick="addFlowToProject()"
-                                                                    class="btn btn-yellow btn-link btn-sm add-new-flow-btn">
-                                                                    <i class="material-icons">save</i>
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <span class="table-add mb-3 mr-2 pull-right">
-                                                            <button id="create-project-button" onclick="createProject()"
-                                                                class="btn btn-success create-new-project-btn"><i
-                                                                    id="buttonLoader"></i>
-                                                                Save Project
-                                                            </button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                     <footer class="footer">
                         <p class="copyright pull-right">
                             &copy;
@@ -879,17 +723,114 @@
             </div>
         </div>
     </div>
+
+    <!---Modal -->
+    <div class="modal" id="importModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title" id="importModalLongTitle">Import API request as JSON</p>
+                <button id="importModalCloseButton" onclick="closeModal('importModal')" type="button"
+                    class="delete"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Paste your API request in Svatah JSON format</p>
+                <textarea style="min-width: 100%" rows="11" value="" id="apiRequestImportJson"
+                    name="apiRequestImportJson"></textarea>
+            </section>
+            <div class="modal-card-foot">
+                <button type="button" onclick="importAPI()" class="button is-info is-light">Import</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="importLocatorModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title" id="importLocatorModalLongTitle">Import locators</p>
+                <button id="importLocatorModalCloseButton" onclick="closeModal('importLocatorModal')" type="button"
+                    class="delete"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Paste your locators in Svatah JSON format</p>
+                <textarea style="min-width: 100%" rows="11" value="" id="locatorImportJson"
+                    name="locatorImportJson"></textarea>
+            </section>
+            <div class="modal-card-foot">
+                <button type="button" onclick="importLocatorsRepository()"
+                    class="button is-info is-light">Import</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exportLocatorModal" tabindex="-1" role="dialog"
+        aria-labelledby="exportLocatorModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="card modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportLocatorModalLongTitle">Export locators as JSON
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea style="min-width: 100%" rows="11" value="" id="locatorExportJson" name="locatorExportJson"
+                        disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="importDataModal" tabindex="-1" role="dialog" aria-labelledby="importDataModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="card modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="iimportDataModalLongTitle">Import Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color:#7d7f84;">
+                    <p>Paste your data mapping in Svatah JSON format</p>
+                    <textarea style="min-width: 100%" rows="11" value="" id="dataImportJson"
+                        name="dataImportJson"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="importDataRepository()" class="btn btn-warning btn-simple"
+                        data-dismiss="modal">Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exportDataModal" tabindex="-1" role="dialog" aria-labelledby="exportDataModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="card modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportDataModalLongTitle">Export data as JSON</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea style="min-width: 100%" rows="11" value="" id="dataExportJson" name="dataExportJson"
+                        disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---Modal Ends-->
 </body>
 
 
 <!--   Core JS Files   -->
 <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
 <script src="./../js/jquery.min.js?v=3.4.0.1" type="text/javascript"></script>
-<script src="./../js/popper.min.js?v=1.0.2" type="text/javascript"></script>
-<script src="./../js/bootstrap.min.js?v=1.0.2" type="text/javascript"></script>
-<script src="./../js/perfect-scrollbar.jquery.min.js?v=1.0.1"></script>
-<!-- Material Dashboard javascript methods -->
-<script src="./../js/black-dashboard.js?v=1.0.14"></script>
 <script src="./../js/jsoneditor.min.js"></script>
 <script src="./../js/svatah.js"></script>
 <script src="./../js/newproject.js"></script>
@@ -1194,12 +1135,12 @@
         }
 
     ], {
-            onKeydown: function (e, commands) {
-                if (e.ctrlKey && e.keyCode === 74) { // CTRL-J
-                    return commands.KEY_ENTER;
-                }
+        onKeydown: function (e, commands) {
+            if (e.ctrlKey && e.keyCode === 74) { // CTRL-J
+                return commands.KEY_ENTER;
             }
-        });
+        }
+    });
 </script>
 
 </html>

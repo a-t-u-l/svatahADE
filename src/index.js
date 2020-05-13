@@ -99,13 +99,15 @@ const createWindow = () => {
       title: title
       , width: windowWidth
       , height: windowHeight
+      , minHeight: 688
+      , minWidth: 1002
       , frame: true
       , webPreferences: {
         nodeIntegration: true
       }
     });
     mainWindow.loadURL(appUrl);
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
     mainWindow.webContents.once('dom-ready', () => {
       const dbClient = require('./js/dbclient');
       // const location = (app || remote).getPath('userData')
