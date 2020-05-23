@@ -141,7 +141,8 @@ function importLocatorsRepository() {
     } else {
       setTableData('#locator-table', ['locator identifier', 'locator details'], []);
     }
-    $("#locatorEditor").val(data)
+    $("#locatorEditor").val(data);
+    closeModal('importModal');
   } catch (error) {
     showAlert('alertbar', 'danger', error)
   }
@@ -150,7 +151,7 @@ function importLocatorsRepository() {
 function exportLocatorsRepository() {
   let locatorData = JSON.parse($('#locatorEditor').val());
   $("#locatorExportJson").val(JSON.stringify(locatorData, null, 2));
-  closeModal('exportLocatorModal');
+  openModal('exportLocatorModal');
 }
 
 function importDataRepository() {
@@ -162,6 +163,7 @@ function importDataRepository() {
       setTableData('#data-table', ['variable name', 'variable value'], []);
     }
     $("#dataEditor").val(data);
+    closeModal('importDataModal');
   } catch (error) {
     showAlert('alertbar', 'danger', error)
   }
@@ -170,6 +172,7 @@ function importDataRepository() {
 function exportDataRepository() {
   let dataMap = JSON.parse($('#dataEditor').val());
   $("#dataExportJson").val(JSON.stringify(dataMap, null, 2));
+  openModal('exportDataModal');
 }
 
 function exportAPI() {
@@ -228,7 +231,6 @@ function mapFlowValidationResponseToTable(flowErrorDetails) {
     htmlData = htmlData.concat(getErrorRows(errorRow))
   });
   htmlData = htmlData.concat("</table>")
-  console.log("htmlData : " + htmlData)
   return htmlData
 }
 

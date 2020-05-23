@@ -53,6 +53,8 @@ $('body').delegate('a','click', function () {
     if (typeof tab == "string" && tab.endsWith("tab")) {
         tab = tab.replace('-tab', '');
         $('.tab-pane').removeClass('is-active');
+        $('.panel-block').removeClass('mark-active');
         $('#' + tab).addClass('is-active');
+        $(this).closest('li').addClass('mark-active');
     }
 });

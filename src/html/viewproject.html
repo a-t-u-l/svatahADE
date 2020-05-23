@@ -65,7 +65,7 @@
                         <li class="project">
                             <a href="./project.html" title="project"
                                 style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
-                                <i class="fa fa-folder-o"></i>
+                                <i class="fa fa-folder"></i>
                             </a>
                         </li>
 
@@ -99,7 +99,7 @@
                     <ul id="menu">
                         <div class="panel-heading" style="padding-left:0px">Explorer</div>
                         <block id="explorer">
-                            <li class="panel-block" style="border-top: 1px dotted grey">
+                            <li class="panel-block mark-active" style="border-top: 1px dotted grey;">
                                 <a class="nav-link" id="config-tab" href="#config">Config</a>
                             </li>
                             <li class="panel-block" style="border-top: 1px dotted grey">
@@ -300,23 +300,25 @@
                                     </table>
                                     <span id="addDataRow" class="data-table-add">
                                         <button type="button" rel="tooltip" title="Add"
-                                            class="button is-warning is-light"><i class="fa fa-plus-square-o"></i>
+                                            class="button is-info is-light"><i class="fa fa-plus-square-o"></i>
                                         </button>
                                     </span>
                                     <span class="data-export-btn">
                                         <button id="data-export-btn" type="button" disabled="true" rel="tooltip"
-                                            title="Export" class="button is-warning is-light save-btn"><i
+                                            title="Export" class="button is-info is-light save-btn"><i
                                                 class="fa fa-save"></i>
                                         </button>
                                     </span>
-                                    <span>
-                                        <button type="button" class="button is-warning is-light pull-right"
-                                            data-toggle="modal" onClick="exportDataRepository()"
-                                            data-target="#exportDataModal">
+
+                                    <span class="pull-right" style="padding-left: 10px;">
+                                        <button type="button" class="button is-info is-light"
+                                            onclick="exportDataRepository()">
                                             export
                                         </button>
-                                        <button type="button" class="button is-warning is-light pull-right"
-                                            data-toggle="modal" data-target="#importDataModal">
+                                    </span class="pull-right">
+                                    <span>
+                                        <button type="button" class="button is-info is-light pull-right"
+                                            onclick="openModal('importDataModal')">
                                             import
                                         </button>
                                     </span>
@@ -367,21 +369,22 @@
                                     </table>
                                     <span id="addLocatorButton" class="locator-table-add">
                                         <button type="button" rel="tooltip" title="Add"
-                                            class="button is-warning is-light"><i class="fa fa-plus-square-o"></i>
+                                            class="button is-info is-light"><i class="fa fa-plus-square-o"></i>
                                         </button>
                                     </span>
-                                    <span class="locator-export-btn">
+                                    <span class="locator-export-btn" style="padding-left: 10px;">
                                         <button id="locator-export-btn" type="button" disabled="true" rel="tooltip"
-                                            title="Export" class="button is-warning is-light save-btn"><i
+                                            title="Export" class="button is-info is-light save-btn"><i
                                                 class="fa fa-save"></i>
                                         </button>
                                     </span>
-                                    <span>
-                                        <button type="button" class="button is-warning is-light pull-right"
-                                            data-toggle="modal" onClick="exportLocatorsRepository()"
-                                            data-target="#exportLocatorModal">
+                                    <span class="pull-right" style="padding-left: 10px;">
+                                        <button type="button" class="button is-info is-light"
+                                            onclick="exportLocatorsRepository()">
                                             export
                                         </button>
+                                    </span class="pull-right">
+                                    <span>
                                         <button type="button" class="button is-info is-light pull-right"
                                             onclick="openModal('importLocatorModal')">
                                             import
@@ -397,7 +400,6 @@
                         </div>
 
                         <div class="tab-pane" id="api-repo">
-
                             <div class="section">
                                 <p class="help" style="padding-bottom: 20px; font-size: 14px;">List of project API's.
                                     You can invoke an API in a flow using proper intent.</p>
@@ -421,6 +423,10 @@
                                         class="button is-primary is-light">
                                         Add New API
                                     </button>
+                                </div>
+                                <div>
+                                    <input id="apiProjectData" type="text" value=""
+                                        hidden="hidden" />
                                 </div>
                             </div>
 
@@ -643,85 +649,73 @@
                         </div>
 
                         <div class="tab-pane" id="new-flow">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4 class="card-title">User Journey Flows</h4>
-                                            <h6 class="card-title">Define your tests here using svatah
+                            <div class="section">
+                                <div class="field is-horizontal">
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="help" style="padding-bottom: 20px; font-size: 14px;">Define your
+                                                tests
+                                                here
+                                                using svatah
                                                 flow
                                                 specification.
                                                 A Single flow defines the one continuous path of journey
                                                 user
-                                                takes through the website.</h6>
+                                                takes starting from url.
+                                            </p>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <input id="flowFileName" name="flowFileName" type="text"
-                                                        placeholder="Flow File Name" class="form-control" value=""
-                                                        required />
-                                                    <small id="flowFileNameHelp" class="form-text text-muted">Enter
-                                                        flow
-                                                        file name
-                                                    </small>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded">
+                                                <input id="flowFileName" name="flowFileName" type="text"
+                                                    placeholder="Flow File Name" class="input" value="" required />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div id="flowEditorContainer" class="trumbowyg">
+                                                <div id="flowEditor">
+
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                            <div id="TextBoxesGroup">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <div id="flowEditorContainer" class="trumbowyg">
-                                                            <div id="flowEditor">
-
-                                                            </div>
-                                                        </div>
-                                                        <!-- <textarea id="flowEditor" name="flowFile"
-                                                        style="min-width: 100%"
-                                                        placeholder="Define you test flow here."
-                                                        rows="10" required></textarea>
-                                                    <textarea id="flowEditorContent"
-                                                        name="flowEditorContent" hidden="">
-                                                    </textarea> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <span class="table-add mb-3 mr-2">
-                                                    <button type="button" rel="tooltip" title="run" onclick="runTest()"
-                                                        class="button button-warning is-light">
-                                                        <i class="fa fa-play-circle-o"></i>
-                                                    </button>
-                                                </span>
-                                                <span class="table-add mb-3 mr-2">
-                                                    <button id="save-flow-button" title="save"
-                                                        onclick="addFlowToProject()"
-                                                        class="buttontn is-warning is-light add-new-flow-btn">
-                                                        <i class="fa fa-save"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
+                                <div class="field is-horizontal">
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <span class="table-add">
+                                                <button type="button" rel="tooltip" title="run" onclick="runTest()"
+                                                    class="button is-primary is-light">
+                                                    <i class="fa fa-play"></i>
+                                                </button>
+                                            </span>
+                                            <span class="table-add" style="padding-left: 10px;">
+                                                <button id="save-flow-button" title="save" onclick="addFlowToProject()"
+                                                    class="button is-info is-light add-new-flow-btn">
+                                                    <i class="fa fa-save"></i>
+                                                </button>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-                    <footer class="footer">
-                        <p class="copyright pull-right">
-                            &copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="https://www.svatah.in" target="_blank">Svatah</a>, Behaviour Driven Automation
-                            Platform
-                        </p>
-                    </footer>
                 </div>
+                
             </div>
         </div>
+    </div>
     </div>
 
     <!---Modal -->
@@ -764,66 +758,56 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exportLocatorModal" tabindex="-1" role="dialog"
-        aria-labelledby="exportLocatorModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="card modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exportLocatorModalLongTitle">Export locators as JSON
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <textarea style="min-width: 100%" rows="11" value="" id="locatorExportJson" name="locatorExportJson"
-                        disabled></textarea>
-                </div>
+    <div class="modal" id="exportLocatorModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title" id="exportLocatorModalLongTitle">Export locators as JSON</p>
+                <button id="exportLocatorModalCloseButton" onclick="closeModal('exportLocatorModal')" type="button"
+                    class="delete"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>copy your locators in Svatah JSON format</p>
+                <textarea style="min-width: 100%" rows="11" value="" id="locatorExportJson" name="locatorExportJson"
+                    disabled></textarea>
+            </section>
+        </div>
+    </div>
+
+    <div class="modal" id="importDataModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title" id="importDataModalLongTitle">Import Data</p>
+                <button id="importDataModalCloseButton" onclick="closeModal('importDataModal')" type="button"
+                    class="delete"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Paste your data mapping in Svatah JSON format</p>
+                <textarea style="min-width: 100%" rows="11" value="" id="dataImportJson"
+                    name="dataImportJson"></textarea>
+            </section>
+            <div class="modal-card-foot">
+                <button type="button" onclick="importDataRepository()" class="button is-info is-light">Import</button>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="importDataModal" tabindex="-1" role="dialog" aria-labelledby="importDataModalTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="card modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="iimportDataModalLongTitle">Import Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="color:#7d7f84;">
-                    <p>Paste your data mapping in Svatah JSON format</p>
-                    <textarea style="min-width: 100%" rows="11" value="" id="dataImportJson"
-                        name="dataImportJson"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" onclick="importDataRepository()" class="btn btn-warning btn-simple"
-                        data-dismiss="modal">Import</button>
-                </div>
-            </div>
+    <div class="modal" id="exportDataModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title" id="exportDataModalLongTitle">Export data as JSON</p>
+                <button id="exportDataModalCloseButton" onclick="closeModal('exportDataModal')" type="button"
+                    class="delete"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>copy your data in Svatah JSON format</p>
+                <textarea style="min-width: 100%" rows="11" value="" id="dataExportJson" name="dataExportJson"
+                    disabled></textarea>
+            </section>
         </div>
     </div>
-
-    <div class="modal fade" id="exportDataModal" tabindex="-1" role="dialog" aria-labelledby="exportDataModalTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="card modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exportDataModalLongTitle">Export data as JSON</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <textarea style="min-width: 100%" rows="11" value="" id="dataExportJson" name="dataExportJson"
-                        disabled></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!---Modal Ends-->
 </body>
 
@@ -876,7 +860,7 @@
 <script>
     let container = document.getElementById('requestBody');
     let options = {
-        mode: 'text',
+        mode: 'code',
         modes: ['code', 'text'], // allowed modes
         onError: function (err) {
             alert(err.toString());
