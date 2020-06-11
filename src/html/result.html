@@ -60,18 +60,26 @@
                 </div>
             </div>
         </div>
-        <div class="column is-2" style="min-height: 100vh; background-color: rgb(238, 238, 245);">
-            <div class="menu">
-                <ul id="menu" class="menu-list no-hover">
-                    <li style="padding: 5px; border-bottom : 1px dotted grey; color: black; font-size:16px;">
-                        <a id="summaryLink" >url</a>
-                    </li>
-                    <li style="padding: 5px; color: black; font-size: 16px;">
-                        <a id="configName">config name</a>
-                    </li>
-                </ul>
+
+        <div class="column is-2 scrollable" style="min-height: 100vh; background-color: rgb(238, 238, 245);">
+            <div class="section">
+                <div class="panel" style="box-shadow:none">
+                    <ul id="menu">
+                        <div class="panel-heading" style="padding-left:0px">Result</div>
+                        <block id="summary">
+                            <li class="panel-block mark-active" style="border-top: 1px dotted grey;">
+                                <a class="nav-link" id="summary-tab" href="#summary">Summary</a>
+                            </li>
+                        </block>
+                        <div class="panel-heading" style="padding-left:0px">Flows</div>
+                        <block id="flowList">
+
+                        </block>
+                    </ul>
+                </div>
             </div>
         </div>
+
         <div class="column is-9 scrollable">
             <div class="section">
 
@@ -80,12 +88,12 @@
                 </div>
 
                 <div id="summary" class="container">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <h3 class="card-title" id="projectName">project name</h3>
+                    <div class="hero">
+                        <div class="heo-header">
+                            <p class="title" id="projectName">project name</p>
                         </div>
                         <hr />
-                        <div class="card-body">
+                        <div class="hero-body">
                             <h3 id="url">url</h3>
                             <p> Executed using <code style="color: #006400; font-size: 110%;"
                                     id="configName">config name</code>
@@ -117,7 +125,6 @@
                         <table id="resultsList" class="table">
                             <thead class="text-success">
                                 <tr>
-                                    <th>Flow File</th>
                                     <th>Scenario</th>
                                     <th>Number</th>
                                     <th>Step</th>
@@ -154,5 +161,4 @@
 <script src="./../js/svatah.js"></script>
 <script src="./../js/result.js"></script>
 <script>if (window.module) module = window.module;</script>
-
 </html>

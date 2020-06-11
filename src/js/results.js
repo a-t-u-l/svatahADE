@@ -20,24 +20,27 @@ function getResultsView(results) {
     let resultsViewNode = [];
     if (results != undefined) {
         console.log('results view : ' + JSON.stringify(results))
+        let rowNum = results.length;
         results.forEach(row => {
-            console.log('setting up view with row data : ' + JSON.stringify(row))
-            resultsViewNode = resultsViewNode.concat(getResultRow(row));
+            //console.log('setting up view with row data : ' + JSON.stringify(row))
+            resultsViewNode = resultsViewNode.concat(getResultRow(rowNum, row));
             //console.log('temp proj view : '+JSON.stringify(projectViewNode))
+            rowNum--;
         });
     }
     //console.log('got html data : ' + projectViewNode)
     return resultsViewNode;
 }
 
-function getResultRow(result) {
+function getResultRow(rowNum, result) {
     let nodes = [];
 
     nodes.push(`<tr>`)
+    nodes.push(`<td>` + rowNum + `</td>`)
     nodes.push(`<td><a href="" onclick='viewResult(` + result.id + `)'>` + result.projectName + `</a></td>`)
     nodes.push(`<td>` + result.url + `</td>`)
     nodes.push(`<td>` + result.startTime + `</td>`)
-    nodes.push(`<td>` + result.endTime + `</td>`)
+    nodes.push(`<td>` + result.endTime  + `</td>`)
     nodes.push(`<td>` + result.passed + `</td>`)
     nodes.push(`<td>` + result.failed + `</td>`)
     nodes.push(`<td>` + result.skipped + `</td>`)

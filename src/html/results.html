@@ -23,30 +23,35 @@
                 <div class="menu sticky">
                     <ul id="menu" class="menu-list no-hover">
                         <li class="logo">
-                            <a href="https://www.svatah.in" target="_blank" class="simple-text logo-mini" style="padding: 0px 0px 30px 0px; color: white; font-size:26px">
+                            <a href="https://www.svatah.in" target="_blank" class="simple-text logo-mini"
+                                style="padding: 0px 0px 30px 0px; color: white; font-size:26px">
                                 S
                             </a>
                         </li>
                         <li class="project">
-                            <a href="./project.html" title="project" style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                            <a href="./project.html" title="project"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
                                 <i class="fa fa-folder-o"></i>
                             </a>
                         </li>
 
                         <li class="newuiproject">
-                            <a href="./newproject.html" title="newproject" style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                            <a href="./newproject.html" title="newproject"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
                                 <i class="fa fa-plus-square-o"></i>
                             </a>
                         </li>
 
                         <li class="results">
-                            <a href="./results.html" title="results" style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                            <a href="./results.html" title="results"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
                                 <i class="fa fa-check-square"></i>
                             </a>
                         </li>
 
                         <li class="api-client">
-                            <a href="./apiclient.html" title="API client" style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                            <a href="./apiclient.html" title="API client"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
                                 <i class="fa fa-lemon-o"></i>
                             </a>
                         </li>
@@ -65,6 +70,7 @@
                     <table id="resultsList" class="table is-fullwidth">
                         <thead class="text-success">
                             <tr>
+                                <th>Sl</th>
                                 <th>Project Name</th>
                                 <th>Url</th>
                                 <th>Start Time</th>
@@ -105,7 +111,9 @@
 <script>
     $(document).ready(function () {
         setResultsView();
-        $('#resultsList').DataTable();
+        $('#resultsList').DataTable({
+            order: [[0, 'asc']]
+        });
     });
 </script>
 

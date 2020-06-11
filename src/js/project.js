@@ -255,7 +255,7 @@ function deleteProject(id) {
         dbClient.deleteRow('api', { 'projectName': project.name })
         dbClient.deleteRow('flows', { 'projectName': project.name })
     })
-    showAlert('alertbar', 'success', 'successfully deleted the project : ' + project.name)
+    showAlert('alertbar', 'success', 'successfully deleted the project.')
     $('#projectsView').html('');
     setProjectView();
 }

@@ -8,6 +8,15 @@ $(function () {
     $('#resultsList').DataTable();
 });
 
+function getFlowNamesList(flowFileName) {
+    let nodes = [];
+    let nameWithoutSpaces = flowFileName.replace(/ /g, '');
+    nodes.push(`<li class="panel-block" style="border-top: 1px dotted grey">`);
+    nodes.push(`<a class="nav-link" id="` + nameWithoutSpaces + `-tab" href="#` + nameWithoutSpaces + `">` + flowFileName + `</a>`)
+    nodes.push(`</li>`)
+    return nodes;
+}
+
 function setResultView(id) {
     let uid;
     let dbClient = require('./../js/dbclient.js');
@@ -43,11 +52,13 @@ function setResultsView(uid) {
 
 function getResultsView(results) {
     let resultsViewNode = [];
+    let flowsNode = [];
     if (results != undefined) {
         console.log('results view : ' + JSON.stringify(results));
         let imgHandler = require('./../js/core/imgHandler.js');
         results.forEach(row => {
-            console.log('setting up view with row data : ' + JSON.stringify(row));
+            //console.log('setting up view with row data : ' + JSON.stringify(row));
+            flowsNode.push(row.flowFileName.replace(/\d+/g, ''));
             if (row.screenShot == "true") {
                 imgHandler.get(row.flowFileName, row.scenarioName, row.stepNumber, function (imgResult) {
                     let imgData = imgResult[0].imgString;
@@ -62,6 +73,12 @@ function getResultsView(results) {
             //console.log('temp proj view : '+JSON.stringify(projectViewNode))
         });
     }
+    const uniqueFlows = [...new Set(flowsNode)];
+    let flowNames = [];
+    uniqueFlows.forEach(flowName => {
+        flowNames = flowNames.concat(getFlowNamesList(flowName));
+    })
+    $('#flowList').append(flowNames.join(''));
     //console.log('got html data : ' + projectViewNode)
     return resultsViewNode;
 }
@@ -82,8 +99,7 @@ function getResultRow(result, screenshotData) {
         msg = result.failureMessage
     }
 
-    nodes.push(`<tr>`)
-    nodes.push(`<td>` + result.flowFileName.replace(/\d+/g, '') + `</td>`)
+    nodes.push(`<tr class="`+result.flowFileName.replace(/\d+/g, '')+`">`)
     nodes.push(`<td>` + result.scenarioName + `</td>`)
     nodes.push(`<td>` + result.stepNumber + `</td>`)
     nodes.push(`<td><code style="color: #925b12; font-size: 100%;">` + result.step + `</code></td>`)

@@ -47,14 +47,3 @@ function setDataTableData(varData) {
         setTableData('#data-table', ['variable name', 'variable value'], []);
     }
 }
-
-$('body').delegate('a','click', function () {
-    let tab = $(this).attr('id');
-    if (typeof tab == "string" && tab.endsWith("tab")) {
-        tab = tab.replace('-tab', '');
-        $('.tab-pane').removeClass('is-active');
-        $('.panel-block').removeClass('mark-active');
-        $('#' + tab).addClass('is-active');
-        $(this).closest('li').addClass('mark-active');
-    }
-});
