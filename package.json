@@ -81,7 +81,7 @@
     "@electron-forge/maker-dmg": "^6.0.0-beta.43",
     "@electron-forge/maker-rpm": "6.0.0-beta.39",
     "@electron-forge/maker-squirrel": "6.0.0-beta.39",
-    "electron": "^6.0.0",
+    "electron": "^15.5.5",
     "electron-prebuilt-compile": "4.0.0"
   }
 }
