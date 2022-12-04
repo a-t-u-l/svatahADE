@@ -1,7 +1,7 @@
-let dbclient = require('./../js/dbclient.js');
+Shepherd = require('shepherd.js');
+dbClientNewProj = require('./../js/dbclient.js');
 
-let Shepherd = require('shepherd.js')
-const tour = new Shepherd.Tour({
+tour = new Shepherd.Tour({
     defaultStepOptions: {
         classes: 'shadow-md bg-purple-dark',
         scrollTo: true,
@@ -17,17 +17,17 @@ const tour = new Shepherd.Tour({
 });
 
 $(function () {
-    dbclient.searchData('settings', 'uid', 1, function (result) {
+    dbClientNewProj.searchData('settings', 'uid', 1, function (result) {
         if (result != null) {
             let res = result.pop()
             if (res.takeTour) {
                 projectTour()
-                dbclient.updateRow('settings', { 'uid': 1 }, { 'takeTour': false })
+                dbClientNewProj.updateRow('settings', { 'uid': 1 }, { 'takeTour': false })
             }
         }
         else {
             projectTour()
-            dbclient.insertSettingsRow(1, choosenTheme, false);
+            //dbClientNewProj.insertSettingsRow(1, choosenTheme, false);
         }
     })
 })
@@ -153,7 +153,7 @@ function projectTour() {
 }
 
 function setFlowsViewForProject(projectName) {
-    dbclient.getRows('flows', { 'projectName': projectName }, function (flowRows) {
+    dbClientNewProj.getRows('flows', { 'projectName': projectName }, function (flowRows) {
         let flowViewNode = [];
         let flowNamesNode = [];
 
@@ -172,7 +172,7 @@ function setFlowsViewForProject(projectName) {
 }
 
 function setApiViewForProject(projectName) {
-    dbclient.getRows('api', { 'projectName': projectName }, function (apiRows) {
+    dbClientNewProj.getRows('api', { 'projectName': projectName }, function (apiRows) {
         let apiViewNode = [];
         //console.log('got rows : ' + JSON.stringify(apiRows))
         $('#apiProjectData').val(JSON.stringify(apiRows));
@@ -248,7 +248,7 @@ function getFlowViewRow(flowFileName, flow, id) {
 }
 
 function flowFileToHtml(flow) {
-    let flowFileParsed = `<table class="table is-fullwidth"><tbody><tr><td style="border-color: #fff;border-top:0px;padding: 8px 7px;">` + flow;
+    let flowFileParsed = `<table class="table is-hoverable is-fullwidth"><tbody><tr><td style="border-color: #fff;border-top:0px;padding: 8px 7px;">` + flow;
     flowFileParsed = flowFileParsed.replace(/scenario\s*:.*/gi, function (x) { return `<mark style="background-color:#ffeb0096; font-size : 1.1em;">` + x + `</mark>` });
     flowFileParsed = flowFileParsed.replace(/story\s*:.*/gi, function (x) { return `<mark style="background-color:#ffe7b9; font-size : 1.1em;">` + x + `</mark>` });
     flowFileParsed = flowFileParsed.replace(/compose\s*:.*/gi, function (x) { return `<mark style="background-color:#dbffb6; font-size : 1.1em;">` + x + `</mark>` });
@@ -380,18 +380,18 @@ function addApiToProject() {
             followRedirect: $('#followRedirect').val()
         };
         $('#save-api-button').addClass('fa fa-spinner fa-spin');
-        let dbclient = require('./../js/dbclient.js');
-        dbclient.searchData('api', 'name', request.name, function (result) {
+        let dbClientNewProj = require('./../js/dbclient.js');
+        dbClientNewProj.searchData('api', 'name', request.name, function (result) {
             if (result != null && result.length != 0) {
                 console.log('got search result : ' + JSON.stringify(result))
                 if (result[0].projectName == $('#name').val())
-                    dbclient.updateRow('api', { 'id': result[0].id }, request)
+                dbClientNewProj.updateRow('api', { 'id': result[0].id }, request)
                 else
-                    dbclient.insertApiRow(request.name, $('#name').val(), request.httpMethod, request.uri, request.requestBody, request.acceptAllSslCert, request.headers, request.contentType, request.followRedirect);
+                dbClientNewProj.insertApiRow(request.name, $('#name').val(), request.httpMethod, request.uri, request.requestBody, request.acceptAllSslCert, request.headers, request.contentType, request.followRedirect);
             }
             else {
                 console.log('got search result : ' + JSON.stringify(result))
-                dbclient.insertApiRow(request.name, $('#name').val(), request.httpMethod, request.uri, request.requestBody, request.acceptAllSslCert, request.headers, request.contentType, request.followRedirect);
+                dbClientNewProj.insertApiRow(request.name, $('#name').val(), request.httpMethod, request.uri, request.requestBody, request.acceptAllSslCert, request.headers, request.contentType, request.followRedirect);
             }
         })
         setApiViewForProject($('#name').val())
@@ -413,7 +413,7 @@ function addApiToProject() {
 function editApi(id) {
     $('#responseCode').html('Response will come here');
     $("#responseBody").html('');
-    dbclient.getRows('api', { 'id': id }, function (result) {
+    dbClientNewProj.getRows('api', { 'id': id }, function (result) {
         let apiRequest = result[0];
         console.log('setting api : ' + JSON.stringify(apiRequest))
         $('#httpMethod').val(apiRequest.httpMethod)
@@ -441,7 +441,7 @@ function editApi(id) {
 }
 
 function deleteApi(id) {
-    dbclient.deleteRow('api', { 'id': id })
+    dbClientNewProj.deleteRow('api', { 'id': id })
     setApiViewForProject($('#name').val());
     showAlert('alertbar', 'success', 'successfully removed the API')
 
@@ -455,24 +455,24 @@ function addFlowToProject() {
     }
     if (validation && flowNameValidation) {
         $('#save-flow-button').addClass('fa fa-spinner fa-spin');
-        let dbclient = require('./../js/dbclient.js');
+        let dbClientNewProj = require('./../js/dbclient.js');
         let flowFileName = $('#flowFileName').val()
         let flowFile = $('#flowEditor').html();
         //console.log('flow : ' + flowFile);
         //console.log('stripped flow : '+ flowFile.replace(/<[\/]p><p>/gi, '\n').replace(/<[^>]*>/g, ''))
         flowFile = flowFile.replace(/<[\/]p><p>/gi, '\n').replace(/<[\/]p><br><p>/gi, '\n\n').replace(/<[^>]*>/g, '');
         console.log('flow : ' + flowFile);
-        dbclient.searchData('flows', 'flowFileName', flowFileName, function (result) {
+        dbClientNewProj.searchData('flows', 'flowFileName', flowFileName, function (result) {
             if (result != null && result.length != 0) {
                 console.log('got search result : ' + JSON.stringify(result))
                 if (result[0].projectName == $('#name').val())
-                    dbclient.updateRow('flows', { 'id': result[0].id }, { 'flowFile': flowFile })
+                dbClientNewProj.updateRow('flows', { 'id': result[0].id }, { 'flowFile': flowFile })
                 else
-                    dbclient.insertFlowRow(flowFile, flowFileName, $('#name').val());
+                dbClientNewProj.insertFlowRow(flowFile, flowFileName, $('#name').val());
             }
             else {
                 console.log('got search result : ' + JSON.stringify(result))
-                dbclient.insertFlowRow(flowFile, flowFileName, $('#name').val());
+                dbClientNewProj.insertFlowRow(flowFile, flowFileName, $('#name').val());
             }
         })
         setFlowsViewForProject($('#name').val());
@@ -484,7 +484,7 @@ function addFlowToProject() {
 }
 
 function editFlow(id) {
-    dbclient.getRows('flows', { 'id': id }, function (result) {
+    dbClientNewProj.getRows('flows', { 'id': id }, function (result) {
         let flowRow = result[0];
         console.log('setting flow : ' + JSON.stringify(flowRow));
         $('#flowFileName').val(flowRow.flowFileName);
@@ -497,7 +497,7 @@ function editFlow(id) {
 }
 
 function deleteFlow(id) {
-    dbclient.deleteRow('flows', { 'id': id })
+    dbClientNewProj.deleteRow('flows', { 'id': id })
     setFlowsViewForProject($('#name').val());
     showAlert('alertbar', 'success', 'successfully removed the flow')
 }
@@ -517,12 +517,12 @@ function createProject() {
         };
 
         $('#buttonLoader').addClass('fa fa-spinner fa-spin');
-        let dbclient = require('./../js/dbclient.js');
+        let dbClientNewProj = require('./../js/dbclient.js');
 
-        dbclient.searchData('project', 'name', $('#name').val(), function (result) {
+        dbClientNewProj.searchData('project', 'name', $('#name').val(), function (result) {
             if (result != null && result.length != 0) {
                 console.log('updating project : ' + $('#name').val())
-                dbclient.updateRow('config', { 'name': result[0].configName },
+                dbClientNewProj.updateRow('config', { 'name': result[0].configName },
                     {
                         'browser': $('#browser').val(),
                         'threadCount': $('#threadCount').val(),
@@ -531,30 +531,38 @@ function createProject() {
                         'dataFile': $('#dataEditor').val()
                     }
                 )
-                dbclient.updateRow('project', { 'id': result[0].id },
+                dbClientNewProj.updateRow('project', { 'id': result[0].id },
                     {
                         'locatorFile': $('#locatorEditor').val()
                     }
                 )
             } else {
-                dbclient.insertConfigRow($('#configName').val(), $('#browser').val(), $('#threadCount').val(), $('#url').val(),
+                dbClientNewProj.insertConfigRow($('#configName').val(), $('#browser').val(), $('#threadCount').val(), $('#url').val(),
                     $('#name').val(), $('#takeStepScreenshot').val(), $('#dataEditor').val(), '1920x1080');
-                dbclient.insertProjectRow($('#name').val(), $('#locatorEditor').val(), $('#configName').val());
-                //dbclient.insertFlowRow($('#flowEditor').val(), $('#flowFileName').val(), $('#name').val());
+                    dbClientNewProj.insertProjectRow($('#name').val(), $('#locatorEditor').val(), $('#configName').val());
+                //dbClientNewProj.insertFlowRow($('#flowEditor').val(), $('#flowFileName').val(), $('#name').val());
             }
             $('#buttonLoader').removeClass('fa fa-spinner fa-spin');
-            window.location.href = "./project.html";
+            getView("project");
         })
     }
 }
 
 $('body').delegate('a','click', function () {
     let tab = $(this).attr('id');
+    console.log('Tab : ')
+    console.log(tab);
     if (typeof tab == "string" && tab.endsWith("tab")) {
         tab = tab.replace('-tab', '');
+        console.log('Tab pane list: ')
+        console.log($('.tab-pane'));
         $('.tab-pane').removeClass('is-active');
+        console.log('panel block list: ')
+        console.log($('.panel-block'));
         $('.panel-block').removeClass('mark-active');
         $('#' + tab).addClass('is-active');
+        console.log('closest Li : ')
+        console.log($(this).closest('li'));
         $(this).closest('li').addClass('mark-active');
     }
 });

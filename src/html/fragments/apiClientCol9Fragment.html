@@ -1,0 +1,304 @@
+<div class="container">
+    <div class="modal" id="clearHistoryAlert">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title" id="clearHistoryAlertLongTitle">Alert</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                You are about to clear your API request history. Are you sure?
+            </section>
+            <footer class="modal-card-foot">
+                <button type="button" class="button">Close</button>
+                <button type="button" onclick="clearHistory()" class="button is-danger">Delete</button>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal" id="importModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title" id="importModalLongTitle">Import API request as JSON</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Paste your API request in Svatah JSON format</p>
+                <textarea style="min-width: 100%" rows="11" value="" id="apiRequestImportJson"
+                    name="apiRequestImportJson"></textarea>
+            </section>
+            <footer class="modal-card-foot">
+                <button type="button" onclick="importAPI()" class="button is-success">Import</button>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exportModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title" id="exportModalLongTitle">Export API request as JSON</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <textarea style="min-width: 100%" rows="11" value="" id="apiRequestExportJson"
+                    name="apiRequestExportJson" disabled></textarea>
+            </section>
+        </div>
+    </div>
+    <!-- Modal Ends-->
+    <!-- div class="tabs is-small">
+                <ul>
+                    <li class="is-active">
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-image"></i></span>
+                            <span>Pictures</span>
+                        </a>
+                    </li>
+                    <li id="add-tab">
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-plus"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div -->
+
+    <div class="section">
+
+        <div id="alertbar" class="block">
+
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Request</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <div class="select">
+                            <select id="httpMethod" name="httpMethod" onchange="getSelected(this);" value="GET">
+                                <option value="GET" id="getOption" selected="selected">GET
+                                </option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="PATCH">PATCH</option>
+                                <option value="DELETE">DELETE</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control is-expanded">
+                        <input type="text" class="input" required="required" value="" id="uri" placeholder="URL"
+                            required />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Config</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+
+                    <div class="control">
+                        <div class="select">
+                            <select id="contentType" name="contentType" value="">
+                                <option value="json">Application&#47;Json</option>
+                            </select>
+                        </div>
+                        <p class="help">Content type</p>
+                    </div>
+
+                    <div class="control">
+                        <div class="select">
+                            <select id="acceptAllSslCert" name="acceptAllSslCert" type="text" class="form-control"
+                                value="false">
+                                <option value="false" selected="selected">False</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <p class="help">Accept all certificates</p>
+                    </div>
+
+                    <div class="control">
+                        <div class="select">
+                            <select id="followRedirect" name="followRedirect" type="text" class="form-control"
+                                value="true">
+                                <option value="true" selected="selected">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+                        <p class="help">Follow redirects</p>
+                    </div>
+
+                    <div class="control is-expanded">
+                        <input type="number" class="input" required="required" value="30" id="timeout" name="timeout"
+                            required />
+                        <p class="help">Timeout in seconds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Headers</label>
+            </div>
+            <div class="field-body">
+
+                <div class="field">
+                    <div class="control">
+                        <div class="form-group">
+                            <input id="apiEditor" name="headers" type="text" class="form-control" value=""
+                                hidden="hidden"/>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div id="dataAlert" class="alert-danger" hidden="hidden">
+                            <span>Header field/s can not have empty key or value!</span>
+                        </div>
+
+                        <div id="api-header-table" class="table-editable table-container">
+                            <table class="table is-fullwidth">
+                                <tr>
+                                    <th style="font-weight: normal;">Header Key</th>
+                                    <th style="font-weight: normal;">Header Value</th>
+                                    <th></th>
+                                </tr>
+                                <!-- This is our clonable table line -->
+                                <tr class="hide" hidden="hidden">
+                                    <td contenteditable="true"></td>
+                                    <td contenteditable="true" style="word-break:break-all;"></td>
+                                    <td>
+                                        <span class="api-header-table-remove">
+                                            <button id="remove-api-header-row" rel="tooltip" title="Delete"
+                                                class="button is-danger is-light">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <!-- ------------------------------- -->
+                            </table>
+
+                            <span class="table-add">
+                                <button id="add-api-header-row" type="button" rel="tooltip" title="Add"
+                                    class="button is-info is-outlined api-header-table-add"><i class="fa fa-plus"></i>
+                                </button>
+                            </span>
+                            <span class="api-header-export-btn">
+                                <button id="api-header-export-btn" type="button" disabled="true" rel="tooltip"
+                                    title="Export" class="button is-info is-outlined"><i class="fa fa-save"></i>
+                                </button>
+                            </span>
+
+                        </div>
+                        <p id="variableHelp" class="help">Please
+                            define/change all the headers key and value accordingly in
+                            the
+                            header table.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="notGetDivCheck" class="block" style="display:none;">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Request Body</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-expanded">
+                        <div class="control">
+                            <div class="form-group label-floating">
+                                <div style="min-width :100%" rows="11" value="" id="requestBody" name="requestBody">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label"></label>
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="button" class="button is-primary is-light is-small is-outlined js-modal-trigger"
+                            onclick="exportAPI()" data-target="exportModal">
+                            export
+                        </button>
+                    </div>
+                    <div class="control">
+                        <button type="button" class="button is-success is-light is-small is-outlined js-modal-trigger"
+                            data-toggle="modal" data-target="importModal">
+                            import
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label"></label>
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button id="testApi" name="testApi" type="submit" onclick="callApi()"
+                            class="button is-success add-new-flow-btn"><i id="api-processing"></i>Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+
+        <div class="tabs is-boxed">
+            <ul>
+                <li class="tab is-active" onclick="openTab(event,'napi-response')">
+                    <a><i class="fa fa-image"></i>Response</a>
+                </li>
+
+                <li class="tab" onclick="openTab(event,'response-header')">
+                    <a><i class="fa fa-music"></i>Headers</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab content-tab is-active" id="napi-response">
+                <h4 id="responseCode" class="card-title">Response will come here</h4>
+                <div id="responseBody">
+                </div>
+
+            </div>
+            <div class="tab content-tab" id="response-header" style="display:none">
+
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p class="copyright pull-right">
+        &copy;
+        <script>
+            document.write(new Date().getFullYear())
+
+
+        </script>
+        <a href="https://www.svatah.com" target="_blank">Svatah</a>, Behaviour Driven Automation
+        Platform
+    </p>
+</footer>

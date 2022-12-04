@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Behaviour driven automation platform" />
+    <meta name="author" content="svatah" />
+
+    <title>Svatah ADE</title>
+    <link href="./../../node_modules/bulma/css/bulma.min.css" rel="stylesheet" />
+    <link href="./../../node_modules/datatables-bulma/css/dataTables.bulma.css" rel="stylesheet" />
+    <link href="./../../node_modules/bulma-list/css/bulma-list.css" rel="stylesheet"/>
+    <!--     Fonts and icons     -->
+    <link href='./../css/font-awesome.min.css' rel='stylesheet' type='text/css' />
+    <link href="./../css/svatah.css?v=1.0.1" rel="stylesheet" />
+    <link href="./../css/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <link href="./../css/trumbowyg.css" rel="stylesheet" />
+    <style type="text/css">
+        .dark .menu-list a:hover {
+            background-color: transparent;
+        }
+
+        .light #col-part-1 {
+            background-color: rgb(239, 239, 239);
+        }
+
+        .dark #col-part-1 {
+            background-color: rgb(40, 39, 39);
+        }
+
+        #add-tab {
+            background-color: rgb(156, 149, 149);
+            border-color: #363636;
+            border-bottom-color: transparent !important;
+        }
+
+        div .jsoneditor-menu {
+            background-color: #2a2583;
+        }
+
+        .buttonload {
+            background-color: #4CAF50;
+            /* Green background */
+            border: none;
+            /* Remove borders */
+            color: white;
+            /* White text */
+            padding: 12px 24px;
+            /* Some padding */
+            font-size: 16px;
+            /* Set a font-size */
+        }
+
+        /* Add a right margin to each icon */
+        /* .fa {
+            margin-left: -12px;
+            margin-right: 8px;
+        } */
+
+        .fa-times-thin:before {
+            content: '\00d7';
+        }
+
+        .fa-window-minimize-thin:before {
+            content: '\2212';
+        }
+
+        .fa-window-maximize-thin:before {
+            content: '\25a1';
+        }
+
+        #jsoneditor {
+            height: 600px;
+        }
+
+        .tab-content .tab-pane {
+            display: none;
+        }
+
+        .tab-content .tab-pane.is-active {
+            display: block;
+        }
+
+        a {
+            color: #2a2583;
+            cursor: pointer;
+        }
+
+        .pagination-link.is-current {
+            background-color: #2a2583;
+        }
+
+        .button.is-text {
+            color: #2a2583;
+            text-decoration: none;
+            justify-content: left;
+        }
+
+        .button.is-text.is-focused,
+        .button.is-text.is-hovered,
+        .button.is-text:focus,
+        .button.is-text:hover {
+            background-color: #e9e8ff;
+            color: #2a2583;
+        }
+
+        button {
+            -webkit-app-region: no-drag;
+        }
+
+        #close-btn:hover {
+            background-color: tomato;
+        }
+    </style>
+</head>
+
+<body id="bod" class="dark">
+
+    <div class="columns is-gapless is-mobile" style="margin-bottom:0px;margin-top: 0px;">
+        <div id="sidebar" class="column is-1" style="min-height: 100vh; max-width: 8.33vw; background-color: #2a2583;">
+            <div class="section" style="padding: 32px;">
+                <div class="menu">
+                    <ul id="menu" class="menu-list no-hover">
+
+                        <li class="api-client">
+                            <a id="load-api-view" href="#" onclick="getView('api-client')" title="api-client"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i id="api-client-icon" class="fa fa-send-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="project">
+                            <a id="load-project-view" href="#" onclick="getView('project')" title="project"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i id="project-icon" class="fa fa-folder-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="newuiproject">
+                            <a id="load-new-project-view" href="#" onclick="getView('new-project')" title="newproject"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i id="new-project-icon" class="fa fa-plus-square-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="results">
+                            <a id="load-results-view" href="#" onclick="getView('results')" title="results"
+                                style="padding: 15px 0px 15px 0px; color: white; font-size:26px">
+                                <i id="results-icon" class="fa fa-file-text-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="dark-mode-toggle">
+                            <a id="toggle-dark-mode" class="dark-mode-on" href="#" onclick="toggleDarkMode()"
+                                title="dark-mode" style="padding: 15px 0px 15px 0px; color: white; font-size:20px">
+                                <i id="dark-mode-icon" class="fa fa-toggle-on"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="col-part-1" class="">
+        </div>
+        <div id="col-part-2" class="">
+
+        </div>
+        <div id="modal-body">
+
+        </div>
+    </div>
+
+</body>
+<script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+<!--   Core JS Files   -->
+<script src="./../../renderer.js" type="text/javascript"></script>
+<script src="./../js/jquery.min.js?v=3.4.0.1" type="text/javascript"></script>
+<script src="./../js/jquery.dataTables.min.js"></script>
+<script src="./../../node_modules/datatables-bulma/js/dataTables.bulma.min.js"></script>
+<script src="./../js/svatah.js"></script>
+<script src="./../js/tabHandler.js"></script>
+<script src="./../js/themeToggler.js"></script>
+<script src="./../js/jquery.textcomplete.js?v=1.0.0" type="text/javascript"></script>
+<script src="./../js/core/viewManager.js"></script>
+<script>if (window.module) module = window.module;</script>
+</html>

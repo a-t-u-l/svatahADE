@@ -1,0 +1,89 @@
+<!---Modal -->
+<div class="modal" id="importModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="importModalLongTitle">Import API request as JSON</p>
+            <button id="importModalCloseButton" onclick="closeModal('importModal')" type="button"
+                class="delete"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Paste your API request in Svatah JSON format</p>
+            <textarea style="min-width: 100%" rows="11" value="" id="apiRequestImportJson"
+                name="apiRequestImportJson"></textarea>
+        </section>
+        <div class="modal-card-foot">
+            <button type="button" onclick="importAPI()" class="button is-info is-light">Import</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="importLocatorModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="importLocatorModalLongTitle">Import locators</p>
+            <button id="importLocatorModalCloseButton" onclick="closeModal('importLocatorModal')" type="button"
+                class="delete"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Paste your locators in Svatah JSON format</p>
+            <textarea style="min-width: 100%" rows="11" value="" id="locatorImportJson"
+                name="locatorImportJson"></textarea>
+        </section>
+        <div class="modal-card-foot">
+            <button type="button" onclick="importLocatorsRepository()" class="button is-info is-light">Import</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="exportLocatorModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="exportLocatorModalLongTitle">Export locators as JSON</p>
+            <button id="exportLocatorModalCloseButton" onclick="closeModal('exportLocatorModal')" type="button"
+                class="delete"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>copy your locators in Svatah JSON format</p>
+            <textarea style="min-width: 100%" rows="11" value="" id="locatorExportJson" name="locatorExportJson"
+                disabled></textarea>
+        </section>
+    </div>
+</div>
+
+<div class="modal" id="importDataModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="importDataModalLongTitle">Import Data</p>
+            <button id="importDataModalCloseButton" onclick="closeModal('importDataModal')" type="button"
+                class="delete"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Paste your data mapping in Svatah JSON format</p>
+            <textarea style="min-width: 100%" rows="11" value="" id="dataImportJson" name="dataImportJson"></textarea>
+        </section>
+        <div class="modal-card-foot">
+            <button type="button" onclick="importDataRepository()" class="button is-info is-light">Import</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="exportDataModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="exportDataModalLongTitle">Export data as JSON</p>
+            <button id="exportDataModalCloseButton" onclick="closeModal('exportDataModal')" type="button"
+                class="delete"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>copy your data in Svatah JSON format</p>
+            <textarea style="min-width: 100%" rows="11" value="" id="dataExportJson" name="dataExportJson"
+                disabled></textarea>
+        </section>
+    </div>
+</div>
+<!---Modal Ends-->

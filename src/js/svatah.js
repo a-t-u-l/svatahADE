@@ -1,8 +1,3 @@
-const os = navigator.platform;
-console.log('running on platform : ' + os)
-if (os.toUpperCase().indexOf('WIN') !== -1) {
-  $('#bod').addClass('ps')
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
@@ -48,13 +43,14 @@ function validateInputNotEmpty(inputId, divContainerId, alertMsg) {
 }
 
 function showAlert(divContainerId, alertType, alertMsg) {
+  console.log("showing alert : " + alertMsg);
   $('#' + divContainerId).html(`<div id="alertrow" class="notification is-` + alertType + ` is-light" role="alert"><button class="delete" onclick="removeNotification()"></button>`
     + alertMsg + ` </div>`);
 
 }
 
 function addHistoryRow(date, data) {
-  $('#history').prepend(`<li style="border-top: 1px dotted #3a3938;"><a onClick="setApiRequest(` + date + `)">` + data + `</a></li>`);
+  $('#history').prepend(`<div class="list-item" onClick="setApiRequest( ${date})">${data}</div>`);
 }
 
 function setTableData(tableId, headers, data) {
@@ -108,30 +104,6 @@ function addResultToTable(resultObj) {
 
 }
 
-
-function setApiRequestFromJsonObject(data) {
-  //console.log('setting data : '+ JSON.stringify(data))
-  $('#httpMethod').val(data.httpMethod)
-  if (data.httpMethod == 'GET') {
-    document.getElementById("notGetDivCheck").style.display = "none";
-    posteditor.setText('')
-  }
-  else {
-    document.getElementById("notGetDivCheck").style.display = "block";
-    posteditor.setText(data.requestBody)
-  }
-  $('#uri').val(data.uri)
-  $('#acceptAllSslCert').val(data.acceptAllSslCert)
-  $("#apiEditor").val(data.headers);
-  if (data.headers != undefined && data.headers != "") {
-    setTableData('#api-header-table', ['header key', 'header value'], JSON.parse(data.headers));
-  } else {
-    setTableData('#api-header-table', ['header key', 'header value'], []);
-  }
-  $('#contentType').val(data.contentType)
-  $('#followRedirect').val(data.followRedirect)
-}
-
 function importLocatorsRepository() {
   try {
     let data = $('#locatorImportJson').val()
@@ -179,7 +151,7 @@ function exportAPI() {
   let request = {
     httpMethod: $('#httpMethod').val(),
     uri: $('#uri').val(),
-    requestBody: posteditor.getText(),
+    requestBody: postApiEditor.getText(),
     acceptAllSslCert: $('#acceptAllSslCert').val(),
     headers: $('#apiEditor').val(),
     contentType: $('#contentType').val(),
@@ -222,11 +194,11 @@ function syntaxHighlight(json) {
 }
 
 function mapFlowValidationResponseToTable(flowErrorDetails) {
-  console.log("error : " + flowErrorDetails.replace(/(\r\n|\n|\r)/g,""))
+  console.log("error : " + flowErrorDetails.replace(/(\r\n|\n|\r)/g, ""))
   console.log(typeof flowErrorDetails)
   let htmlData = `<table class="table-sm"></tr>`
   if (typeof flowErrorDetails == 'string')
-    flowErrorDetails = JSON.parse(flowErrorDetails.replace(/(\r\n|\n|\r)/g,""))
+    flowErrorDetails = JSON.parse(flowErrorDetails.replace(/(\r\n|\n|\r)/g, ""))
   flowErrorDetails.forEach(errorRow => {
     htmlData = htmlData.concat(getErrorRows(errorRow))
   });

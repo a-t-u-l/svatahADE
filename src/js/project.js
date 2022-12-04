@@ -1,14 +1,13 @@
-let dbClient = require('./../js/dbclient.js');
+dbClient = require('./../js/dbclient.js');
 
 $(document).ready(function () {
-    setProjectView()
+    setProjectView();
 });
 
 function setProjectView() {
     dbClient.getAllData('project', function (projects) {
         let projectData = [];
-        //console.log('type of projs : '+ typeof projects);
-        //console.log('data of projs : '+ JSON.stringify(projects));
+        let projDataArr = [];
         projects.forEach(row => {
             let projRow = {
                 project: '',
@@ -21,51 +20,49 @@ function setProjectView() {
             })
             projectData.push(projRow)
         });
-        //console.log('got projs details : '+ JSON.stringify(projectData));
-        let htmlData = getProjectView(projectData);
-        //console.log('html data setup : ' + htmlData.join(''));
-        if (htmlData != undefined && htmlData != []) {
-            //console.log('page set up for element : '+$('#projectsView').html())
-            $('#projectsView').append(htmlData.join(''));
-            //console.log('page set up for element : '+$('#projectsView').html())
-        }
+        projDataArr = getProjectViewArr(projectData);
+        $('#projectList').DataTable({
+            data: projDataArr,
+            columns: [
+                { title: "View" },
+                { title: "Name" },
+                { title: "URL" },
+                { title: "Config" },
+                { title: "Browser" },
+                { title: "Execute" },
+                { title: "Remove" }
+            ]
+        });
+        document.getElementById('projectList').style = "";
     });
 }
 
-function getProjectView(projects) {
-    let projectViewNode = [];
+function getProjectViewArr(projects) {
+    let projectViewNode = new Array();
+    console.log(Array.isArray(projectViewNode))
     if (projects != undefined) {
         //console.log('proj view : '+JSON.stringify(projects))
         projects.forEach(row => {
             //console.log('setting up view with row data : ' + JSON.stringify(row.config[0]))
-            projectViewNode = projectViewNode.concat(getProjectRow(row.project, row.config[0]));
+            projectViewNode.push(getProjectRowArr(row.project, row.config[0]));
             //console.log('temp proj view : '+JSON.stringify(projectViewNode))
         });
     }
-    //console.log('got html data : ' + projectViewNode)
+    console.log('got Arr data : ' + projectViewNode)
+    console.log(Array.isArray(projectViewNode))
     return projectViewNode;
 }
 
-function getProjectRow(project, config) {
+function getProjectRowArr(project, config) {
     let nodes = [];
 
-    nodes.push(`<tr>`)
-    nodes.push(`<td>` + project.name + `</td>`)
-    nodes.push(`<td>` + config.url + `</td>`)
-    nodes.push(`<td>` + config.name + `</td>`)
-    nodes.push(`<td>` + config.browser + `</td>`)
-    nodes.push(`<td>`)
-    nodes.push(`<button rel="tooltip" title="execute" onclick="executeProject(` + project.id + `)" class="button is-primary is-light">`)
-    nodes.push(`<i class="fa fa-play"></i>`)
-    nodes.push(`</button>`)
-    nodes.push(`</td>`)
-    nodes.push(`<td>`)
     nodes.push(`<button class="button is-info is-light" onclick="viewProject(` + project.id + `)"><i class="fa fa-eye"></i></button>`)
-    nodes.push(`</td>`)
-    nodes.push(`<td>`)
+    nodes.push(project.name)
+    nodes.push(config.url)
+    nodes.push(config.name)
+    nodes.push(config.browser)
+    nodes.push(`<button rel="tooltip" title="execute" onclick="executeProject(` + project.id + `)" class="button is-primary is-light"><i class="fa fa-play"></i></button>`)
     nodes.push(`<button class="button is-danger is-light"  onclick="deleteProject(` + project.id + `)"><i class="fa fa-remove"></i></button>`)
-    nodes.push(`</td>`)
-    nodes.push(`</tr>`)
     //console.count(JSON.stringify(nodes))
     return nodes;
 }
@@ -218,7 +215,7 @@ function runProject(request) {
                             }
                             let imgHandler = require('./../js/core/imgHandler.js');
                             console.log("got screenshot path : " + row.screenShot);
-                            if (typeof row.screenShot=== 'string')
+                            if (typeof row.screenShot === 'string')
                                 imgHandler.store(uid, row.flowFileName, row.scenarioName, row.stepNumber, row.screenShot);
                             dbClient.insertRow('result', result);
                         })
@@ -244,7 +241,8 @@ function runProject(request) {
 }
 
 function viewProject(id) {
-    window.location.href = "./viewproject.html?id=" + id;
+    //window.location.href = "./viewproject.html?id=" + id;
+    getView('view-project', id);
 }
 
 function deleteProject(id) {
@@ -255,7 +253,9 @@ function deleteProject(id) {
         dbClient.deleteRow('api', { 'projectName': project.name })
         dbClient.deleteRow('flows', { 'projectName': project.name })
     })
-    showAlert('alertbar', 'success', 'successfully deleted the project.')
-    $('#projectsView').html('');
+    document.getElementById('col-part-2').className = '';
+    document.getElementById('col-part-2').innerHTML = '';
+    templator.projectPage();
     setProjectView();
+    showAlert('alertbar', 'success', 'successfully deleted the project.');
 }

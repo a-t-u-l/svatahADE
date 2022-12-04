@@ -1,11 +1,30 @@
-let resultId = null;
+resultId = null;
+
+var resScriptSource = (function(scripts) {
+    var scripts = document.getElementsByTagName('script'),
+           script = scripts[scripts.length - 1];
+   if (script.getAttribute.length !== undefined) {
+      return script.src
+   }
+   return script.getAttribute('src', -1)
+}());
+
+console.log("scr source : "+ resScriptSource);
+
+function getResParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
 $(function () {
-    let id = getUrlParameter('id');
+    let id = getResParameterByName("id", resScriptSource)
     console.log('got view id : ' + id)
     setResultView(Number(id))
     resultId = id;
-    $('#resultsList').DataTable();
 });
 
 function getFlowNamesList(flowFileName) {

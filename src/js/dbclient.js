@@ -1,9 +1,27 @@
 const db = require('electron-db');
-const electron = require('electron');
-const location = (electron.app || electron.remote.app).getPath('userData');
+const path = require('path');
+const appPath = () => {
+    switch (process.platform) {
+        case 'darwin': {
+            return path.join(process.env.HOME, 'Library', 'Application Support');
+        }
+        case 'win32': {
+            return process.env.APPDATA;
+        }
+        case 'linux': {
+            return process.env.HOME;
+        }
+    }
+}
+console.log(appPath());
+const location = path.join(appPath(), "SvatahADE");
 console.log(location);
 
 module.exports = {
+    appLocation : () => {
+        return location;
+    },
+    
     initDB: () => {
         console.log('in db client')
 

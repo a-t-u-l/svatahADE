@@ -1,0 +1,66 @@
+<div class="section">
+    <div id="alertbar" class="col">
+    </div>
+    <div id="summary" class="container">
+        <div class="hero">
+            <div class="heo-header">
+                <p class="title" id="projectName">project name</p>
+            </div>
+            <hr />
+            <div class="hero-body">
+                <h3 id="url">url</h3>
+                <p> Executed using <code style="color: #006400; font-size: 110%;" id="configName">config name</code>
+                    configuration
+                    on <code style="color: #006400; font-size: 110%;" id="browser">chrome</code>
+                    browser/s.
+                </p>
+                <br />
+                <h4><code style="color: #006400; font-size: 110%;" id="passed">passed</code>
+                    scenario/s passed,
+                    <code style="color: #925b12; font-size: 110%;" id="skipped">skipped</code> were
+                    skipped
+                    and <code style="color: #640f00; font-size: 110%;" id="failed">failed</code>
+                    scenario/s failed during
+                    execution.
+                </h4>
+            </div>
+            <hr />
+            <div class="card-footer text-muted">
+                Project execution took <code style="color: #006400; font-size: 110%;" id="timeTaken">time taken</code>
+                seconds.
+            </div>
+        </div>
+    </div>
+
+    <div id="result" class="container">
+        <h4 class="title" id="projectName">project name</h4>
+        <div class="table-container">
+            <table id="resultsList" class="table">
+                <thead class="text-success">
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Number</th>
+                        <th>Step</th>
+                        <th>Status</th>
+                        <th>Failure</th>
+                        <th>Screenshot</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsView">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="copyright pull-right">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            <a href="https://www.svatah.com" target="_blank">Svatah</a>, Behaviour Driven Automation
+            Platform
+        </p>
+    </footer>
+</div>
