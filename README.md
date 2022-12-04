@@ -14,7 +14,16 @@ Svatah ADE is a desktop client built using Electron and Svatah's core to help yo
 
 Svatah ADE also includes an API client to validate your requests which you want to include in your project.
 
-![API Client!](./assets/images/api_client.png "API Client")
+![API Client!](./assets/images/api_client.jpg "API Client")
+
+Project View
+![View Projects!](./assets/images/project_view.jpg "Project View")
+
+Add new Project
+![Project Details!](./assets/images/project_details.jpg "New Project")
+
+View Results
+![Result Details!](./assets/images/results_view.jpg "Results")
 
 ### What's New with v1.1.0
 
@@ -22,7 +31,6 @@ Svatah ADE also includes an API client to validate your requests which you want 
 * Upgraded dependencies with shiny new interface.
 * A view manager which eliminates the need to reload the view while switching tabs.
 * Updated base test framework. 
-
 
 > Please note : as the build does not have signed certificate from app/windows store it might give security warning during installation. You can ignore it.
 
