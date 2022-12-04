@@ -1,55 +1,104 @@
+html {
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+.scrollable {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.sticky {
+  position: fixed;
+}
+
 .toggle-switch {
-    background: #ccc;
-    width: 40px;
-    height: 20px;
-    overflow: hidden;
-    border-radius: 3px;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 10px;
-  }
-  .toggle-switch:after {
-    content: " ";
-    display: block;
-    width: 20px;
-    height: 20px;
-    background-color: #3498DB;
-    margin-left: -3px;
-    transition: all 0.1s ease-in-out;
-  }
-  .active .toggle-switch:after {
-    margin-left: 20px;
-  }
-  .toggle-label {
-    display: inline-block;
-    line-height: 20px;
-  }
-  .toggle-label-off {
-    color: #000;
-  }
-  .active .toggle-label-off {
-    color: #fff;
-  }
-  .active .toggle-label-on {
-    color: #000;
-  }
+  background: #ccc;
+  width: 40px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+.toggle-switch:after {
+  content: " ";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #3498db;
+  margin-left: -3px;
+  transition: all 0.1s ease-in-out;
+}
+.active .toggle-switch:after {
+  margin-left: 20px;
+}
+.toggle-label {
+  display: inline-block;
+  line-height: 20px;
+}
+.toggle-label-off {
+  color: #000;
+}
+.active .toggle-label-off {
+  color: #fff;
+}
+.active .toggle-label-on {
+  color: #000;
+}
 
-  option{
-      color: #ccc;
-      border-radius: 40px;
-      background-color: #000;
-      border: 1px solid #fff;
-  }
+option {
+  color: #ccc;
+  border-radius: 40px;
+  background-color: #000;
+  border: 1px solid #fff;
+}
 
-  .white-content option{
-    color: #000;
-    background-color: #fff;
-    border: 1px solid #000;
-  }
+.white-content option {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+}
 
-  .wraptext{
-    white-space: nowrap;
-    width: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.wraptext {
+  white-space: nowrap;
+  width: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.no-hover a:hover {
+  background-color: transparent;
+}
+
+.textcomplete-dropdown {
+  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.textcomplete-item {
+  line-height: 2;
+  padding-left: 10px;
+}
+
+.textcomplete-item.active {
+  color: #fff;
+  background-color: rgb(34, 72, 194);;
+}
+
+.textcomplete-item.active a {
+  color: #fff;
+}
+
+.textcomplete-item a {
+  color: #4a4a4a;
+}
+
+.mark-active {
+  background-color: #c3ced5;
+}

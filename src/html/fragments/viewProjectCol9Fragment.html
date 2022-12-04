@@ -1,0 +1,562 @@
+<div class="section">
+    <div id="alertbar" class="col">
+    </div>
+    <div id="project">
+        <div class="tab-content" id="tabContent">
+            <div class="tab-pane is-active" id="config">
+                <div class="section">
+                    <p class="help" style="padding-bottom: 20px; font-size: 14px;">Define your project
+                        configuration.
+                        You can define
+                        more configurations later for different builds.</p>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Project name</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded ">
+                                    <input id="name" name="name" class="input" type="text" placeholder="project name" />
+                                </p>
+                                <p class="help">Your project name. You won't be able to change it later.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Config name</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded ">
+                                    <input id="configName" name="configName" class="input" type="text"
+                                        placeholder="config name" />
+                                </p>
+                                <p class="help">Enter a
+                                    unique config name. This will be used later for your
+                                    builds.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">URL</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded ">
+                                    <input id="url" name="url" class="input" type="text"
+                                        placeholder="Provide a valid url" required />
+                                </p>
+                                <p class="help">Provide a valid url as project's starting point.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Browser</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="browser" name="browser">
+                                            <option value="chrome">chrome</option>
+                                            <option value="firefox">firefox</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Take screenshot</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="takeStepScreenshot" name="takeStepScreenshot">
+                                            <option value="true">yes</option>
+                                            <option value="false">no</option>
+                                        </select>
+                                    </div>
+                                    <p class="help">Choose whether to take screenshot at each step.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Executors</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="threadCount" name="threadCount">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                        </select>
+                                    </div>
+                                    <p class="help">Numbers of executors. Note, flows will run in parallel.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="data-repo">
+                <div class="section">
+                    <div id="dataAlert" class="notification is-danger is-light" hidden="hidden">
+                        <span>Data field/s can not have empty key or value!</span>
+                    </div>
+                    <p class="help" style="padding-bottom: 20px; font-size: 14px;">The data table fields are
+                        editable.
+                        You would need to save the changes before submitting the flow</p>
+
+                    <div id="data-table" class="table-editable">
+                        <table class="table is-bordered is-hoverable is-fullwidth">
+                            <thead>
+                                <tr class="table-active">
+                                    <th>Variable Name</th>
+                                    <th>Variable Value</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <!-- This is our clonable table line -->
+                            <tr class="hide" hidden="hidden">
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td>
+                                    <span class="data-table-remove">
+                                        <button type="button" rel="tooltip" title="Delete"
+                                            class="button is-danger is-light">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <!-- ------------------------------- -->
+
+
+                        </table>
+                        <span id="addDataRow" class="data-table-add">
+                            <button type="button" rel="tooltip" title="Add" class="button is-info is-light"><i
+                                    class="fa fa-plus-square-o"></i>
+                            </button>
+                        </span>
+                        <span class="data-export-btn">
+                            <button id="data-export-btn" type="button" disabled="true" rel="tooltip" title="Export"
+                                class="button is-info is-light save-btn"><i class="fa fa-save"></i>
+                            </button>
+                        </span>
+
+                        <span class="pull-right" style="padding-left: 10px;">
+                            <button type="button" class="button is-info is-light" onclick="exportDataRepository()">
+                                export
+                            </button>
+                        </span class="pull-right">
+                        <span>
+                            <button type="button" class="button is-info is-light pull-right"
+                                onclick="openModal('importDataModal')">
+                                import
+                            </button>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="dataEditor" name="dataFile" type="text" class="form-control" value=""
+                            hidden="hidden" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="locator-repo">
+                <div class="section">
+                    <div id="locatorAlert" class="notification is-danger is-light" hidden="hidden">
+                        <span>Locator field/s can not have empty key or
+                            value!</span>
+                    </div>
+                    <p class="help" style="padding-bottom: 20px; font-size: 14px;">The locator table fields
+                        are editable.
+                        You would need to save the changes before submitting the flow.</p>
+
+                    <div id="locator-table" class="table-editable">
+                        <table class="table is-bordered is-hoverable is-fullwidth">
+                            <thead>
+                                <tr class="table-active">
+                                    <th>Locator Identifier</th>
+                                    <th>Locator Details</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <!-- This is our clonable table line -->
+                            <tr class="hide" hidden="hidden">
+                                <td contenteditable="true"></td>
+                                <td contenteditable="true"></td>
+                                <td>
+                                    <span class="locator-table-remove">
+                                        <button type="button" rel="tooltip" title="Delete"
+                                            class="button is-danger is-light">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                            <!-- ------------------------------- -->
+
+
+                        </table>
+                        <span id="addLocatorButton" class="locator-table-add">
+                            <button type="button" rel="tooltip" title="Add" class="button is-info is-light"><i
+                                    class="fa fa-plus-square-o"></i>
+                            </button>
+                        </span>
+                        <span class="locator-export-btn" style="padding-left: 10px;">
+                            <button id="locator-export-btn" type="button" disabled="true" rel="tooltip" title="Export"
+                                class="button is-info is-light save-btn"><i class="fa fa-save"></i>
+                            </button>
+                        </span>
+                        <span class="pull-right" style="padding-left: 10px;">
+                            <button type="button" class="button is-info is-light" onclick="exportLocatorsRepository()">
+                                export
+                            </button>
+                        </span class="pull-right">
+                        <span>
+                            <button type="button" class="button is-info is-light pull-right"
+                                onclick="openModal('importLocatorModal')">
+                                import
+                            </button>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="locatorEditor" name="locatorFile" type="text" class="form-control" value=""
+                            hidden="hidden" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="api-repo">
+                <div class="section">
+                    <p class="help" style="padding-bottom: 20px; font-size: 14px;">List of project API's.
+                        You can invoke an API in a flow using proper intent.</p>
+                    <div id="api-view-table" class="table-editable">
+                        <table class="table is-bordered is-hoverable is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Method</th>
+                                    <th>URL</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ApiView">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="padding-top: 15px;">
+                        <button id="addApiModal" onclick="showAddApiView()" class="button is-primary is-light">
+                            Add New API
+                        </button>
+                    </div>
+                    <div>
+                        <input id="apiProjectData" type="text" value="" hidden="hidden" />
+                    </div>
+                </div>
+
+                <div id="apiViewSection" class="section" hidden>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Name</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    <input id="apiname" name="name" class="input" type="text"
+                                        placeholder="Provide API Name">
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-tag"></i>
+                                    </span>
+                                </p>
+                                <p class="help">Please provide a unique API tag name. Note, in edit view,
+                                    altering name will save it as a new API request.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Http Method</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="httpMethod" name="httpMethod" onchange="getSelected(this);"
+                                            value="GET">
+                                            <option value="GET" id="getOption" selected="selected">GET
+                                            </option>
+                                            <option value="POST">POST</option>
+                                            <option value="PUT">PUT</option>
+                                            <option value="PATCH">PATCH</option>
+                                            <option value="DELETE">DELETE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">URL</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    <input id="uri" name="uri" class="input" type="text" placeholder="Provide URL">
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-link"></i>
+                                    </span>
+                                </p>
+                                <p class="help">Please provide API request path.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Content Type</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="contentType" name="contentType" value="">
+                                            <option value="json">Application&#47;Json</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Accept All SSL Certificates</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="acceptAllSslCert" name="acceptAllSslCert" value="false">
+                                            <option value="false" selected="selected">False</option>
+                                            <option value="true">True</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Follow Redirects</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="followRedirect" name="followRedirect" value="false">
+                                            <option value="false" selected="selected">False</option>
+                                            <option value="true">True</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Editable table -->
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">API Headers</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field is-narrow">
+
+                                <div class="form-group">
+                                    <input id="apiEditor" name="headers" type="text" class="form-control" value=""
+                                        hidden="hidden" />
+                                </div>
+
+                                <div id="apiAlert" class="notification is-danger" hidden="hidden">
+                                    <span>Header field/s can not have empty key or
+                                        value!</span>
+                                </div>
+
+                                <div id="api-header-table" class="table-editable">
+                                    <table class="table is-bordered is-hoverable is-fullwidth">
+                                        <tr>
+                                            <th style="font-weight: normal;">Header Key
+                                            </th>
+                                            <th style="font-weight: normal;">Header
+                                                Value</th>
+                                            <th></th>
+                                        </tr>
+                                        <!-- This is our clonable table line -->
+                                        <tr class="hide" hidden="hidden">
+                                            <td contenteditable="true"></td>
+                                            <td contenteditable="true"></td>
+                                            <td>
+                                                <span class="api-header-table-remove">
+                                                    <button type="button" rel="tooltip" title="Delete"
+                                                        class="button is-danger is-light">
+                                                        <i class="fa fa-remove"></i>
+                                                    </button>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <!-- ------------------------------- -->
+
+
+                                    </table>
+                                    <p id="variableHelp" class="help">Please
+                                        define/change all the headers key and value
+                                        accordingly in
+                                        the
+                                        header table.
+                                    </p>
+                                    <span class="api-header-table-add">
+                                        <button type="button" rel="tooltip" title="Add" class="button is-info is-light">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                    <span class="api-header-export-btn">
+                                        <button id="api-header-export-btn" type="button" disabled="true" rel="tooltip"
+                                            title="Export" class="button is-info is-light">
+                                            <i class="fa fa-save"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="notGetDivCheck" style="display:none;">
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Body</label>
+                            </div>
+                            <div class="field-body">
+                                <div style="min-width :100%" rows="17" value="" id="requestBody" name="requestBody">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal" style="padding-top: 10px;">
+
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <button id="save-api-button" type="button" rel="tooltip"
+                                        title="Save API Request" onclick="addApiToProject()"
+                                        class="button is-info is-light">save
+                                        request
+                                    </button>
+                                    <button type="button" class="button is-text pull-right"
+                                        onclick="openModal('importModal')">
+                                        import
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="new-flow">
+                <div class="section">
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="help" style="padding-bottom: 20px; font-size: 14px;">Define your
+                                    tests
+                                    here
+                                    using svatah
+                                    flow
+                                    specification.
+                                    A Single flow defines the one continuous path of journey
+                                    user
+                                    takes starting from url.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input id="flowFileName" name="flowFileName" type="text"
+                                        placeholder="Flow File Name" class="input" value="" required />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <div id="flowEditorContainer" class="trumbowyg">
+                                    <div id="flowEditor">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <span class="table-add">
+                                    <button type="button" rel="tooltip" title="run" onclick="runTest()"
+                                        class="button is-primary is-light">
+                                        <i class="fa fa-play"></i>
+                                    </button>
+                                </span>
+                                <span class="table-add" style="padding-left: 10px;">
+                                    <button id="save-flow-button" title="save" onclick="addFlowToProject()"
+                                        class="button is-info is-light add-new-flow-btn">
+                                        <i class="fa fa-save"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

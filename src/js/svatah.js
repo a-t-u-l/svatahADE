@@ -1,11 +1,32 @@
-let dbClient = require('./../js/dbclient.js');
 
-let choosenTheme;
+document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    let $notification = $delete.parentNode;
 
-const os = navigator.platform;
-console.log('running on platform : ' + os)
-if (os.toUpperCase().indexOf('WIN') !== -1) {
-  $('#bod').addClass('ps')
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});
+
+function removeNotification() {
+  $('.notification').remove();
+}
+
+function showAddApiView() {
+  $('#apiViewSection').show();
+}
+
+function hideAddApiView() {
+  $('#apiViewSection').hide();
+}
+
+function openModal(id) {
+  $('#' + id).addClass('is-active');
+}
+
+function closeModal(id) {
+  $('#' + id).removeClass('is-active');
 }
 
 function validateInputNotEmpty(inputId, divContainerId, alertMsg) {
@@ -13,28 +34,23 @@ function validateInputNotEmpty(inputId, divContainerId, alertMsg) {
   if ($('#' + inputId).val().length == 0) {
     validation = false;
     //$('#'+inputId).focus();
-    $('#' + divContainerId).html(`<div id="alertrow" class="alert alert-danger alert-dismissible fade show" role="alert">
+    $('#' + divContainerId).html(`<div id="alertrow" class="notification is-danger" role="alert">
+                                        <button class="delete"  onclick="removeNotification()"></button>
                                         <strong>Error! </strong> `+ alertMsg + `
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
                                       </div>`);
   }
   return validation;
 }
 
 function showAlert(divContainerId, alertType, alertMsg) {
-  $('#' + divContainerId).html(`<div id="alertrow" class="alert alert-` + alertType + ` alert-dismissible fade show" role="alert">`
-    + alertMsg + `
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>`);
+  console.log("showing alert : " + alertMsg);
+  $('#' + divContainerId).html(`<div id="alertrow" class="notification is-` + alertType + ` is-light" role="alert"><button class="delete" onclick="removeNotification()"></button>`
+    + alertMsg + ` </div>`);
 
 }
 
 function addHistoryRow(date, data) {
-  $('#history').prepend(`<li style="border-top: 1px dotted #3a3938;"><a onClick="setApiRequest(` + date + `)">` + data + `</a></li>`);
+  $('#history').prepend(`<div class="list-item" onClick="setApiRequest( ${date})">${data}</div>`);
 }
 
 function setTableData(tableId, headers, data) {
@@ -76,96 +92,16 @@ function getUrlParameter(sParam) {
   }
 }
 
-$(function () {
-  // const customTitlebar = require('custom-electron-titlebar');
-  // let titlebar = new customTitlebar.Titlebar({
-  //   backgroundColor: customTitlebar.Color.fromHex('#444')
-  // });
-  // titlebar.updateTitle('Svatah IDE');
-  // titlebar.updateIcon('./src/icon.ico');
-
-  dbClient.getRows('settings', { 'uid': 1 }, function (userSetting) {
-    console.log('got theme : ' + userSetting[0].darkmode)
-    choosenTheme = userSetting[0].darkmode;
-    if (choosenTheme == 'dark') {
-      $('#bod').removeClass('white-content')
-      $('#flowEditorContainer').addClass('trumbowyg-dark')
-    }
-    else {
-      $('#bod').addClass('white-content')
-      $('#flowEditorContainer').removeClass('trumbowyg-dark')
-    }
-  });
-});
-
-$(function () {
-  if ($('#bod').hasClass('white-content')) {
-    $('#bod').removeClass('white-color-text')
-    $('#darkmodeicon').html('toggle_off');
-  } else {
-    $('#bod').addClass('white-color-text')
-    $('#darkmodeicon').html('toggle_on');
-  }
-  $('.theme').on('click', function (event) {
-    event.preventDefault();
-    $(this).toggleClass('active');
-    $('#bod').toggleClass('white-content')
-    $('#bod').toggleClass('white-color-text')
-    $('#flowEditorContainer').toggleClass('trumbowyg-dark')
-    if ($('#bod').hasClass('white-content')) {
-      choosenTheme = 'light';
-      $('#darkmodeicon').html('toggle_off');
-    } else {
-      choosenTheme = 'dark';
-      $('#darkmodeicon').html('toggle_on');
-    }
-    dbClient.searchData('settings', 'uid', 1, function (result) {
-      if (result != null) {
-        dbClient.updateRow('settings', { 'uid': 1 }, { 'darkmode': choosenTheme })
-      }
-      else {
-        dbClient.insertSettingsRow(1, choosenTheme, false);
-      }
-    })
-    $('#darkmode').removeClass('active');
-    //console.log('choosen theme : ' + choosenTheme);
-  });
-});
-
-$(function () {
-  $("#sidebar").hover(function () {
-    $(this).addClass("sidebar-hover");
-  }, function () {
-    $(this).removeClass("sidebar-hover");
-  });
-})
+// $(function () {
+//   $("#sidebar").hover(function () {
+//     $(this).addClass("sidebar-hover");
+//   }, function () {
+//     $(this).removeClass("sidebar-hover");
+//   });
+// })
 
 function addResultToTable(resultObj) {
 
-}
-
-
-function setApiRequestFromJsonObject(data) {
-  //console.log('setting data : '+ JSON.stringify(data))
-  $('#httpMethod').val(data.httpMethod)
-  if (data.httpMethod == 'GET') {
-    document.getElementById("notGetDivCheck").style.display = "none";
-    posteditor.setText('')
-  }
-  else {
-    document.getElementById("notGetDivCheck").style.display = "block";
-    posteditor.setText(data.requestBody)
-  }
-  $('#uri').val(data.uri)
-  $('#acceptAllSslCert').val(data.acceptAllSslCert)
-  $("#apiEditor").val(data.headers);
-  if (data.headers != undefined && data.headers != "") {
-    setTableData('#api-header-table', ['header key', 'header value'], JSON.parse(data.headers));
-  } else {
-    setTableData('#api-header-table', ['header key', 'header value'], []);
-  }
-  $('#contentType').val(data.contentType)
-  $('#followRedirect').val(data.followRedirect)
 }
 
 function importLocatorsRepository() {
@@ -177,7 +113,8 @@ function importLocatorsRepository() {
     } else {
       setTableData('#locator-table', ['locator identifier', 'locator details'], []);
     }
-    $("#locatorEditor").val(data)
+    $("#locatorEditor").val(data);
+    closeModal('importModal');
   } catch (error) {
     showAlert('alertbar', 'danger', error)
   }
@@ -186,6 +123,7 @@ function importLocatorsRepository() {
 function exportLocatorsRepository() {
   let locatorData = JSON.parse($('#locatorEditor').val());
   $("#locatorExportJson").val(JSON.stringify(locatorData, null, 2));
+  openModal('exportLocatorModal');
 }
 
 function importDataRepository() {
@@ -197,6 +135,7 @@ function importDataRepository() {
       setTableData('#data-table', ['variable name', 'variable value'], []);
     }
     $("#dataEditor").val(data);
+    closeModal('importDataModal');
   } catch (error) {
     showAlert('alertbar', 'danger', error)
   }
@@ -205,13 +144,14 @@ function importDataRepository() {
 function exportDataRepository() {
   let dataMap = JSON.parse($('#dataEditor').val());
   $("#dataExportJson").val(JSON.stringify(dataMap, null, 2));
+  openModal('exportDataModal');
 }
 
 function exportAPI() {
   let request = {
     httpMethod: $('#httpMethod').val(),
     uri: $('#uri').val(),
-    requestBody: posteditor.getText(),
+    requestBody: postApiEditor.getText(),
     acceptAllSslCert: $('#acceptAllSslCert').val(),
     headers: $('#apiEditor').val(),
     contentType: $('#contentType').val(),
@@ -223,8 +163,9 @@ function exportAPI() {
 
 function importAPI() {
   try {
-    let request = JSON.parse($('#apiRequestImportJson').val())
-    setApiRequestFromJsonObject(request)
+    let request = JSON.parse($('#apiRequestImportJson').val());
+    setApiRequestFromJsonObject(request);
+    closeModal('importModal')
   } catch (error) {
     showAlert('alertbar', 'danger', error)
   }
@@ -253,16 +194,15 @@ function syntaxHighlight(json) {
 }
 
 function mapFlowValidationResponseToTable(flowErrorDetails) {
-  console.log("error : " + flowErrorDetails.replace(/(\r\n|\n|\r)/g,""))
+  console.log("error : " + flowErrorDetails.replace(/(\r\n|\n|\r)/g, ""))
   console.log(typeof flowErrorDetails)
   let htmlData = `<table class="table-sm"></tr>`
   if (typeof flowErrorDetails == 'string')
-    flowErrorDetails = JSON.parse(flowErrorDetails.replace(/(\r\n|\n|\r)/g,""))
+    flowErrorDetails = JSON.parse(flowErrorDetails.replace(/(\r\n|\n|\r)/g, ""))
   flowErrorDetails.forEach(errorRow => {
     htmlData = htmlData.concat(getErrorRows(errorRow))
   });
   htmlData = htmlData.concat("</table>")
-  console.log("htmlData : " + htmlData)
   return htmlData
 }
 

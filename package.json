@@ -1,9 +1,10 @@
 {
   "name": "svatah",
   "productName": "SvatahADE",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Automation Development Environment",
   "main": "src/index.js",
+  "license": "Apache-2.0",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -68,20 +69,22 @@
     }
   },
   "dependencies": {
-    "electron-compile": "^6.4.4",
-    "electron-db": "^0.15.1",
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "base64-img": "^1.0.4",
+    "bulma": "^0.8.2",
+    "datatables-bulma": "^1.0.1",
+    "electron-db": "^1.0.0",
     "electron-squirrel-startup": "^1.0.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "minimal-request-promise": "^1.5.0",
-    "shepherd.js": "^4.3.3"
+    "shepherd.js": "^7.1.5"
   },
   "devDependencies": {
-    "@electron-forge/cli": "6.0.0-beta.39",
-    "@electron-forge/maker-deb": "6.0.0-beta.39",
-    "@electron-forge/maker-dmg": "^6.0.0-beta.43",
-    "@electron-forge/maker-rpm": "6.0.0-beta.39",
-    "@electron-forge/maker-squirrel": "6.0.0-beta.39",
-    "electron": "^6.0.0",
-    "electron-prebuilt-compile": "4.0.0"
+    "@electron-forge/cli": "^6.0.0-beta.51",
+    "@electron-forge/maker-deb": "^6.0.0-beta.51",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.51",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.51",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
+    "electron": "^8.2.5"
   }
 }
